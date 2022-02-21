@@ -1,0 +1,595 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Flowchart" this:Flowchart.IN_MasterSheet_SharePointTitle="Development Data Sharing - Master sheet - All Documents" this:Flowchart.IN_MasterSheet_FileName="THE EXCEL.xlsx" this:Flowchart.IN_Orchestrator_Folder_Path="mohammed.ali2@defra.gov.uk's workspace" this:Flowchart.IN_CheckIn_Comment="[&quot;updated by &quot; + environment.UserName]" this:Flowchart.IN_Master_URL="https://defra.sharepoint.com/sites/ea-leg-djw/DDS/Robotics/Forms/AllItems.aspx?e=5%3Af196d2c137ab41ca93b554e24a45b018&amp;at=9&amp;FolderCTID=0x012000A89FEF2749F5B047AA69B8F8D27AFE05&amp;id=%2Fsites%2Fea%2Dleg%2Ddjw%2FDDS%2FRobotics%2FFiles%2FAli%2FPPP%2FMaster%20sheet&amp;viewid=b88a6be8%2D3662%2D4127%2Da091%2D7771d14120c7" this:Flowchart.IN_Archive_URL="https://defra.sharepoint.com/sites/ea-leg-djw/DDS/Robotics/Forms/AllItems.aspx?e=5%3Af196d2c137ab41ca93b554e24a45b018&amp;at=9&amp;FolderCTID=0x012000A89FEF2749F5B047AA69B8F8D27AFE05&amp;id=%2Fsites%2Fea%2Dleg%2Ddjw%2FDDS%2FRobotics%2FFiles%2FAli%2FPPP%2FArchive&amp;viewid=b88a6be8%2D3662%2D4127%2Da091%2D7771d14120c7" this:Flowchart.IN_Archive_SharePointTitle="Development Data Sharing - Archive - All Documents" this:Flowchart.IN_Weekly_URL="https://defra.sharepoint.com/sites/ea-leg-djw/DDS/Robotics/Forms/AllItems.aspx?e=5%3Af196d2c137ab41ca93b554e24a45b018&amp;at=9&amp;FolderCTID=0x012000A89FEF2749F5B047AA69B8F8D27AFE05&amp;id=%2Fsites%2Fea%2Dleg%2Ddjw%2FDDS%2FRobotics%2FFiles%2FAli%2FPPP%2FWeekly%20sheet&amp;viewid=b88a6be8%2D3662%2D4127%2Da091%2D7771d14120c7" this:Flowchart.IN_Weekly_SharePointTitle="Development Data Sharing - Weekly sheet - All Documents" this:Flowchart.IN_FileName="PPPData" this:Flowchart.IN_PPP_Robot_Link="PPP Robot Link" this:Flowchart.IN_Archive_Pathway="[{&quot;Current Library&quot;,&quot;Files&quot;,&quot;Ali&quot;,&quot;PPP&quot;,&quot;Archive&quot;}]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:SharePoint;assembly=SharePoint" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="you need to get the title attribute of the main page" Name="IN_MasterSheet_SharePointTitle" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="master sheet name and extention" Name="IN_MasterSheet_FileName" Type="InArgument(x:String)" />
+    <x:Property Name="IN_Orchestrator_Folder_Path" Type="InArgument(x:String)" />
+    <x:Property Name="IN_CheckIn_Comment" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="sharepoint URL of the folder that houses master spreadsheet" Name="IN_Master_URL" Type="InArgument(x:String)" />
+    <x:Property Name="IN_Archive_URL" Type="InArgument(x:String)" />
+    <x:Property Name="IN_Archive_SharePointTitle" Type="InArgument(x:String)" />
+    <x:Property Name="IN_Weekly_URL" Type="InArgument(x:String)" />
+    <x:Property Name="IN_Weekly_SharePointTitle" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="base file name of weekly sheets without the date and extension" Name="IN_FileName" Type="InArgument(x:String)" />
+    <x:Property Name="IN_PPP_Robot_Link" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="need array of the folders to click from the root in order to move. look at curret filled in example to replacte for live" Name="IN_Archive_Pathway" Type="InArgument(s:String[])" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1224,857.333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Flowchart_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="26">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.Security</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="33">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="Flowchart" sap:VirtualizedContainerService.HintSize="1100.66666666667,792.666666666667" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="x:Boolean" Name="booFileExists" />
+      <Variable x:TypeArguments="x:Boolean" Name="booMasterUploadSkip" />
+      <Variable x:TypeArguments="x:String" Name="strLastWeek_FileName" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtaWeeklySheet" />
+      <Variable x:TypeArguments="x:String" Name="strCheckingStatus" />
+      <Variable x:TypeArguments="x:String" Name="strFULL_FilePath_LastWeek" />
+      <Variable x:TypeArguments="x:String" Name="strPPP_Robot_Link" />
+      <Variable x:TypeArguments="x:String" Name="strFULL_FilePath_Master" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <av:Point x:Key="ShapeLocation">370,22.5</av:Point>
+        <av:Size x:Key="ShapeSize">60,74.6666666666667</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">400,97.1666666666667 400,157.5</av:PointCollection>
+        <x:Double x:Key="Height">756.68666666666672</x:Double>
+        <x:Double x:Key="Width">1066.6666666666667</x:Double>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID10</x:Reference>
+    </Flowchart.StartNode>
+    <FlowDecision x:Name="__ReferenceID2" Condition="[strPPP_Robot_Link = Today.AddDays( 1 -cint(Today.DayOfWeek)).ToString(&quot;dd/MM/yyyy&quot;) or strPPP_Robot_Link.Contains(&quot;updating&quot;)]" DisplayName="Already Being Processed?" sap:VirtualizedContainerService.HintSize="140.666666666667,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <av:Point x:Key="ShapeLocation">329.666666666667,260.166666666667</av:Point>
+          <av:Size x:Key="ShapeSize">140.666666666667,86.6666666666667</av:Size>
+          <av:PointCollection x:Key="FalseConnector">470.333333333333,303.5 570.333333333333,303.5</av:PointCollection>
+          <av:PointCollection x:Key="TrueConnector">329.666666666667,303.5 229.666666666667,303.5</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <FlowDecision.True>
+        <FlowStep x:Name="__ReferenceID5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">29.666666666667,277.166666666667</av:Point>
+              <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message - Already Processing" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Another user is already updating the master consolidated sheet. proceeding to main process.&quot;]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:LogMessage>
+        </FlowStep>
+      </FlowDecision.True>
+      <FlowDecision.False>
+        <FlowStep x:Name="__ReferenceID3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">570.333333333333,268.833333333333</av:Point>
+              <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">670.333333333333,338.166666666667 670.333333333333,388.166666666667</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="Open sharepoint and check for last week's sheet" sap:VirtualizedContainerService.HintSize="508.666666666667,1167.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_13">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="strWeekly" />
+              <Variable x:TypeArguments="x:String" Name="strArchive" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:SetAsset TimeoutMS="{x:Null}" AssetName="[IN_PPP_Robot_Link]" DisplayName="Set Asset - PPP Robot Link - Updating" FolderPath="[IN_Orchestrator_Folder_Path]" sap:VirtualizedContainerService.HintSize="466.666666666667,22" sap2010:WorkflowViewState.IdRef="SetAsset_8" Value="[strPPP_Robot_Link + &quot; &quot; + Environment.UserName + &quot; updating&quot;]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:SetAsset>
+            <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Open Browser - Sharepoint" sap:VirtualizedContainerService.HintSize="466.666666666667,700.666666666667" sap2010:WorkflowViewState.IdRef="OpenBrowser_6" Url="[IN_Master_URL]">
+              <ui:OpenBrowser.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="418,598" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Sequence DisplayName="clicking in JS" sap:VirtualizedContainerService.HintSize="376,506" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:String" Name="strURL" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize Window" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="MaximizeWindow_3" />
+                      <ui:InjectJsScript ScriptOutput="{x:Null}" DisplayName="Inject Js Script - retrun innerHTML - Weekly" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="InjectJsScript_5" InputParameter="[IN_Weekly_URL]" ScriptCode="jsonscripts\OpenNewTab.js">
+                        <ui:InjectJsScript.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="52bec3a3-3948-447c-bd4d-6524108066dd" InformativeScreenshot="36e03cb33fcacfc2442d31a465d09e1e" Selector="&lt;html app='msedge.exe' title='*' /&gt;&lt;webctrl tag='BODY' /&gt;" WaitForReady="COMPLETE">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                          </ui:Target>
+                        </ui:InjectJsScript.Target>
+                      </ui:InjectJsScript>
+                      <ui:InjectJsScript ScriptOutput="{x:Null}" DisplayName="Inject Js Script - retrun innerHTML - Archive" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="InjectJsScript_6" InputParameter="[IN_Archive_URL]" ScriptCode="jsonscripts\OpenNewTab.js">
+                        <ui:InjectJsScript.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="52bec3a3-3948-447c-bd4d-6524108066dd" InformativeScreenshot="36e03cb33fcacfc2442d31a465d09e1e" Selector="&lt;html app='msedge.exe' title='*' /&gt;&lt;webctrl tag='BODY' /&gt;" WaitForReady="COMPLETE">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                          </ui:Target>
+                        </ui:InjectJsScript.Target>
+                      </ui:InjectJsScript>
+                    </Sequence>
+                  </Sequence>
+                </ActivityAction>
+              </ui:OpenBrowser.Body>
+            </ui:OpenBrowser>
+            <Assign DisplayName="Work out last week's file name" sap:VirtualizedContainerService.HintSize="466.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_8">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[strLastWeek_FileName]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[IN_FileName +" "+Today.AddDays(-cint(Today.DayOfWeek) -6).ToString("dd.MM.yyyy") + ".xlsx"]</InArgument>
+              </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Assign>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="466.666666666667,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[&quot;Last Week File Name: &quot;+strLastWeek_FileName]" />
+            <ui:UiElementExists DisplayName="Last weeks present to upload?" Exists="[booFileExists]" sap:VirtualizedContainerService.HintSize="466.666666666667,68" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
+              <ui:UiElementExists.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="21f4f341-2956-4360-837d-4ebd749692ad" Selector="[String.Format(&quot;&lt;html app='msedge.exe' htmlwindowname='{{}}' title='{0}' /&gt;&lt;webctrl aaname='{1}' /&gt;&quot;, IN_Weekly_SharePointTitle, strLastWeek_FileName)]" WaitForReady="COMPLETE">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                </ui:Target>
+              </ui:UiElementExists.Target>
+            </ui:UiElementExists>
+          </Sequence>
+          <FlowStep.Next>
+            <FlowDecision x:Name="__ReferenceID1" Condition="[booFileExists]" DisplayName="Last Week Present?" sap:VirtualizedContainerService.HintSize="106,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_4">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <av:Point x:Key="ShapeLocation">617.333333333333,388.166666666667</av:Point>
+                  <av:Size x:Key="ShapeSize">106,86.6666666666667</av:Size>
+                  <av:PointCollection x:Key="FalseConnector">723.333333333333,430.833333333333 833.333333333333,430.833333333333</av:PointCollection>
+                  <av:PointCollection x:Key="TrueConnector">617.333333333333,431.5 507.333333333333,431.5</av:PointCollection>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <FlowDecision.True>
+                <FlowStep x:Name="__ReferenceID4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:Point x:Key="ShapeLocation">307.333333333333,396.833333333333</av:Point>
+                      <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
+                      <av:PointCollection x:Key="ConnectorLocation">407.333333333333,466.166666666667 407.333333333333,516.166666666667</av:PointCollection>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence DisplayName="Get Weekly &amp; Check Master Status" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign DisplayName="Set file path for last weeks's sheet" sap:VirtualizedContainerService.HintSize="530,62" sap2010:WorkflowViewState.IdRef="Assign_11">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[strFULL_FilePath_LastWeek]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[string.Format("C:\Users\{0}\Downloads\{1}",Environment.UserName,strLastWeek_FileName)]</InArgument>
+                      </Assign.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Assign>
+                    <If Condition="[Directory.GetFiles(string.Format(&quot;C:\Users\{0}\Downloads\&quot;,Environment.UserName),strLastWeek_FileName).Count = 0]" DisplayName="If old local copy exists:" sap:VirtualizedContainerService.HintSize="530,234.666666666667" sap2010:WorkflowViewState.IdRef="If_1">
+                      <If.Else>
+                        <ui:DeleteFileX DisplayName="Delete File - Local Copy" sap:VirtualizedContainerService.HintSize="384,80.6666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_5" Path="[strFULL_FilePath_LastWeek]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:DeleteFileX>
+                      </If.Else>
+                    </If>
+                    <s1:Get_File DisplayName="Get File - Last Weeks File" sap:VirtualizedContainerService.HintSize="530,22" IN_FileDownloadWait_Seconds="180" IN_FileName="[strLastWeek_FileName]" IN_SharePointTitle="[IN_Weekly_SharePointTitle]" sap2010:WorkflowViewState.IdRef="Get_File_1" />
+                    <s1:Check_InOut_status DisplayName="Check InOut status - Master Sheet" sap:VirtualizedContainerService.HintSize="530,22" IN_FileName="[IN_MasterSheet_FileName]" IN_SharePointTitle="[IN_MasterSheet_SharePointTitle]" sap2010:WorkflowViewState.IdRef="Check_InOut_status_1" OUT_Checking_Status="[strCheckingStatus]" />
+                  </Sequence>
+                  <FlowStep.Next>
+                    <FlowDecision x:Name="__ReferenceID0" Condition="[strCheckingStatus = &quot;in&quot;]" DisplayName="Checked In?" sap:VirtualizedContainerService.HintSize="70,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <av:Point x:Key="ShapeLocation">372.333333333333,516.166666666667</av:Point>
+                          <av:Size x:Key="ShapeSize">70,86.6666666666667</av:Size>
+                          <av:PointCollection x:Key="TrueConnector">372.333333333333,559.5 232.333333333333,559.5</av:PointCollection>
+                          <av:PointCollection x:Key="FalseConnector">442.333333333333,559.5 582.333333333333,559.5</av:PointCollection>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <FlowDecision.True>
+                        <FlowStep x:Name="__ReferenceID6">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:Point x:Key="ShapeLocation">32.3333333333334,524.833333333333</av:Point>
+                              <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
+                              <av:PointCollection x:Key="ConnectorLocation">132.333333333333,594.166666666667 132.333333333333,644.166666666667</av:PointCollection>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Sequence DisplayName="Upload to Master &amp; Archive Weekly" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign DisplayName="Set Master Sheet File Path" sap:VirtualizedContainerService.HintSize="530,62" sap2010:WorkflowViewState.IdRef="Assign_13">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[strFULL_FilePath_Master]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[string.Format("C:\Users\{0}\Downloads\{1}",Environment.UserName,IN_MasterSheet_FileName).tostring]</InArgument>
+                              </Assign.Value>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Assign>
+                            <s1:Check_In_OR_Out DisplayName="Check Out Master Sheet" sap:VirtualizedContainerService.HintSize="530,22" IN_Check_In_Or_Out="out" IN_FileName="[IN_MasterSheet_FileName]" IN_SharePointTitle="[IN_MasterSheet_SharePointTitle]" sap2010:WorkflowViewState.IdRef="Check_In_OR_Out_1">
+                              <s1:Check_In_OR_Out.IN_Check_In_Comment>
+                                <InArgument x:TypeArguments="x:String">
+                                  <Literal x:TypeArguments="x:String" Value="" />
+                                </InArgument>
+                              </s1:Check_In_OR_Out.IN_Check_In_Comment>
+                            </s1:Check_In_OR_Out>
+                            <If Condition="[Directory.GetFiles(string.Format(&quot;C:\Users\{0}\Downloads\&quot;,Environment.UserName),IN_MasterSheet_FileName).Count = 0]" DisplayName="If previous local copy exists:" sap:VirtualizedContainerService.HintSize="530,234.666666666667" sap2010:WorkflowViewState.IdRef="If_2">
+                              <If.Else>
+                                <ui:DeleteFileX DisplayName="Delete File - Local copy" sap:VirtualizedContainerService.HintSize="384,80.6666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_6" Path="[strFULL_FilePath_Master]">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:DeleteFileX>
+                              </If.Else>
+                            </If>
+                            <s1:Get_File DisplayName="Get File - Master Sheet" sap:VirtualizedContainerService.HintSize="530,22" IN_FileDownloadWait_Seconds="180" IN_FileName="[IN_MasterSheet_FileName]" IN_SharePointTitle="[IN_MasterSheet_SharePointTitle]" sap2010:WorkflowViewState.IdRef="Get_File_2" />
+                            <ui:RetryScope sap2010:Annotation.AnnotationText="bizarre excel error occurs someimes - This segment tries to kill and retry excel merge" DisplayName="Consolidate Excel - Weekly to Master" sap:VirtualizedContainerService.HintSize="530,734" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="2" RetryInterval="00:00:00">
+                              <ui:RetryScope.ActivityBody>
+                                <ActivityAction>
+                                  <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="476,556.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:KillProcess ContinueOnError="{x:Null}" Process="{x:Null}" AppliesTo="OnlyCurrentUser" DisplayName="Kill Process - Excel" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="KillProcess_3" ProcessName="EXCEL" />
+                                    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Read Weekly Sheet" sap:VirtualizedContainerService.HintSize="434,167.333333333333" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[strFULL_FilePath_LastWeek]">
+                                      <ui:ExcelApplicationScope.Body>
+                                        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                          </ActivityAction.Argument>
+                                          <ui:ExcelReadRange AddHeaders="True" DataTable="[dtaWeeklySheet]" DisplayName="Read Range - Weekly" sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelReadRange_4" SheetName="Sheet1">
+                                            <ui:ExcelReadRange.Range>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <Literal x:TypeArguments="x:String" Value="" />
+                                              </InArgument>
+                                            </ui:ExcelReadRange.Range>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:ExcelReadRange>
+                                        </ActivityAction>
+                                      </ui:ExcelApplicationScope.Body>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:ExcelApplicationScope>
+                                    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Update Master Sheet" sap:VirtualizedContainerService.HintSize="434,195.333333333333" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_6" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[string.Format(&quot;C:\Users\{0}\Downloads\{1}&quot;,Environment.UserName,IN_MasterSheet_FileName)]">
+                                      <ui:ExcelApplicationScope.Body>
+                                        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                          </ActivityAction.Argument>
+                                          <ui:ExcelAppendRange DataTable="[dtaWeeklySheet]" DisplayName="Append Range - Weekly to Master" sap:VirtualizedContainerService.HintSize="334,86.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_3" SheetName="Sheet1" />
+                                        </ActivityAction>
+                                      </ui:ExcelApplicationScope.Body>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:ExcelApplicationScope>
+                                  </Sequence>
+                                </ActivityAction>
+                              </ui:RetryScope.ActivityBody>
+                              <ui:RetryScope.Condition>
+                                <ActivityFunc x:TypeArguments="x:Boolean" />
+                              </ui:RetryScope.Condition>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:RetryScope>
+                            <s1:Upload_File DisplayName="Upload File - Master" sap:VirtualizedContainerService.HintSize="530,22" IN_FileUploadWait_Seconds="30" IN_LocalPath="[strFULL_FilePath_Master]" IN_SharePointTitle="[IN_MasterSheet_SharePointTitle]" sap2010:WorkflowViewState.IdRef="Upload_File_1" />
+                            <s1:Check_In_OR_Out DisplayName="Check In Master File" sap:VirtualizedContainerService.HintSize="530,22" IN_Check_In_Comment="[IN_CheckIn_Comment]" IN_Check_In_Or_Out="in" IN_FileName="[IN_MasterSheet_FileName]" IN_SharePointTitle="[IN_MasterSheet_SharePointTitle]" sap2010:WorkflowViewState.IdRef="Check_In_OR_Out_2" />
+                            <s1:Move_File DisplayName="Archive Weekly File" sap:VirtualizedContainerService.HintSize="530,22" IN_Destination="[IN_Archive_Pathway]" IN_FileName="[strLastWeek_FileName]" IN_SharePointTitle="[IN_Weekly_SharePointTitle]" sap2010:WorkflowViewState.IdRef="Move_File_1" />
+                            <ui:DeleteFileX DisplayName="Delete File - Local master" sap:VirtualizedContainerService.HintSize="530,80.6666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_7" Path="[strFULL_FilePath_Master]">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:DeleteFileX>
+                            <ui:DeleteFileX DisplayName="Delete File - Local copy" sap:VirtualizedContainerService.HintSize="530,80.6666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_8" Path="[strFULL_FilePath_LastWeek]">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:DeleteFileX>
+                          </Sequence>
+                          <FlowStep.Next>
+                            <FlowStep x:Name="__ReferenceID7">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <av:Point x:Key="ShapeLocation">32.3333333333334,644.166666666667</av:Point>
+                                  <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Sequence DisplayName="Close Edge &amp; Update Asset" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:CloseApplication DisplayName="Close Application 'EDGE'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="CloseApplication_2">
+                                  <ui:CloseApplication.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9e3c8590-e258-4801-8e67-bec3868be7b7" InformativeScreenshot="e19ccfa6bda98f7e72009004301ec555" Selector="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='*' /&gt;" TimeoutMS="10000" WaitForReady="COMPLETE" />
+                                  </ui:CloseApplication.Target>
+                                </ui:CloseApplication>
+                                <ui:SetAsset TimeoutMS="{x:Null}" AssetName="[IN_PPP_Robot_Link]" DisplayName="Set Asset - Current Monday" FolderPath="[IN_Orchestrator_Folder_Path]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="SetAsset_9" Value="[Today.AddDays(1-cint(Today.DayOfWeek)).ToString(&quot;dd/MM/yyyy&quot;)]">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:SetAsset>
+                                <ui:LogMessage DisplayName="Log Message - Sheets Consolidated" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Sheets Consolidated&quot;]" />
+                              </Sequence>
+                            </FlowStep>
+                          </FlowStep.Next>
+                        </FlowStep>
+                      </FlowDecision.True>
+                      <FlowDecision.False>
+                        <FlowStep x:Name="__ReferenceID9">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:Point x:Key="ShapeLocation">582.333333333333,524.833333333333</av:Point>
+                              <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Sequence DisplayName="Checked In Error" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:SetAsset TimeoutMS="{x:Null}" AssetName="[IN_PPP_Robot_Link]" DisplayName="Set Asset - Previous Monday" FolderPath="[IN_Orchestrator_Folder_Path]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="SetAsset_10" Value="[strPPP_Robot_Link]">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:SetAsset>
+                            <Throw DisplayName="Throw BRE - File checked out" Exception="[new BusinessRuleException(&quot;Master File has been checked out, please investigate why and check in the master file before re-running this robot. Robot will now stop Running&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_3">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Throw>
+                          </Sequence>
+                        </FlowStep>
+                      </FlowDecision.False>
+                    </FlowDecision>
+                  </FlowStep.Next>
+                </FlowStep>
+              </FlowDecision.True>
+              <FlowDecision.False>
+                <FlowStep x:Name="__ReferenceID8">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:Point x:Key="ShapeLocation">833.333333333333,396.166666666667</av:Point>
+                      <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence DisplayName="Check if first run:" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If Condition="[today &lt; datetime.Parse(&quot;02/10/2022 00:00:00&quot;)]" DisplayName="If first run" sap:VirtualizedContainerService.HintSize="664,414" sap2010:WorkflowViewState.IdRef="If_3">
+                      <If.Then>
+                        <Sequence DisplayName="Close Edge &amp; Update Asset" sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:CloseApplication DisplayName="Close Application 'EDGE'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="CloseApplication_3">
+                            <ui:CloseApplication.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9e3c8590-e258-4801-8e67-bec3868be7b7" InformativeScreenshot="e19ccfa6bda98f7e72009004301ec555" Selector="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='*' /&gt;" TimeoutMS="10000" WaitForReady="COMPLETE" />
+                            </ui:CloseApplication.Target>
+                          </ui:CloseApplication>
+                          <ui:SetAsset TimeoutMS="{x:Null}" AssetName="[IN_PPP_Robot_Link]" DisplayName="Set Asset - Current Monday" FolderPath="[IN_Orchestrator_Folder_Path]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="SetAsset_11" Value="[Today.AddDays(1-cint(Today.DayOfWeek)).ToString(&quot;dd/MM/yyyy&quot;)]">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:SetAsset>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Missing sheet error" sap:VirtualizedContainerService.HintSize="242,176" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:SetAsset TimeoutMS="{x:Null}" AssetName="[IN_PPP_Robot_Link]" DisplayName="Set Asset - Previous Monday" FolderPath="[IN_Orchestrator_Folder_Path]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="SetAsset_12" Value="[strPPP_Robot_Link]">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:SetAsset>
+                          <Throw DisplayName="Throw BRE - Previous Sheet Missing" Exception="[new BusinessRuleException(&quot;Previous weeks Spreadsheet is missing&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_4">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Throw>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </FlowStep>
+              </FlowDecision.False>
+            </FlowDecision>
+          </FlowStep.Next>
+        </FlowStep>
+      </FlowDecision.False>
+    </FlowDecision>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_38">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">300,157.5</av:Point>
+          <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">400,210.166666666667 400,260.166666666667</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[IN_PPP_Robot_Link]" DisplayName="Get Asset - PPP Robot Link" FolderPath="[IN_Orchestrator_Folder_Path]" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+        <ui:GetRobotAsset.Value>
+          <OutArgument x:TypeArguments="x:String">[strPPP_Robot_Link]</OutArgument>
+        </ui:GetRobotAsset.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:GetRobotAsset>
+      <FlowStep.Next>
+        <x:Reference>__ReferenceID2</x:Reference>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID3</x:Reference>
+    <x:Reference>__ReferenceID4</x:Reference>
+    <x:Reference>__ReferenceID5</x:Reference>
+    <x:Reference>__ReferenceID6</x:Reference>
+    <x:Reference>__ReferenceID7</x:Reference>
+    <x:Reference>__ReferenceID8</x:Reference>
+    <x:Reference>__ReferenceID9</x:Reference>
+  </Flowchart>
+</Activity>
