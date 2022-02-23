@@ -6,7 +6,6 @@
     <x:Property Name="OUT_strRoute" Type="InArgument(x:String)" />
     <x:Property Name="OUT_intODSPhase2" Type="OutArgument(x:Int32)" />
     <x:Property Name="OUT_intPhase2" Type="OutArgument(x:Int32)" />
-    <x:Property Name="OUT_strSender" Type="OutArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -116,14 +115,6 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <ui:MoveOutlookMessage Account="{x:Null}" DisplayName="Move Message to In Progress folder" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_1" MailFolder="[IN_dictConfig(&quot;Email Inbox Folder&quot;).ToString+&quot;\&quot;+IN_dictConfig(&quot;User Email Subfolder&quot;).ToString+&quot;\&quot;+IN_dictConfig(&quot;Email In Progress Folder&quot;).ToString]" MailMessage="[IN_MailTransactionItem]" />
-        <Assign DisplayName="Assign Sender" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_67">
-          <Assign.To>
-            <OutArgument x:TypeArguments="x:String">[OUT_strSender]</OutArgument>
-          </Assign.To>
-          <Assign.Value>
-            <InArgument x:TypeArguments="x:String">[IN_MailTransactionItem.sender.ToString]</InArgument>
-          </Assign.Value>
-        </Assign>
         <ui:SaveMailAttachments Attachments="[ieAttachments]" DisplayName="Save Attachments to Attachements Folder" FolderPath="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_1" Message="[IN_MailTransactionItem]" OverwriteExisting="False" />
         <Assign DisplayName="Count Attachments - intAttachments" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_1">
           <Assign.To>
