@@ -6,14 +6,16 @@
     <x:Property Name="OUT_strRoute" Type="InArgument(x:String)" />
     <x:Property Name="OUT_intODSPhase2" Type="OutArgument(x:Int32)" />
     <x:Property Name="OUT_intPhase2" Type="OutArgument(x:Int32)" />
+    <x:Property Name="IN_strAttachmentsFolder" Type="InArgument(x:String)" />
+    <x:Property Name="IN_strWorkingFolder" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1698.66666666667,1061.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1793.33333333333,1061.33333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="29">
+    <scg:List x:TypeArguments="x:String" Capacity="58">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -43,10 +45,11 @@
       <x:String>Newtonsoft.Json.Linq</x:String>
       <x:String>Newtonsoft.Json</x:String>
       <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="30">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="60">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -77,6 +80,8 @@
       <AssemblyReference>UiPath.Word</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Assess Attachments" sap:VirtualizedContainerService.HintSize="1708.66666666667,996.666666666667" sap2010:WorkflowViewState.IdRef="Flowchart_1">
@@ -115,7 +120,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <ui:MoveOutlookMessage Account="{x:Null}" DisplayName="Move Message to In Progress folder" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_1" MailFolder="[IN_dictConfig(&quot;Email Inbox Folder&quot;).ToString+&quot;\&quot;+IN_dictConfig(&quot;User Email Subfolder&quot;).ToString+&quot;\&quot;+IN_dictConfig(&quot;Email In Progress Folder&quot;).ToString]" MailMessage="[IN_MailTransactionItem]" />
-        <ui:SaveMailAttachments Attachments="[ieAttachments]" DisplayName="Save Attachments to Attachements Folder" FolderPath="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_1" Message="[IN_MailTransactionItem]" OverwriteExisting="False" />
+        <ui:SaveMailAttachments Attachments="[ieAttachments]" DisplayName="Save Attachments to Attachements Folder" FolderPath="[IN_strAttachmentsFolder]" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_1" Message="[IN_MailTransactionItem]" OverwriteExisting="False" />
         <Assign DisplayName="Count Attachments - intAttachments" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_1">
           <Assign.To>
             <OutArgument x:TypeArguments="x:Int32">[intAttachments]</OutArgument>
@@ -155,8 +160,8 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:BuildDataTable DataTable="[OUT_datAttachmentTable]" DisplayName="Build Data Table - List of Attachments" sap:VirtualizedContainerService.HintSize="743.333333333333,58.6666666666667" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Attachment_x0020_Name&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Recognised_x003F_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Phase_x0020_1_x0020_or_x0020_2_x003F_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Language&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Openable_x003F_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each Item in ieAttachments" sap:VirtualizedContainerService.HintSize="743.333333333333,740" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[ieAttachments]">
+                <ui:BuildDataTable DataTable="[OUT_datAttachmentTable]" DisplayName="Build Data Table - List of Attachments" sap:VirtualizedContainerService.HintSize="710.666666666667,58.6666666666667" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Attachment_x0020_Name&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Recognised_x003F_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Phase_x0020_1_x0020_or_x0020_2_x003F_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Language&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Openable_x003F_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each Item in ieAttachments" sap:VirtualizedContainerService.HintSize="710.666666666667,740" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[ieAttachments]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
@@ -176,7 +181,7 @@
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <uascw:ExtractFiles DestinationFolderInfo="{x:Null}" Password="{x:Null}" CodePage="Default" DestinationFolder="[IN_dictConfig(&quot;Attachments Folder&quot;)]" DisplayName="Extract/Unzip Files from Attachment" ExtractToADedicatedFolder="False" FileToExtract="[item.ToString]" sap:VirtualizedContainerService.HintSize="444,212" sap2010:WorkflowViewState.IdRef="ExtractFiles_2" SkipUnsupportedFiles="False" />
+                              <uascw:ExtractFiles DestinationFolderInfo="{x:Null}" Password="{x:Null}" CodePage="Default" DestinationFolder="[IN_strAttachmentsFolder]" DisplayName="Extract/Unzip Files from Attachment" ExtractToADedicatedFolder="False" FileToExtract="[item.ToString]" sap:VirtualizedContainerService.HintSize="444,212" sap2010:WorkflowViewState.IdRef="ExtractFiles_2" SkipUnsupportedFiles="False" />
                               <ui:Delete ContinueOnError="{x:Null}" DisplayName="Delete Zip File" sap:VirtualizedContainerService.HintSize="444,22" sap2010:WorkflowViewState.IdRef="Delete_2" Path="[item.ToString]" />
                             </Sequence>
                           </If.Then>
@@ -185,15 +190,15 @@
                     </ActivityAction>
                   </ui:ForEach.Body>
                 </ui:ForEach>
-                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop around all files in a specific hard coded directory" DisplayName="For Each File in Directory" sap:VirtualizedContainerService.HintSize="743.333333333333,4371.33333333333" sap2010:WorkflowViewState.IdRef="ForEach`1_9" Values="[System.IO.Directory.getfiles(IN_dictConfig(&quot;Attachments Folder&quot;).ToString)]">
+                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop around all files in a specific hard coded directory" DisplayName="For Each File in Directory" sap:VirtualizedContainerService.HintSize="710.666666666667,1498" sap2010:WorkflowViewState.IdRef="ForEach`1_9" Values="[System.IO.Directory.getfiles(IN_strAttachmentsFolder)]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
                       </ActivityAction.Argument>
-                      <If Condition="[Path.GetExtension(item.ToString).ToLower=&quot;.ods&quot;]" DisplayName="If the file is a .ods file" sap:VirtualizedContainerService.HintSize="706.666666666667,4212.66666666667" sap2010:WorkflowViewState.IdRef="If_18">
+                      <If Condition="[Path.GetExtension(item.ToString).ToLower=&quot;.ods&quot;]" DisplayName="If the file is a .ods file" sap:VirtualizedContainerService.HintSize="622,1339.33333333333" sap2010:WorkflowViewState.IdRef="If_18">
                         <If.Then>
-                          <Sequence DisplayName="Remove Protection" sap:VirtualizedContainerService.HintSize="560.666666666667,4058.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                          <Sequence DisplayName="Remove Protection" sap:VirtualizedContainerService.HintSize="476,1185.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_64">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="x:String" Name="strOriginalFileName" />
                               <Variable x:TypeArguments="x:String" Name="strNewFilePath" />
@@ -206,7 +211,7 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:MultipleAssign sap2010:Annotation.AnnotationText="Prepare string for current file path and new file path&#xA;Save the original file name for use later in the sequence when re-creating the file" DisplayName="Assign Old File Paths, New File Path &amp; Original File Name" sap:VirtualizedContainerService.HintSize="518.666666666667,222.666666666667" sap2010:WorkflowViewState.IdRef="MultipleAssign_17">
+                            <ui:MultipleAssign sap2010:Annotation.AnnotationText="Prepare string for current file path and new file path&#xA;Save the original file name for use later in the sequence when re-creating the file" DisplayName="Assign Old File Paths, New File Path &amp; Original File Name" sap:VirtualizedContainerService.HintSize="434,222.666666666667" sap2010:WorkflowViewState.IdRef="MultipleAssign_17">
                               <ui:MultipleAssign.AssignOperations>
                                 <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_74">
@@ -230,7 +235,7 @@
                                       <OutArgument x:TypeArguments="x:String">[strNewFilePath]</OutArgument>
                                     </ui:AssignOperation.To>
                                     <ui:AssignOperation.Value>
-                                      <InArgument x:TypeArguments="x:String">[IN_dictConfig("Attachments Folder").ToString + strOriginalFileName.replace(".ods","") + " - UNPROTECTED.xls"]</InArgument>
+                                      <InArgument x:TypeArguments="x:String">[IN_strAttachmentsFolder + strOriginalFileName.replace(".ods","") + " - UNPROTECTED.xls"]</InArgument>
                                     </ui:AssignOperation.Value>
                                   </ui:AssignOperation>
                                 </scg:List>
@@ -241,301 +246,342 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </ui:MultipleAssign>
-                            <uda:ExtractFileActivity Password="{x:Null}" sap2010:Annotation.AnnotationText="Extract all files in the ODS file to a hard coded local machine folder" DisplayName="Extract ODS File" sap:VirtualizedContainerService.HintSize="518.666666666667,134.666666666667" sap2010:WorkflowViewState.IdRef="ExtractFileActivity_4" Overwrite="True" ToExtractPath="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString + &quot;\ZipExtract”]" ZipPath="[strCurrentFilePath]">
+                            <uda:ExtractFileActivity Password="{x:Null}" sap2010:Annotation.AnnotationText="Extract all files in the ODS file to a hard coded local machine folder" DisplayName="Extract ODS File" sap:VirtualizedContainerService.HintSize="434,134.666666666667" sap2010:WorkflowViewState.IdRef="ExtractFileActivity_4" Overwrite="True" ToExtractPath="[IN_strAttachmentsFolder + &quot;\ZipExtract”]" ZipPath="[strCurrentFilePath]">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </uda:ExtractFileActivity>
-                            <ui:ReadTextFile sap2010:Annotation.AnnotationText="Store all contents of the XML file to a string variable" Content="[strAllContentXML]" DisplayName="Read XML File Contents" FileName="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString + &quot;\ZipExtract\content.xml&quot;]" sap:VirtualizedContainerService.HintSize="518.666666666667,111.333333333333" sap2010:WorkflowViewState.IdRef="ReadTextFile_4">
+                            <ui:ReadTextFile sap2010:Annotation.AnnotationText="Store all contents of the XML file to a string variable" Content="[strAllContentXML]" DisplayName="Read XML File Contents" FileName="[IN_strAttachmentsFolder + &quot;\ZipExtract\content.xml&quot;]" sap:VirtualizedContainerService.HintSize="434,111.333333333333" sap2010:WorkflowViewState.IdRef="ReadTextFile_4">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </ui:ReadTextFile>
-                            <ui:InterruptibleDoWhile sap2010:Annotation.AnnotationText="Loop around any protection tags in the string (there could be 0 or multiple)" Condition="[strAllContentXML.IndexOf(&quot;table:protected=&quot;&quot;true&quot;&quot;&quot;) &gt; 0]" DisplayName="Do While any protection tags remain in the XML string" sap:VirtualizedContainerService.HintSize="518.666666666667,714" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_4">
-                              <ui:InterruptibleDoWhile.Body>
-                                <Sequence DisplayName="Remove Protection Tags" sap:VirtualizedContainerService.HintSize="473.333333333333,514" sap2010:WorkflowViewState.IdRef="Sequence_60">
-                                  <Sequence.Variables>
-                                    <Variable x:TypeArguments="x:Int32" Name="nStartPosition" />
-                                    <Variable x:TypeArguments="x:Int32" Name="nEndPosition" />
-                                    <Variable x:TypeArguments="x:String" Name="strProtectedText" />
-                                  </Sequence.Variables>
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                  <Assign DisplayName="Set strProtectedText initial value" sap:VirtualizedContainerService.HintSize="431.333333333333,62" sap2010:WorkflowViewState.IdRef="Assign_62">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="x:String">[strProtectedText]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="x:String">[strAllContentXML.Substring(nStartPosition,((nEndPosition+13)-nStartPosition))]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                  <ui:MultipleAssign sap2010:Annotation.AnnotationText="nStartPosition - Find the start position of the protection tag&#xA;nEndPosition - Find the end position of the protection tag (looking for the hard coded end tag of 'xmldsig#sha1', up to 200 characters after the initial start position&#xA;strProtectedText - return the full string for the protection tag&#xA;strAllContentXML - replace the strProtectedText with the relevant protection turned off string" DisplayName="Multiple Assign variables required and updated string" sap:VirtualizedContainerService.HintSize="431.333333333333,320" sap2010:WorkflowViewState.IdRef="MultipleAssign_18">
-                                    <ui:MultipleAssign.AssignOperations>
-                                      <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-                                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_77">
-                                          <ui:AssignOperation.To>
-                                            <OutArgument x:TypeArguments="x:Int32">[nStartPosition]</OutArgument>
-                                          </ui:AssignOperation.To>
-                                          <ui:AssignOperation.Value>
-                                            <InArgument x:TypeArguments="x:Int32">[strAllContentXML.IndexOf(“table:protected="”true”"”)]</InArgument>
-                                          </ui:AssignOperation.Value>
-                                        </ui:AssignOperation>
-                                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_78">
-                                          <ui:AssignOperation.To>
-                                            <OutArgument x:TypeArguments="x:Int32">[nEndPosition]</OutArgument>
-                                          </ui:AssignOperation.To>
-                                          <ui:AssignOperation.Value>
-                                            <InArgument x:TypeArguments="x:Int32">[strAllContentXML.LastIndexOf("xmldsig#sha1""&gt;",nStartPosition+200)]</InArgument>
-                                          </ui:AssignOperation.Value>
-                                        </ui:AssignOperation>
-                                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_79">
-                                          <ui:AssignOperation.To>
-                                            <OutArgument x:TypeArguments="x:String">[strProtectedText]</OutArgument>
-                                          </ui:AssignOperation.To>
-                                          <ui:AssignOperation.Value>
-                                            <InArgument x:TypeArguments="x:String">[strAllContentXML.Substring(nStartPosition,((nEndPosition+13)-nStartPosition))]</InArgument>
-                                          </ui:AssignOperation.Value>
-                                        </ui:AssignOperation>
-                                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_80">
-                                          <ui:AssignOperation.To>
-                                            <OutArgument x:TypeArguments="x:String">[strAllContentXML]</OutArgument>
-                                          </ui:AssignOperation.To>
-                                          <ui:AssignOperation.Value>
-                                            <InArgument x:TypeArguments="x:String">[strAllContentXML.Replace(strProtectedText,"table:protected=""false""")]</InArgument>
-                                          </ui:AssignOperation.Value>
-                                        </ui:AssignOperation>
-                                      </scg:List>
-                                    </ui:MultipleAssign.AssignOperations>
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                  </ui:MultipleAssign>
-                                </Sequence>
-                              </ui:InterruptibleDoWhile.Body>
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                            </ui:InterruptibleDoWhile>
-                            <ui:WriteTextFile sap2010:Annotation.AnnotationText="Save the updated XML string to a file on the hard coded location on the local machine" DisplayName="Write XML File" FileName="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString + &quot;\ZipExtract\content.xml&quot;]" sap:VirtualizedContainerService.HintSize="518.666666666667,180.666666666667" sap2010:WorkflowViewState.IdRef="WriteTextFile_4" Text="[strAllContentXML]">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                            </ui:WriteTextFile>
-                            <uda:ZipFileActivity Password="{x:Null}" sap2010:Annotation.AnnotationText="Compresses the folder with the updated file to a hard coded local machine location" DisplayName="Compress Folder to a Zip file" sap:VirtualizedContainerService.HintSize="518.666666666667,134.666666666667" sap2010:WorkflowViewState.IdRef="ZipFileActivity_4" ZipPath="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString + &quot;\Unprotectedfile&quot;]">
-                              <uda:ZipFileActivity.ToZipPath>
-                                <InArgument x:TypeArguments="x:String">[IN_dictConfig("Attachments Folder").ToString + "\ZipExtract\”]</InArgument>
-                              </uda:ZipFileActivity.ToZipPath>
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                            </uda:ZipFileActivity>
-                            <ui:MoveFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="This will rename the hard coded newly created zip file to the original file name (with  &quot; -UNPROTECTED&quot; appended to the name of the file) and change it to file type XLS" Destination="[strNewFilePath]" DisplayName="Rename Zip file to XLS" sap:VirtualizedContainerService.HintSize="518.666666666667,224" sap2010:WorkflowViewState.IdRef="MoveFile_7" Overwrite="False" Path="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString + &quot;\Unprotectedfile&quot;]">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                            </ui:MoveFile>
-                            <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete the hard coded ZipExtract folder" DisplayName="Delete Extracted Folder" sap:VirtualizedContainerService.HintSize="518.666666666667,67.3333333333333" sap2010:WorkflowViewState.IdRef="Delete_14" Path="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString + &quot;\ZipExtract”]">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                            </ui:Delete>
-                            <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete the hard coded original protected file" DisplayName="Delete Original File" sap:VirtualizedContainerService.HintSize="518.666666666667,67.3333333333333" sap2010:WorkflowViewState.IdRef="Delete_15" Path="[strCurrentFilePath]">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                            </ui:Delete>
-                            <Sequence DisplayName="Desktop - Interact with Excel" sap:VirtualizedContainerService.HintSize="518.666666666667,1440.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_63">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="476.666666666667,22" sap2010:WorkflowViewState.IdRef="KillProcess_4" ProcessName="EXCEL" />
-                              <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Excel Application Scope - Open unprotected ODS file in Excel" sap:VirtualizedContainerService.HintSize="476.666666666667,1286.66666666667" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_6" InstanceCachePeriod="3000" WorkbookPath="[strNewFilePath]">
-                                <ui:ExcelApplicationScope.Body>
-                                  <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                                    <ActivityAction.Argument>
-                                      <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                                    </ActivityAction.Argument>
-                                    <Sequence sap:VirtualizedContainerService.HintSize="442.666666666667,1178" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="434,504.666666666667" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                              <TryCatch.Try>
+                                <ui:InterruptibleDoWhile sap2010:Annotation.AnnotationText="Loop around any protection tags in the string (there could be 0 or multiple)" Condition="[strAllContentXML.IndexOf(&quot;table:protected=&quot;&quot;true&quot;&quot;&quot;) &gt; 0]" DisplayName="Do While any protection tags remain in the XML string" sap:VirtualizedContainerService.HintSize="597.333333333333,3470" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_4">
+                                  <ui:InterruptibleDoWhile.Body>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="560.666666666667,3270" sap2010:WorkflowViewState.IdRef="Sequence_65">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <Sequence DisplayName="Do - Save As Excel Spreadsheet" sap:VirtualizedContainerService.HintSize="400.666666666667,1086" sap2010:WorkflowViewState.IdRef="Sequence_61">
+                                      <Sequence DisplayName="Remove Protection Tags" sap:VirtualizedContainerService.HintSize="518.666666666667,514" sap2010:WorkflowViewState.IdRef="Sequence_60">
+                                        <Sequence.Variables>
+                                          <Variable x:TypeArguments="x:Int32" Name="nStartPosition" />
+                                          <Variable x:TypeArguments="x:Int32" Name="nEndPosition" />
+                                          <Variable x:TypeArguments="x:String" Name="strProtectedText" />
+                                        </Sequence.Variables>
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button  File Tab'" sap:VirtualizedContainerService.HintSize="358.666666666667,106" sap2010:WorkflowViewState.IdRef="Click_13" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                                          <ui:Click.CursorPosition>
-                                            <ui:CursorPosition OffsetX="27" OffsetY="8" Position="TopLeft" />
-                                          </ui:Click.CursorPosition>
-                                          <ui:Click.Target>
-                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5de74124-4af4-46dc-a6e3-f8e7579de379" InformativeScreenshot="5f3cf12d605d9328ca9a4c29fc938a01" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' omit:title='Phase1-plant-protection-product-update-form-v1-protected - UNPRO*' /&gt;&lt;uia cls='MsoCommandBar' helpText='Ribbon toolbar' /&gt;&lt;uia automationid='FileTabButton' cls='NetUIRibbonTab' name='File Tab' /&gt;">
-                                              <ui:Target.TimeoutMS>
-                                                <InArgument x:TypeArguments="x:Int32" />
-                                              </ui:Target.TimeoutMS>
-                                              <ui:Target.WaitForReady>
-                                                <InArgument x:TypeArguments="ui:WaitForReady" />
-                                              </ui:Target.WaitForReady>
-                                            </ui:Target>
-                                          </ui:Click.Target>
-                                        </ui:Click>
-                                        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'List Item  Save As'" sap:VirtualizedContainerService.HintSize="358.666666666667,106" sap2010:WorkflowViewState.IdRef="Click_14" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
-                                          <ui:Click.CursorPosition>
-                                            <ui:CursorPosition OffsetX="77" OffsetY="28" Position="TopLeft" />
-                                          </ui:Click.CursorPosition>
-                                          <ui:Click.Target>
-                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d1d6df45-f3e2-45f8-bdd4-2077140005e0" InformativeScreenshot="88eb736dd3954100b3d7f73454a407e9" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' omit:title='Phase1-plant-protection-product-update-form-v1-protected - UNPRO*' /&gt;&lt;uia automationid='NavBarMenu' cls='NetUIKeyboardTabElement' name='File' /&gt;&lt;uia cls='NetUIRibbonTab' name='Save As' /&gt;">
-                                              <ui:Target.TimeoutMS>
-                                                <InArgument x:TypeArguments="x:Int32" />
-                                              </ui:Target.TimeoutMS>
-                                              <ui:Target.WaitForReady>
-                                                <InArgument x:TypeArguments="ui:WaitForReady" />
-                                              </ui:Target.WaitForReady>
-                                            </ui:Target>
-                                          </ui:Click.Target>
-                                        </ui:Click>
-                                        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click More options..." sap:VirtualizedContainerService.HintSize="358.666666666667,106" sap2010:WorkflowViewState.IdRef="Click_15" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                                          <ui:Click.CursorPosition>
-                                            <ui:CursorPosition OffsetX="42" OffsetY="15" Position="TopLeft" />
-                                          </ui:Click.CursorPosition>
-                                          <ui:Click.Target>
-                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="34c649c9-e545-42e6-a18e-1f1aef102c23" InformativeScreenshot="8158989152f3a290be89f61aca7f29f3" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' omit:title='Phase1-plant-protection-product-update-form-v1-protected - UNPRO*' /&gt;&lt;uia cls='NetUIElement' name='Save As' /&gt;&lt;uia cls='NetUISlabContainer' name='Pick a Folder' /&gt;&lt;uia cls='NetUIHyperlink' name='More options... ' /&gt;">
-                                              <ui:Target.TimeoutMS>
-                                                <InArgument x:TypeArguments="x:Int32" />
-                                              </ui:Target.TimeoutMS>
-                                              <ui:Target.WaitForReady>
-                                                <InArgument x:TypeArguments="ui:WaitForReady" />
-                                              </ui:Target.WaitForReady>
-                                            </ui:Target>
-                                          </ui:Click.Target>
-                                        </ui:Click>
-                                        <Assign DisplayName="Save final file name" sap:VirtualizedContainerService.HintSize="358.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_63">
+                                        <Assign DisplayName="Set strProtectedText initial value" sap:VirtualizedContainerService.HintSize="431.333333333333,62" sap2010:WorkflowViewState.IdRef="Assign_62">
                                           <Assign.To>
-                                            <OutArgument x:TypeArguments="x:String">[strFinalFileName]</OutArgument>
+                                            <OutArgument x:TypeArguments="x:String">[strProtectedText]</OutArgument>
                                           </Assign.To>
                                           <Assign.Value>
-                                            <InArgument x:TypeArguments="x:String">[strOriginalFileName.Replace(".ods","") + ".xlsx"]</InArgument>
+                                            <InArgument x:TypeArguments="x:String">[strAllContentXML.Substring(nStartPosition,((nEndPosition+13)-nStartPosition))]</InArgument>
                                           </Assign.Value>
                                         </Assign>
-                                        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" DisplayName="Type Into File name the original file name" EmptyField="True" sap:VirtualizedContainerService.HintSize="358.666666666667,134" sap2010:WorkflowViewState.IdRef="TypeInto_4" SendWindowMessages="False" SimulateType="True" Text="[strOriginalFileName.Replace(&quot;.ods&quot;,&quot;&quot;) + &quot;.xlsx&quot;]">
-                                          <ui:TypeInto.Target>
-                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a54a9463-e48f-4d77-9595-1b5093ad2c4c" InformativeScreenshot="2cc951ee38da0580f079f8f57d854613" Selector="&lt;wnd app='excel.exe' cls='#32770' title='Save As' /&gt;&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;wnd aaname='File name:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;">
-                                              <ui:Target.TimeoutMS>
-                                                <InArgument x:TypeArguments="x:Int32" />
-                                              </ui:Target.TimeoutMS>
-                                              <ui:Target.WaitForReady>
-                                                <InArgument x:TypeArguments="ui:WaitForReady" />
-                                              </ui:Target.WaitForReady>
-                                            </ui:Target>
-                                          </ui:TypeInto.Target>
-                                        </ui:TypeInto>
-                                        <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Save as type xlsx" sap:VirtualizedContainerService.HintSize="358.666666666667,134" sap2010:WorkflowViewState.IdRef="SelectItem_4" Item="Excel Workbook (*.xlsx)">
-                                          <ui:SelectItem.Items>
-                                            <scg:List x:TypeArguments="x:String" Capacity="32">
-                                              <x:String>Excel Workbook (*.xlsx)</x:String>
-                                              <x:String>Excel Macro-Enabled Workbook (*.xlsm)</x:String>
-                                              <x:String>Excel Binary Workbook (*.xlsb)</x:String>
-                                              <x:String>Excel 97-2003 Workbook (*.xls)</x:String>
-                                              <x:String>CSV UTF-8 (Comma delimited) (*.csv)</x:String>
-                                              <x:String>XML Data (*.xml)</x:String>
-                                              <x:String>Single File Web Page (*.mht;*.mhtml)</x:String>
-                                              <x:String>Web Page (*.htm;*.html)</x:String>
-                                              <x:String>Excel Template (*.xltx)</x:String>
-                                              <x:String>Excel Macro-Enabled Template (*.xltm)</x:String>
-                                              <x:String>Excel 97-2003 Template (*.xlt)</x:String>
-                                              <x:String>Text (Tab delimited) (*.txt)</x:String>
-                                              <x:String>Unicode Text (*.txt)</x:String>
-                                              <x:String>XML Spreadsheet 2003 (*.xml)</x:String>
-                                              <x:String>Microsoft Excel 5.0/95 Workbook (*.xls)</x:String>
-                                              <x:String>CSV (Comma delimited) (*.csv)</x:String>
-                                              <x:String>Formatted Text (Space delimited) (*.prn)</x:String>
-                                              <x:String>Text (Macintosh) (*.txt)</x:String>
-                                              <x:String>Text (MS-DOS) (*.txt)</x:String>
-                                              <x:String>CSV (Macintosh) (*.csv)</x:String>
-                                              <x:String>CSV (MS-DOS) (*.csv)</x:String>
-                                              <x:String>DIF (Data Interchange Format) (*.dif)</x:String>
-                                              <x:String>SYLK (Symbolic Link) (*.slk)</x:String>
-                                              <x:String>Excel Add-in (*.xlam)</x:String>
-                                              <x:String>Excel 97-2003 Add-in (*.xla)</x:String>
-                                              <x:String>PDF (*.pdf)</x:String>
-                                              <x:String>XPS Document (*.xps)</x:String>
-                                              <x:String>Strict Open XML Spreadsheet (*.xlsx)</x:String>
-                                              <x:String>OpenDocument Spreadsheet (*.ods)</x:String>
+                                        <ui:MultipleAssign sap2010:Annotation.AnnotationText="nStartPosition - Find the start position of the protection tag&#xA;nEndPosition - Find the end position of the protection tag (looking for the hard coded end tag of 'xmldsig#sha1', up to 200 characters after the initial start position&#xA;strProtectedText - return the full string for the protection tag&#xA;strAllContentXML - replace the strProtectedText with the relevant protection turned off string" DisplayName="Multiple Assign variables required and updated string" sap:VirtualizedContainerService.HintSize="431.333333333333,320" sap2010:WorkflowViewState.IdRef="MultipleAssign_18">
+                                          <ui:MultipleAssign.AssignOperations>
+                                            <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_77">
+                                                <ui:AssignOperation.To>
+                                                  <OutArgument x:TypeArguments="x:Int32">[nStartPosition]</OutArgument>
+                                                </ui:AssignOperation.To>
+                                                <ui:AssignOperation.Value>
+                                                  <InArgument x:TypeArguments="x:Int32">[strAllContentXML.IndexOf(“table:protected="”true”"”)]</InArgument>
+                                                </ui:AssignOperation.Value>
+                                              </ui:AssignOperation>
+                                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_78">
+                                                <ui:AssignOperation.To>
+                                                  <OutArgument x:TypeArguments="x:Int32">[nEndPosition]</OutArgument>
+                                                </ui:AssignOperation.To>
+                                                <ui:AssignOperation.Value>
+                                                  <InArgument x:TypeArguments="x:Int32">[strAllContentXML.LastIndexOf("xmldsig#sha1""&gt;",nStartPosition+200)]</InArgument>
+                                                </ui:AssignOperation.Value>
+                                              </ui:AssignOperation>
+                                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_79">
+                                                <ui:AssignOperation.To>
+                                                  <OutArgument x:TypeArguments="x:String">[strProtectedText]</OutArgument>
+                                                </ui:AssignOperation.To>
+                                                <ui:AssignOperation.Value>
+                                                  <InArgument x:TypeArguments="x:String">[strAllContentXML.Substring(nStartPosition,((nEndPosition+13)-nStartPosition))]</InArgument>
+                                                </ui:AssignOperation.Value>
+                                              </ui:AssignOperation>
+                                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_80">
+                                                <ui:AssignOperation.To>
+                                                  <OutArgument x:TypeArguments="x:String">[strAllContentXML]</OutArgument>
+                                                </ui:AssignOperation.To>
+                                                <ui:AssignOperation.Value>
+                                                  <InArgument x:TypeArguments="x:String">[strAllContentXML.Replace(strProtectedText,"table:protected=""false""")]</InArgument>
+                                                </ui:AssignOperation.Value>
+                                              </ui:AssignOperation>
                                             </scg:List>
-                                          </ui:SelectItem.Items>
-                                          <ui:SelectItem.Target>
-                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="58e8407f-a925-465d-bce7-d675cb8278d7" InformativeScreenshot="1c8331589b0b5e35eabbc4766b2edcb1" Selector="&lt;wnd app='excel.exe' cls='#32770' title='Save As' /&gt;&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;wnd aaname='Save as type:' cls='ComboBox' /&gt;">
-                                              <ui:Target.TimeoutMS>
-                                                <InArgument x:TypeArguments="x:Int32" />
-                                              </ui:Target.TimeoutMS>
-                                              <ui:Target.WaitForReady>
-                                                <InArgument x:TypeArguments="ui:WaitForReady" />
-                                              </ui:Target.WaitForReady>
-                                            </ui:Target>
-                                          </ui:SelectItem.Target>
-                                        </ui:SelectItem>
-                                        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Save 'Button' in Excel dialogue box" sap:VirtualizedContainerService.HintSize="358.666666666667,106" sap2010:WorkflowViewState.IdRef="Click_16" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                                          <ui:Click.CursorPosition>
-                                            <ui:CursorPosition OffsetX="61" OffsetY="12" Position="TopLeft" />
-                                          </ui:Click.CursorPosition>
-                                          <ui:Click.Target>
-                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5c0c66b5-f1c6-4169-ac85-79a546b37eb0" InformativeScreenshot="192d71433601dd2d5d2ae8553b4380ca" Selector="&lt;wnd app='excel.exe' cls='#32770' title='Save As' /&gt;&lt;wnd ctrlid='1' title='&amp;amp;Save' /&gt;">
-                                              <ui:Target.TimeoutMS>
-                                                <InArgument x:TypeArguments="x:Int32" />
-                                              </ui:Target.TimeoutMS>
-                                              <ui:Target.WaitForReady>
-                                                <InArgument x:TypeArguments="ui:WaitForReady" />
-                                              </ui:Target.WaitForReady>
-                                            </ui:Target>
-                                          </ui:Click.Target>
-                                        </ui:Click>
+                                          </ui:MultipleAssign.AssignOperations>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ui:MultipleAssign>
                                       </Sequence>
+                                      <ui:WriteTextFile sap2010:Annotation.AnnotationText="Save the updated XML string to a file on the hard coded location on the local machine" DisplayName="Write XML File" FileName="[IN_strAttachmentsFolder + &quot;\ZipExtract\content.xml&quot;]" sap:VirtualizedContainerService.HintSize="518.666666666667,180.666666666667" sap2010:WorkflowViewState.IdRef="WriteTextFile_4" Text="[strAllContentXML]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:WriteTextFile>
+                                      <uda:ZipFileActivity Password="{x:Null}" sap2010:Annotation.AnnotationText="Compresses the folder with the updated file to a hard coded local machine location" DisplayName="Compress Folder to a Zip file" sap:VirtualizedContainerService.HintSize="518.666666666667,134.666666666667" sap2010:WorkflowViewState.IdRef="ZipFileActivity_4" ZipPath="[IN_strAttachmentsFolder + &quot;\Unprotectedfile&quot;]">
+                                        <uda:ZipFileActivity.ToZipPath>
+                                          <InArgument x:TypeArguments="x:String">[IN_strAttachmentsFolder + "\ZipExtract\”]</InArgument>
+                                        </uda:ZipFileActivity.ToZipPath>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </uda:ZipFileActivity>
+                                      <ui:MoveFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="This will rename the hard coded newly created zip file to the original file name (with  &quot; -UNPROTECTED&quot; appended to the name of the file) and change it to file type XLS" Destination="[strNewFilePath]" DisplayName="Rename Zip file to XLS" sap:VirtualizedContainerService.HintSize="518.666666666667,224" sap2010:WorkflowViewState.IdRef="MoveFile_7" Overwrite="False" Path="[IN_strAttachmentsFolder + &quot;\Unprotectedfile&quot;]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:MoveFile>
+                                      <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete the hard coded ZipExtract folder" DisplayName="Delete Extracted Folder" sap:VirtualizedContainerService.HintSize="518.666666666667,67.3333333333333" sap2010:WorkflowViewState.IdRef="Delete_14" Path="[IN_strAttachmentsFolder + &quot;\ZipExtract”]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Delete>
+                                      <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete the hard coded original protected file" DisplayName="Delete Original File" sap:VirtualizedContainerService.HintSize="518.666666666667,67.3333333333333" sap2010:WorkflowViewState.IdRef="Delete_15" Path="[strCurrentFilePath]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Delete>
+                                      <Sequence DisplayName="Desktop - Interact with Excel" sap:VirtualizedContainerService.HintSize="518.666666666667,1440.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="476.666666666667,22" sap2010:WorkflowViewState.IdRef="KillProcess_4" ProcessName="EXCEL" />
+                                        <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Excel Application Scope - Open unprotected ODS file in Excel" sap:VirtualizedContainerService.HintSize="476.666666666667,1286.66666666667" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_6" InstanceCachePeriod="3000" WorkbookPath="[strNewFilePath]">
+                                          <ui:ExcelApplicationScope.Body>
+                                            <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                              </ActivityAction.Argument>
+                                              <Sequence sap:VirtualizedContainerService.HintSize="442.666666666667,1178" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <Sequence DisplayName="Do - Save As Excel Spreadsheet" sap:VirtualizedContainerService.HintSize="400.666666666667,1086" sap2010:WorkflowViewState.IdRef="Sequence_61">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button  File Tab'" sap:VirtualizedContainerService.HintSize="358.666666666667,106" sap2010:WorkflowViewState.IdRef="Click_13" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                                    <ui:Click.CursorPosition>
+                                                      <ui:CursorPosition OffsetX="27" OffsetY="8" Position="TopLeft" />
+                                                    </ui:Click.CursorPosition>
+                                                    <ui:Click.Target>
+                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5de74124-4af4-46dc-a6e3-f8e7579de379" InformativeScreenshot="5f3cf12d605d9328ca9a4c29fc938a01" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' omit:title='Phase1-plant-protection-product-update-form-v1-protected - UNPRO*' /&gt;&lt;uia cls='MsoCommandBar' helpText='Ribbon toolbar' /&gt;&lt;uia automationid='FileTabButton' cls='NetUIRibbonTab' name='File Tab' /&gt;">
+                                                        <ui:Target.TimeoutMS>
+                                                          <InArgument x:TypeArguments="x:Int32" />
+                                                        </ui:Target.TimeoutMS>
+                                                        <ui:Target.WaitForReady>
+                                                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                        </ui:Target.WaitForReady>
+                                                      </ui:Target>
+                                                    </ui:Click.Target>
+                                                  </ui:Click>
+                                                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'List Item  Save As'" sap:VirtualizedContainerService.HintSize="358.666666666667,106" sap2010:WorkflowViewState.IdRef="Click_14" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                    <ui:Click.CursorPosition>
+                                                      <ui:CursorPosition OffsetX="77" OffsetY="28" Position="TopLeft" />
+                                                    </ui:Click.CursorPosition>
+                                                    <ui:Click.Target>
+                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d1d6df45-f3e2-45f8-bdd4-2077140005e0" InformativeScreenshot="88eb736dd3954100b3d7f73454a407e9" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' omit:title='Phase1-plant-protection-product-update-form-v1-protected - UNPRO*' /&gt;&lt;uia automationid='NavBarMenu' cls='NetUIKeyboardTabElement' name='File' /&gt;&lt;uia cls='NetUIRibbonTab' name='Save As' /&gt;">
+                                                        <ui:Target.TimeoutMS>
+                                                          <InArgument x:TypeArguments="x:Int32" />
+                                                        </ui:Target.TimeoutMS>
+                                                        <ui:Target.WaitForReady>
+                                                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                        </ui:Target.WaitForReady>
+                                                      </ui:Target>
+                                                    </ui:Click.Target>
+                                                  </ui:Click>
+                                                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click More options..." sap:VirtualizedContainerService.HintSize="358.666666666667,106" sap2010:WorkflowViewState.IdRef="Click_15" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                                    <ui:Click.CursorPosition>
+                                                      <ui:CursorPosition OffsetX="42" OffsetY="15" Position="TopLeft" />
+                                                    </ui:Click.CursorPosition>
+                                                    <ui:Click.Target>
+                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="34c649c9-e545-42e6-a18e-1f1aef102c23" InformativeScreenshot="8158989152f3a290be89f61aca7f29f3" Selector="&lt;wnd app='excel.exe' cls='XLMAIN' omit:title='Phase1-plant-protection-product-update-form-v1-protected - UNPRO*' /&gt;&lt;uia cls='NetUIElement' name='Save As' /&gt;&lt;uia cls='NetUISlabContainer' name='Pick a Folder' /&gt;&lt;uia cls='NetUIHyperlink' name='More options... ' /&gt;">
+                                                        <ui:Target.TimeoutMS>
+                                                          <InArgument x:TypeArguments="x:Int32" />
+                                                        </ui:Target.TimeoutMS>
+                                                        <ui:Target.WaitForReady>
+                                                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                        </ui:Target.WaitForReady>
+                                                      </ui:Target>
+                                                    </ui:Click.Target>
+                                                  </ui:Click>
+                                                  <Assign DisplayName="Save final file name" sap:VirtualizedContainerService.HintSize="358.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_63">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[strFinalFileName]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String">[strOriginalFileName.Replace(".ods","") + ".xlsx"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" DisplayName="Type Into File name the original file name" EmptyField="True" sap:VirtualizedContainerService.HintSize="358.666666666667,134" sap2010:WorkflowViewState.IdRef="TypeInto_4" SendWindowMessages="False" SimulateType="True" Text="[strOriginalFileName.Replace(&quot;.ods&quot;,&quot;&quot;) + &quot;.xlsx&quot;]">
+                                                    <ui:TypeInto.Target>
+                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a54a9463-e48f-4d77-9595-1b5093ad2c4c" InformativeScreenshot="2cc951ee38da0580f079f8f57d854613" Selector="&lt;wnd app='excel.exe' cls='#32770' title='Save As' /&gt;&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;wnd aaname='File name:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;">
+                                                        <ui:Target.TimeoutMS>
+                                                          <InArgument x:TypeArguments="x:Int32" />
+                                                        </ui:Target.TimeoutMS>
+                                                        <ui:Target.WaitForReady>
+                                                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                        </ui:Target.WaitForReady>
+                                                      </ui:Target>
+                                                    </ui:TypeInto.Target>
+                                                  </ui:TypeInto>
+                                                  <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Save as type xlsx" sap:VirtualizedContainerService.HintSize="358.666666666667,134" sap2010:WorkflowViewState.IdRef="SelectItem_4" Item="Excel Workbook (*.xlsx)">
+                                                    <ui:SelectItem.Items>
+                                                      <scg:List x:TypeArguments="x:String" Capacity="32">
+                                                        <x:String>Excel Workbook (*.xlsx)</x:String>
+                                                        <x:String>Excel Macro-Enabled Workbook (*.xlsm)</x:String>
+                                                        <x:String>Excel Binary Workbook (*.xlsb)</x:String>
+                                                        <x:String>Excel 97-2003 Workbook (*.xls)</x:String>
+                                                        <x:String>CSV UTF-8 (Comma delimited) (*.csv)</x:String>
+                                                        <x:String>XML Data (*.xml)</x:String>
+                                                        <x:String>Single File Web Page (*.mht;*.mhtml)</x:String>
+                                                        <x:String>Web Page (*.htm;*.html)</x:String>
+                                                        <x:String>Excel Template (*.xltx)</x:String>
+                                                        <x:String>Excel Macro-Enabled Template (*.xltm)</x:String>
+                                                        <x:String>Excel 97-2003 Template (*.xlt)</x:String>
+                                                        <x:String>Text (Tab delimited) (*.txt)</x:String>
+                                                        <x:String>Unicode Text (*.txt)</x:String>
+                                                        <x:String>XML Spreadsheet 2003 (*.xml)</x:String>
+                                                        <x:String>Microsoft Excel 5.0/95 Workbook (*.xls)</x:String>
+                                                        <x:String>CSV (Comma delimited) (*.csv)</x:String>
+                                                        <x:String>Formatted Text (Space delimited) (*.prn)</x:String>
+                                                        <x:String>Text (Macintosh) (*.txt)</x:String>
+                                                        <x:String>Text (MS-DOS) (*.txt)</x:String>
+                                                        <x:String>CSV (Macintosh) (*.csv)</x:String>
+                                                        <x:String>CSV (MS-DOS) (*.csv)</x:String>
+                                                        <x:String>DIF (Data Interchange Format) (*.dif)</x:String>
+                                                        <x:String>SYLK (Symbolic Link) (*.slk)</x:String>
+                                                        <x:String>Excel Add-in (*.xlam)</x:String>
+                                                        <x:String>Excel 97-2003 Add-in (*.xla)</x:String>
+                                                        <x:String>PDF (*.pdf)</x:String>
+                                                        <x:String>XPS Document (*.xps)</x:String>
+                                                        <x:String>Strict Open XML Spreadsheet (*.xlsx)</x:String>
+                                                        <x:String>OpenDocument Spreadsheet (*.ods)</x:String>
+                                                      </scg:List>
+                                                    </ui:SelectItem.Items>
+                                                    <ui:SelectItem.Target>
+                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="58e8407f-a925-465d-bce7-d675cb8278d7" InformativeScreenshot="1c8331589b0b5e35eabbc4766b2edcb1" Selector="&lt;wnd app='excel.exe' cls='#32770' title='Save As' /&gt;&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;wnd aaname='Save as type:' cls='ComboBox' /&gt;">
+                                                        <ui:Target.TimeoutMS>
+                                                          <InArgument x:TypeArguments="x:Int32" />
+                                                        </ui:Target.TimeoutMS>
+                                                        <ui:Target.WaitForReady>
+                                                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                        </ui:Target.WaitForReady>
+                                                      </ui:Target>
+                                                    </ui:SelectItem.Target>
+                                                  </ui:SelectItem>
+                                                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Save 'Button' in Excel dialogue box" sap:VirtualizedContainerService.HintSize="358.666666666667,106" sap2010:WorkflowViewState.IdRef="Click_16" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                                    <ui:Click.CursorPosition>
+                                                      <ui:CursorPosition OffsetX="61" OffsetY="12" Position="TopLeft" />
+                                                    </ui:Click.CursorPosition>
+                                                    <ui:Click.Target>
+                                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5c0c66b5-f1c6-4169-ac85-79a546b37eb0" InformativeScreenshot="192d71433601dd2d5d2ae8553b4380ca" Selector="&lt;wnd app='excel.exe' cls='#32770' title='Save As' /&gt;&lt;wnd ctrlid='1' title='&amp;amp;Save' /&gt;">
+                                                        <ui:Target.TimeoutMS>
+                                                          <InArgument x:TypeArguments="x:Int32" />
+                                                        </ui:Target.TimeoutMS>
+                                                        <ui:Target.WaitForReady>
+                                                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                        </ui:Target.WaitForReady>
+                                                      </ui:Target>
+                                                    </ui:Click.Target>
+                                                  </ui:Click>
+                                                </Sequence>
+                                              </Sequence>
+                                            </ActivityAction>
+                                          </ui:ExcelApplicationScope.Body>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ui:ExcelApplicationScope>
+                                      </Sequence>
+                                      <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete the hard coded original protected file" DisplayName="Delete Original File" sap:VirtualizedContainerService.HintSize="518.666666666667,67.3333333333333" sap2010:WorkflowViewState.IdRef="Delete_16" Path="[strNewFilePath]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Delete>
+                                      <ui:MoveFile ContinueOnError="{x:Null}" Destination="[IN_strAttachmentsFolder]" DisplayName="Move File to Attachments Folder" sap:VirtualizedContainerService.HintSize="518.666666666667,162" sap2010:WorkflowViewState.IdRef="MoveFile_8" Overwrite="False" Path="[IN_strWorkingFolder+&quot;\&quot;+strFinalFileName+&quot;.ods&quot;]" />
+                                    </Sequence>
+                                  </ui:InterruptibleDoWhile.Body>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:InterruptibleDoWhile>
+                              </TryCatch.Try>
+                              <TryCatch.Catches>
+                                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,332.666666666667" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ActivityAction x:TypeArguments="s:Exception">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                    </ActivityAction.Argument>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="271.333333333333,262" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:Delete sap2010:Annotation.AnnotationText="Delete the hard coded ZipExtract folder" ContinueOnError="True" DisplayName="Delete Extracted Folder" sap:VirtualizedContainerService.HintSize="229.333333333333,67.3333333333333" sap2010:WorkflowViewState.IdRef="Delete_17" Path="[IN_strAttachmentsFolder + &quot;\ZipExtract”]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:Delete>
+                                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="229.333333333333,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_24" Text="Unlocked File" />
                                     </Sequence>
                                   </ActivityAction>
-                                </ui:ExcelApplicationScope.Body>
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                              </ui:ExcelApplicationScope>
-                            </Sequence>
-                            <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete the hard coded original protected file" DisplayName="Delete Original File" sap:VirtualizedContainerService.HintSize="518.666666666667,67.3333333333333" sap2010:WorkflowViewState.IdRef="Delete_16" Path="[strNewFilePath]">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                            </ui:Delete>
-                            <ui:MoveFile ContinueOnError="{x:Null}" Destination="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString]" DisplayName="Move File to Attachments Folder" sap:VirtualizedContainerService.HintSize="518.666666666667,162" sap2010:WorkflowViewState.IdRef="MoveFile_8" Overwrite="False" Path="[&quot;Documentation\&quot;+strFinalFileName+&quot;.ods&quot;]" />
+                                </Catch>
+                              </TryCatch.Catches>
+                            </TryCatch>
                           </Sequence>
                         </If.Then>
                       </If>
@@ -547,7 +593,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:ForEach>
-                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each Attachment" sap:VirtualizedContainerService.HintSize="743.333333333333,794" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[System.IO.Directory.getfiles(IN_dictConfig(&quot;Attachments Folder&quot;).ToString)]">
+                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each Attachment" sap:VirtualizedContainerService.HintSize="710.666666666667,794" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[System.IO.Directory.getfiles(IN_strAttachmentsFolder)]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
@@ -628,7 +674,7 @@
                           <av:PointCollection x:Key="ConnectorLocation">699.666666666666,462.5 699.666666666666,512.5</av:PointCollection>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Sequence DisplayName="Check File Type" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                      <Sequence DisplayName="Check File Type" sap:VirtualizedContainerService.HintSize="1118.66666666667,8020" sap2010:WorkflowViewState.IdRef="Sequence_15">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:String" Name="strTableOutput" />
                         </Sequence.Variables>
@@ -659,13 +705,13 @@
                             </scg:List>
                           </ui:MultipleAssign.AssignOperations>
                         </ui:MultipleAssign>
-                        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[OUT_datAttachmentTable]" DisplayName="For Each Row in Attachments Table" sap:VirtualizedContainerService.HintSize="1076.66666666667,7252.66666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[OUT_datAttachmentTable]" DisplayName="For Each Row in Attachments Table" sap:VirtualizedContainerService.HintSize="1076.66666666667,7758" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
                           <ui:ForEachRow.Body>
                             <ActivityAction x:TypeArguments="sd:DataRow">
                               <ActivityAction.Argument>
                                 <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
                               </ActivityAction.Argument>
-                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1042.66666666667,7128.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1042.66666666667,7634" sap2010:WorkflowViewState.IdRef="Sequence_19">
                                 <Sequence.Variables>
                                   <Variable x:TypeArguments="x:String" Name="strFileName" />
                                   <Variable x:TypeArguments="x:String" Name="strProgramme" />
@@ -683,23 +729,23 @@
                                     <OutArgument x:TypeArguments="x:String">[strFileName]</OutArgument>
                                   </ui:GetRowItem.Value>
                                 </ui:GetRowItem>
-                                <If Condition="[strFileName.Contains(&quot;.docx&quot;) or strFileName.Contains(&quot;.docm&quot;) or strFileName.Contains(&quot;.doc&quot;) or strFileName.Contains(&quot;.odt&quot;)]" DisplayName="If the file is in Word Format" sap:VirtualizedContainerService.HintSize="1000.66666666667,2717.33333333333" sap2010:WorkflowViewState.IdRef="If_4">
+                                <If Condition="[strFileName.Contains(&quot;.docx&quot;) or strFileName.Contains(&quot;.docm&quot;) or strFileName.Contains(&quot;.doc&quot;) or strFileName.Contains(&quot;.odt&quot;)]" DisplayName="If the file is in Word Format" sap:VirtualizedContainerService.HintSize="1000.66666666667,2686.66666666667" sap2010:WorkflowViewState.IdRef="If_4">
                                   <If.Then>
-                                    <Sequence sap:VirtualizedContainerService.HintSize="776,2563.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                                    <Sequence sap:VirtualizedContainerService.HintSize="776,2532.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_33">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="734,2471.33333333333" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="734,2440.66666666667" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                                         <TryCatch.Try>
-                                          <p:WordApplicationScope DisplayName="Word Application Scope - Word Attachment" FilePath="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString+&quot;\&quot;+strFileName]" sap:VirtualizedContainerService.HintSize="695.333333333333,2233.33333333333" sap2010:WorkflowViewState.IdRef="WordApplicationScope_2">
+                                          <p:WordApplicationScope DisplayName="Word Application Scope - Word Attachment" FilePath="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString+&quot;\&quot;+strFileName]" sap:VirtualizedContainerService.HintSize="695.333333333333,2202.66666666667" sap2010:WorkflowViewState.IdRef="WordApplicationScope_2">
                                             <p:WordApplicationScope.Body>
                                               <ActivityAction x:TypeArguments="ui:WordDocument">
                                                 <ActivityAction.Argument>
                                                   <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
                                                 </ActivityAction.Argument>
-                                                <Sequence DisplayName="Check Document Type" sap:VirtualizedContainerService.HintSize="661.333333333333,2124.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                                                <Sequence DisplayName="Check Document Type" sap:VirtualizedContainerService.HintSize="661.333333333333,2094" sap2010:WorkflowViewState.IdRef="Sequence_25">
                                                   <Sequence.Variables>
                                                     <Variable x:TypeArguments="x:String" Name="strPDFText" />
                                                     <Variable x:TypeArguments="x:Boolean" Name="booS1Form" />
@@ -718,8 +764,8 @@
                                                       <InArgument x:TypeArguments="x:Int32">["C:\Users\M1006990\Downloads\Phase2-plant-protection-product-update-form-v2-protected.xlsx".Split("."c).Length - 1]</InArgument>
                                                     </Assign.Value>
                                                   </Assign>
-                                                  <p:WordExportToPdf DisplayName="Convert document to PDF" FilePath="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString+&quot;\&quot;+strFileName.Split(&quot;.&quot;c)(intFullStopCounter-1)]" sap:VirtualizedContainerService.HintSize="619.333333333333,112.666666666667" sap2010:WorkflowViewState.IdRef="WordExportToPdf_2" />
-                                                  <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read text from saved PDF" FileName="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString+&quot;\&quot;+strFileName.Split(&quot;.&quot;c)(intFullStopCounter-1)+&quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="619.333333333333,58.6666666666667" sap2010:WorkflowViewState.IdRef="ReadPDFText_2" Range="All" Text="[strPDFText]" />
+                                                  <p:WordExportToPdf DisplayName="Convert document to PDF" FilePath="[IN_strAttachmentsFolder+&quot;\&quot;+strFileName.Split(&quot;.&quot;c)(intFullStopCounter-1)]" sap:VirtualizedContainerService.HintSize="619.333333333333,112.666666666667" sap2010:WorkflowViewState.IdRef="WordExportToPdf_2" />
+                                                  <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read text from saved PDF" FileName="[IN_strAttachmentsFolder+&quot;\&quot;+strFileName.Split(&quot;.&quot;c)(intFullStopCounter-1)+&quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="619.333333333333,58.6666666666667" sap2010:WorkflowViewState.IdRef="ReadPDFText_2" Range="All" Text="[strPDFText]" />
                                                   <Assign DisplayName="Replace new lines with &quot; &quot;" sap:VirtualizedContainerService.HintSize="619.333333333333,62" sap2010:WorkflowViewState.IdRef="Assign_43">
                                                     <Assign.To>
                                                       <OutArgument x:TypeArguments="x:String">[strPDFText]</OutArgument>
@@ -736,15 +782,15 @@
                                                       <InArgument x:TypeArguments="x:Boolean">False</InArgument>
                                                     </Assign.Value>
                                                   </Assign>
-                                                  <If Condition="[strPDFText.Contains(IN_dictConfig(&quot;Phase 1 Reg English&quot;).ToString) or strPDFText.Contains(IN_dictConfig(&quot;Phase 1 Update English&quot;).ToString)]" DisplayName="If PDF Text Contains S1 from Headers in English" sap:VirtualizedContainerService.HintSize="619.333333333333,526.666666666667" sap2010:WorkflowViewState.IdRef="If_6">
+                                                  <If Condition="[strPDFText.Contains(IN_dictConfig(&quot;Phase 1 Reg English&quot;).ToString) or strPDFText.Contains(IN_dictConfig(&quot;Phase 1 Update English&quot;).ToString)]" DisplayName="If PDF Text Contains S1 from Headers in English" sap:VirtualizedContainerService.HintSize="619.333333333333,496" sap2010:WorkflowViewState.IdRef="If_6">
                                                     <If.Then>
-                                                      <Sequence DisplayName="Update Data Table" sap:VirtualizedContainerService.HintSize="473.333333333333,376" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                                      <Sequence DisplayName="Update Data Table" sap:VirtualizedContainerService.HintSize="473.333333333333,345.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_22">
                                                         <sap:WorkflowViewStateService.ViewState>
                                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                           </scg:Dictionary>
                                                         </sap:WorkflowViewStateService.ViewState>
-                                                        <ui:MultipleAssign DisplayName="Update BooS1Form and Attachments Table" sap:VirtualizedContainerService.HintSize="431.333333333333,222" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                                                        <ui:MultipleAssign DisplayName="Update BooS1Form and Attachments Table" sap:VirtualizedContainerService.HintSize="431.333333333333,191.333333333333" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
                                                           <ui:MultipleAssign.AssignOperations>
                                                             <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                                                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -777,14 +823,6 @@
                                                                 </ui:AssignOperation.To>
                                                                 <ui:AssignOperation.Value>
                                                                   <InArgument x:TypeArguments="x:Object">["English"]</InArgument>
-                                                                </ui:AssignOperation.Value>
-                                                              </ui:AssignOperation>
-                                                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_43">
-                                                                <ui:AssignOperation.To>
-                                                                  <OutArgument x:TypeArguments="x:Object">[row("Openable?")]</OutArgument>
-                                                                </ui:AssignOperation.To>
-                                                                <ui:AssignOperation.Value>
-                                                                  <InArgument x:TypeArguments="x:Object">["TRUE"]</InArgument>
                                                                 </ui:AssignOperation.Value>
                                                               </ui:AssignOperation>
                                                             </scg:List>
@@ -964,23 +1002,23 @@
                                     </Sequence>
                                   </If.Then>
                                 </If>
-                                <If Condition="[strFileName.Contains(&quot;.xlsx&quot;) or strFileName.Contains(&quot;.xlsm&quot;) or strFileName.Contains(&quot;.xlsb&quot;) or strFileName.Contains(&quot;.xls&quot;) or strFileName.Contains(&quot;.ods&quot;)]" DisplayName="If the attachement is an Excel format file:" sap:VirtualizedContainerService.HintSize="1000.66666666667,3793.33333333333" sap2010:WorkflowViewState.IdRef="If_14">
+                                <If Condition="[strFileName.Contains(&quot;.xlsx&quot;) or strFileName.Contains(&quot;.xlsm&quot;) or strFileName.Contains(&quot;.xlsb&quot;) or strFileName.Contains(&quot;.xls&quot;) or strFileName.Contains(&quot;.ods&quot;)]" DisplayName="If the attachement is an Excel format file:" sap:VirtualizedContainerService.HintSize="1000.66666666667,4329.33333333333" sap2010:WorkflowViewState.IdRef="If_14">
                                   <If.Then>
-                                    <Sequence sap:VirtualizedContainerService.HintSize="854.666666666667,3639.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                                    <Sequence sap:VirtualizedContainerService.HintSize="854.666666666667,4175.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_34">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="812.666666666667,3547.33333333333" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="812.666666666667,4083.33333333333" sap2010:WorkflowViewState.IdRef="TryCatch_3">
                                         <TryCatch.Try>
-                                          <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope - Review Attachment" sap:VirtualizedContainerService.HintSize="774,3309.33333333333" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString+&quot;\&quot;+strFileName]">
+                                          <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope - Review Attachment" sap:VirtualizedContainerService.HintSize="774,3845.33333333333" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[IN_strAttachmentsFolder+&quot;\&quot;+strFileName]">
                                             <ui:ExcelApplicationScope.Body>
                                               <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                                                 <ActivityAction.Argument>
                                                   <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                                                 </ActivityAction.Argument>
-                                                <Sequence DisplayName="Identify Main Sheet &amp; Document Type" sap:VirtualizedContainerService.HintSize="740,3200.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                                                <Sequence DisplayName="Identify Main Sheet &amp; Document Type" sap:VirtualizedContainerService.HintSize="740,3736.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_32">
                                                   <Sequence.Variables>
                                                     <Variable x:TypeArguments="scg:List(x:String)" Name="listSheets" />
                                                   </Sequence.Variables>
@@ -990,13 +1028,13 @@
                                                     </scg:Dictionary>
                                                   </sap:WorkflowViewStateService.ViewState>
                                                   <ui:ExcelGetWorkbookSheets DisplayName="Get Workbook Sheets - Full List" sap:VirtualizedContainerService.HintSize="698,22" sap2010:WorkflowViewState.IdRef="ExcelGetWorkbookSheets_1" Sheets="[listSheets]" />
-                                                  <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each Sheet Name" sap:VirtualizedContainerService.HintSize="698,3046.66666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[listsheets]">
+                                                  <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each Sheet Name" sap:VirtualizedContainerService.HintSize="698,3582.66666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[listsheets]">
                                                     <ui:ForEach.Body>
                                                       <ActivityAction x:TypeArguments="x:Object">
                                                         <ActivityAction.Argument>
                                                           <DelegateInArgument x:TypeArguments="x:Object" Name="sheetname" />
                                                         </ActivityAction.Argument>
-                                                        <Sequence DisplayName="Check Document Type" sap:VirtualizedContainerService.HintSize="661.333333333333,2922" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                                                        <Sequence DisplayName="Check Document Type" sap:VirtualizedContainerService.HintSize="661.333333333333,3458" sap2010:WorkflowViewState.IdRef="Sequence_31">
                                                           <sap:WorkflowViewStateService.ViewState>
                                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1007,6 +1045,56 @@
                                                               <OutArgument x:TypeArguments="ui:GenericValue">[genCellA1]</OutArgument>
                                                             </ui:ExcelReadCell.Result>
                                                           </ui:ExcelReadCell>
+                                                          <If Condition="[genCellA1=Nothing]" DisplayName="If A1 contains Nothing" sap:VirtualizedContainerService.HintSize="619.333333333333,496" sap2010:WorkflowViewState.IdRef="If_21">
+                                                            <If.Then>
+                                                              <Sequence DisplayName="Update Data Table" sap:VirtualizedContainerService.HintSize="473.333333333333,345.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_67">
+                                                                <sap:WorkflowViewStateService.ViewState>
+                                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                  </scg:Dictionary>
+                                                                </sap:WorkflowViewStateService.ViewState>
+                                                                <ui:MultipleAssign DisplayName="Update Attachments Table" sap:VirtualizedContainerService.HintSize="431.333333333333,191.333333333333" sap2010:WorkflowViewState.IdRef="MultipleAssign_20">
+                                                                  <ui:MultipleAssign.AssignOperations>
+                                                                    <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                                                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_83">
+                                                                        <ui:AssignOperation.To>
+                                                                          <OutArgument x:TypeArguments="x:Object">[row("Phase 1 or 2?")]</OutArgument>
+                                                                        </ui:AssignOperation.To>
+                                                                        <ui:AssignOperation.Value>
+                                                                          <InArgument x:TypeArguments="x:Object">["No"]</InArgument>
+                                                                        </ui:AssignOperation.Value>
+                                                                      </ui:AssignOperation>
+                                                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_84">
+                                                                        <ui:AssignOperation.To>
+                                                                          <OutArgument x:TypeArguments="x:Object">[row("Recognised?")]</OutArgument>
+                                                                        </ui:AssignOperation.To>
+                                                                        <ui:AssignOperation.Value>
+                                                                          <InArgument x:TypeArguments="x:Object">["No"]</InArgument>
+                                                                        </ui:AssignOperation.Value>
+                                                                      </ui:AssignOperation>
+                                                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_85">
+                                                                        <ui:AssignOperation.To>
+                                                                          <OutArgument x:TypeArguments="x:Object">[row("Language")]</OutArgument>
+                                                                        </ui:AssignOperation.To>
+                                                                        <ui:AssignOperation.Value>
+                                                                          <InArgument x:TypeArguments="x:Object">["Unknown"]</InArgument>
+                                                                        </ui:AssignOperation.Value>
+                                                                      </ui:AssignOperation>
+                                                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_87">
+                                                                        <ui:AssignOperation.To>
+                                                                          <OutArgument x:TypeArguments="x:Object">[row("Openable?")]</OutArgument>
+                                                                        </ui:AssignOperation.To>
+                                                                        <ui:AssignOperation.Value>
+                                                                          <InArgument x:TypeArguments="x:Object">["FALSE"]</InArgument>
+                                                                        </ui:AssignOperation.Value>
+                                                                      </ui:AssignOperation>
+                                                                    </scg:List>
+                                                                  </ui:MultipleAssign.AssignOperations>
+                                                                </ui:MultipleAssign>
+                                                                <ui:Break DisplayName="Break Loop" sap:VirtualizedContainerService.HintSize="431.333333333333,22" sap2010:WorkflowViewState.IdRef="Break_8" />
+                                                              </Sequence>
+                                                            </If.Then>
+                                                          </If>
                                                           <If Condition="[genCellA1.ToString.Contains(IN_dictConfig(&quot;Phase 2 Reg English&quot;).ToString) or genCellA1.ToString.Contains(IN_dictConfig(&quot;Phase 2 Update English&quot;).ToString)]" DisplayName="If A1 contains S2 wording in English" sap:VirtualizedContainerService.HintSize="619.333333333333,557.333333333333" sap2010:WorkflowViewState.IdRef="If_9">
                                                             <If.Then>
                                                               <Sequence DisplayName="Update Data Table" sap:VirtualizedContainerService.HintSize="473.333333333333,406.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_26">
