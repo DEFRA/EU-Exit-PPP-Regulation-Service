@@ -10990,9 +10990,9 @@
     "restore": {
       "projectUniqueName": "EU Exit PPP Regulation Service",
       "projectName": "EU Exit PPP Regulation Service",
-      "projectPath": "C:\\Users\\M1006990\\Downloads\\EU-Exit-PPP-Regulation-Service\\EU Exit PPP Regulation Service\\.local",
+      "projectPath": "C:\\Users\\M1006990\\Downloads\\EU-Exit-PPP-Regulation-Service\\EU Exit PPP Regulation Service\\EU Exit PPP Regulation Service\\.local",
       "packagesPath": "C:\\Users\\M1006990\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\M1006990\\Downloads\\EU-Exit-PPP-Regulation-Service\\EU Exit PPP Regulation Service\\.local"
+      "outputPath": "C:\\Users\\M1006990\\Downloads\\EU-Exit-PPP-Regulation-Service\\EU Exit PPP Regulation Service\\EU Exit PPP Regulation Service\\.local"
     },
     "frameworks": {
       "net461": {

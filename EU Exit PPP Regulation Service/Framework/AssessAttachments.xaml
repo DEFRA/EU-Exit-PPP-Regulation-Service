@@ -190,15 +190,15 @@
                     </ActivityAction>
                   </ui:ForEach.Body>
                 </ui:ForEach>
-                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop around all files in a specific hard coded directory" DisplayName="For Each File in Directory" sap:VirtualizedContainerService.HintSize="710.666666666667,1498" sap2010:WorkflowViewState.IdRef="ForEach`1_9" Values="[System.IO.Directory.getfiles(IN_strAttachmentsFolder)]">
+                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop around all files in a specific hard coded directory" DisplayName="For Each File in Directory" sap:VirtualizedContainerService.HintSize="710.666666666667,1187.33333333333" sap2010:WorkflowViewState.IdRef="ForEach`1_9" Values="[System.IO.Directory.getfiles(IN_strAttachmentsFolder)]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
                       </ActivityAction.Argument>
-                      <If Condition="[Path.GetExtension(item.ToString).ToLower=&quot;.ods&quot;]" DisplayName="If the file is a .ods file" sap:VirtualizedContainerService.HintSize="622,1339.33333333333" sap2010:WorkflowViewState.IdRef="If_18">
+                      <If Condition="[Path.GetExtension(item.ToString).ToLower=&quot;.ods&quot;]" DisplayName="If the file is a .ods file" sap:VirtualizedContainerService.HintSize="622,1028.66666666667" sap2010:WorkflowViewState.IdRef="If_18">
                         <If.Then>
-                          <Sequence DisplayName="Remove Protection" sap:VirtualizedContainerService.HintSize="476,1185.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                          <Sequence DisplayName="Remove Protection" sap:VirtualizedContainerService.HintSize="476,874.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_64">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="x:String" Name="strOriginalFileName" />
                               <Variable x:TypeArguments="x:String" Name="strNewFilePath" />
@@ -260,7 +260,7 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </ui:ReadTextFile>
-                            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="434,504.666666666667" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="434,194" sap2010:WorkflowViewState.IdRef="TryCatch_5">
                               <TryCatch.Try>
                                 <ui:InterruptibleDoWhile sap2010:Annotation.AnnotationText="Loop around any protection tags in the string (there could be 0 or multiple)" Condition="[strAllContentXML.IndexOf(&quot;table:protected=&quot;&quot;true&quot;&quot;&quot;) &gt; 0]" DisplayName="Do While any protection tags remain in the XML string" sap:VirtualizedContainerService.HintSize="597.333333333333,3470" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_4">
                                   <ui:InterruptibleDoWhile.Body>
@@ -552,10 +552,10 @@
                                 </ui:InterruptibleDoWhile>
                               </TryCatch.Try>
                               <TryCatch.Catches>
-                                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,332.666666666667" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Catch`1_5">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
@@ -563,7 +563,7 @@
                                     <ActivityAction.Argument>
                                       <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                     </ActivityAction.Argument>
-                                    <Sequence sap:VirtualizedContainerService.HintSize="271.333333333333,262" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                                    <Sequence sap:VirtualizedContainerService.HintSize="271.333333333333,247.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_66">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -739,7 +739,7 @@
                                       </sap:WorkflowViewStateService.ViewState>
                                       <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="734,2440.66666666667" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                                         <TryCatch.Try>
-                                          <p:WordApplicationScope DisplayName="Word Application Scope - Word Attachment" FilePath="[IN_dictConfig(&quot;Attachments Folder&quot;).ToString+&quot;\&quot;+strFileName]" sap:VirtualizedContainerService.HintSize="695.333333333333,2202.66666666667" sap2010:WorkflowViewState.IdRef="WordApplicationScope_2">
+                                          <p:WordApplicationScope DisplayName="Word Application Scope - Word Attachment" FilePath="[in_strAttachmentsFolder+&quot;\&quot;+strFileName]" sap:VirtualizedContainerService.HintSize="695.333333333333,2202.66666666667" sap2010:WorkflowViewState.IdRef="WordApplicationScope_2">
                                             <p:WordApplicationScope.Body>
                                               <ActivityAction x:TypeArguments="ui:WordDocument">
                                                 <ActivityAction.Argument>
@@ -761,7 +761,7 @@
                                                       <OutArgument x:TypeArguments="x:Int32">[intFullStopCounter]</OutArgument>
                                                     </Assign.To>
                                                     <Assign.Value>
-                                                      <InArgument x:TypeArguments="x:Int32">["C:\Users\M1006990\Downloads\Phase2-plant-protection-product-update-form-v2-protected.xlsx".Split("."c).Length - 1]</InArgument>
+                                                      <InArgument x:TypeArguments="x:Int32">[(in_strAttachmentsFolder+"\"+strFileName).Split("."c).Length - 1]</InArgument>
                                                     </Assign.Value>
                                                   </Assign>
                                                   <p:WordExportToPdf DisplayName="Convert document to PDF" FilePath="[IN_strAttachmentsFolder+&quot;\&quot;+strFileName.Split(&quot;.&quot;c)(intFullStopCounter-1)]" sap:VirtualizedContainerService.HintSize="619.333333333333,112.666666666667" sap2010:WorkflowViewState.IdRef="WordExportToPdf_2" />
