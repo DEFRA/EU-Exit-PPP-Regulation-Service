@@ -5,7 +5,7 @@
     <x:Property Name="IN_FileUploadWait_Seconds" Type="InArgument(x:Int32)" />
     <x:Property Name="IN_SharepointTitle" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>788,1933.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1386,1971.33333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="32">
@@ -55,25 +55,25 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Upload File - Amended" sap:VirtualizedContainerService.HintSize="798,1868.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_54">
+  <Sequence DisplayName="Upload File - Amended" sap:VirtualizedContainerService.HintSize="798,1906.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_54">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Sharepoint Upload File" sap:VirtualizedContainerService.HintSize="756,1776.66666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InteractionMode="Simulate" ScopeGuid="ac10b4ea-03fd-4ee5-86e0-d00a60aa3f3d" Version="V1">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Sharepoint Upload File" sap:VirtualizedContainerService.HintSize="756,1814.66666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InteractionMode="Simulate" ScopeGuid="ac10b4ea-03fd-4ee5-86e0-d00a60aa3f3d" Version="V1">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="722,1610.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_53">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="722,1648.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_53">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" sap:VirtualizedContainerService.HintSize="680,68" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Upload'" sap:VirtualizedContainerService.HintSize="680,106" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -85,13 +85,10 @@
                 </ui:CursorPosition>
               </ui:Click.CursorPosition>
               <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4ea069b6-87c2-451c-8350-5ccfcfcbb0e1" Selector="[String.Format(&quot;&lt;html app='msedge.exe' htmlwindowname='{{}}' title='{0}' /&gt;&lt;webctrl parentid='appRoot' parentname='Upload' tag='SPAN' /&gt;&quot;, IN_SharepointTitle)]">
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1b9d82a7-5499-4872-b033-5d06561205cb" InformativeScreenshot="542cae66b5b66db3b6d0ca82966f5a13" Selector="[String.Format(&quot;&lt;html app='msedge.exe' htmlwindowname='{{}}' title='{0}' /&gt;&lt;webctrl id='id*' tag='SPAN' aaname='Upload' /&gt;&quot;, IN_SharepointTitle)]" WaitForReady="COMPLETE">
                   <ui:Target.TimeoutMS>
                     <InArgument x:TypeArguments="x:Int32" />
                   </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
