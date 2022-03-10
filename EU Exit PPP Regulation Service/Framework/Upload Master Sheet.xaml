@@ -299,7 +299,7 @@
                               <av:PointCollection x:Key="ConnectorLocation">132.333333333333,594.166666666667 132.333333333333,644.166666666667</av:PointCollection>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Sequence DisplayName="Upload to Master &amp; Archive Weekly" sap:VirtualizedContainerService.HintSize="572,2214" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                          <Sequence DisplayName="Upload to Master &amp; Archive Weekly" sap:VirtualizedContainerService.HintSize="572,2419.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_23">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -427,6 +427,8 @@
                                 <InArgument x:TypeArguments="x:String" x:Key="IN_Check_In_Comment">[IN_CheckIn_Comment]</InArgument>
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
+                            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="530,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[strLastWeek_FileName]" />
+                            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="530,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[IN_Archive_Pathway]" />
                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Move File - Amended workflow" sap:VirtualizedContainerService.HintSize="530,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Framework\Move File - Amended.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">

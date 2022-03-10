@@ -322,13 +322,13 @@
                       </If.Else>
                     </If>
                     <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - Excel" sap:VirtualizedContainerService.HintSize="1424.66666666667,22" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="EXCEL" />
-                    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope - Phase 2 Form" sap:VirtualizedContainerService.HintSize="1424.66666666667,1426" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="[IN_strAttachmentsFolder+&quot;\&quot;+IN_datAttachmentTable(intCounter)(0).ToString]">
+                    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope - Phase 2 Form" sap:VirtualizedContainerService.HintSize="1424.66666666667,6642.66666666667" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="[IN_strAttachmentsFolder+&quot;\&quot;+IN_datAttachmentTable(intCounter)(0).ToString]">
                       <ui:ExcelApplicationScope.Body>
                         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1390.66666666667,1317.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_61">
+                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1390.66666666667,6534" sap2010:WorkflowViewState.IdRef="Sequence_61">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -341,13 +341,13 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </ui:ExcelGetWorkbookSheets>
-                            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Sheet:" sap:VirtualizedContainerService.HintSize="1348.66666666667,1101.33333333333" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[listSheets]">
+                            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Sheet:" sap:VirtualizedContainerService.HintSize="1348.66666666667,6318" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[listSheets]">
                               <ui:ForEach.Body>
                                 <ActivityAction x:TypeArguments="x:String">
                                   <ActivityAction.Argument>
                                     <DelegateInArgument x:TypeArguments="x:String" Name="item" />
                                   </ActivityAction.Argument>
-                                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1312,976.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_60">
+                                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1312,6193.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_60">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -438,8 +438,8 @@
                                         </If>
                                       </If.Else>
                                     </If>
-                                    <Switch x:TypeArguments="x:String" DisplayName="Switch - Gather info from Tab " Expression="[strTabType]" sap:VirtualizedContainerService.HintSize="1270,188.666666666667" sap2010:WorkflowViewState.IdRef="Switch`1_4">
-                                      <Sequence x:Key="Form" DisplayName="Form" sap:VirtualizedContainerService.HintSize="1004,5130.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_58">
+                                    <Switch x:TypeArguments="x:String" DisplayName="Switch - Gather info from Tab " Expression="[strTabType]" sap:VirtualizedContainerService.HintSize="1270,5405.33333333333" sap2010:WorkflowViewState.IdRef="Switch`1_4">
+                                      <Sequence x:Key="Form" DisplayName="Form" sap:VirtualizedContainerService.HintSize="1004,5170.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_58">
                                         <Sequence.Variables>
                                           <Variable x:TypeArguments="x:String" Name="strBuildingOrFarm" />
                                           <Variable x:TypeArguments="x:String" Name="strTown" />
@@ -765,7 +765,7 @@
                                                   <OutArgument x:TypeArguments="x:String">[strStore]</OutArgument>
                                                 </ui:AssignOperation.To>
                                                 <ui:AssignOperation.Value>
-                                                  <InArgument x:TypeArguments="x:String">[datSheetData(12)(1).tostring.replace("Select yes or no","")]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String">[datSheetData(12)(1).tostring.replace("Select yes or no","")+" "]</InArgument>
                                                 </ui:AssignOperation.Value>
                                               </ui:AssignOperation>
                                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_28">
@@ -773,7 +773,7 @@
                                                   <OutArgument x:TypeArguments="x:String">[strUseOrApply]</OutArgument>
                                                 </ui:AssignOperation.To>
                                                 <ui:AssignOperation.Value>
-                                                  <InArgument x:TypeArguments="x:String">[datSheetData(13)(1).tostring.replace("Select yes or no","")]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String">[datSheetData(13)(1).tostring.replace("Select yes or no","")+" "]</InArgument>
                                                 </ui:AssignOperation.Value>
                                               </ui:AssignOperation>
                                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_29">
@@ -781,7 +781,7 @@
                                                   <OutArgument x:TypeArguments="x:String">[strThirdParty]</OutArgument>
                                                 </ui:AssignOperation.To>
                                                 <ui:AssignOperation.Value>
-                                                  <InArgument x:TypeArguments="x:String">[datSheetData(14)(1).tostring.replace("Select yes or no","")]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String">[datSheetData(14)(1).tostring.replace("Select yes or no","")+" "]</InArgument>
                                                 </ui:AssignOperation.Value>
                                               </ui:AssignOperation>
                                             </scg:List>
@@ -859,7 +859,7 @@
                                                   <OutArgument x:TypeArguments="x:String">[strAgriculture]</OutArgument>
                                                 </ui:AssignOperation.To>
                                                 <ui:AssignOperation.Value>
-                                                  <InArgument x:TypeArguments="x:String">[datSheetData(17)(1).tostring.replace("Select yes or no","")]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String">[datSheetData(17)(1).tostring.replace("Select yes or no","")+" "]</InArgument>
                                                 </ui:AssignOperation.Value>
                                               </ui:AssignOperation>
                                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_31">
@@ -867,7 +867,7 @@
                                                   <OutArgument x:TypeArguments="x:String">[strAmenities]</OutArgument>
                                                 </ui:AssignOperation.To>
                                                 <ui:AssignOperation.Value>
-                                                  <InArgument x:TypeArguments="x:String">[datSheetData(18)(1).tostring.replace("Select yes or no","")]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String">[datSheetData(18)(1).tostring.replace("Select yes or no","")+" "]</InArgument>
                                                 </ui:AssignOperation.Value>
                                               </ui:AssignOperation>
                                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_32">
@@ -875,7 +875,7 @@
                                                   <OutArgument x:TypeArguments="x:String">[strForestry]</OutArgument>
                                                 </ui:AssignOperation.To>
                                                 <ui:AssignOperation.Value>
-                                                  <InArgument x:TypeArguments="x:String">[datSheetData(19)(1).tostring.replace("Select yes or no","")]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String">[datSheetData(19)(1).tostring.replace("Select yes or no","")+" "]</InArgument>
                                                 </ui:AssignOperation.Value>
                                               </ui:AssignOperation>
                                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_33">
@@ -883,7 +883,7 @@
                                                   <OutArgument x:TypeArguments="x:String">[strOther]</OutArgument>
                                                 </ui:AssignOperation.To>
                                                 <ui:AssignOperation.Value>
-                                                  <InArgument x:TypeArguments="x:String">[datSheetData(20)(1).tostring]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String">[datSheetData(20)(1).tostring+" "]</InArgument>
                                                 </ui:AssignOperation.Value>
                                               </ui:AssignOperation>
                                             </scg:List>
@@ -1168,7 +1168,7 @@
                                       </ui:AssignOperation>
                                       <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_48">
                                         <ui:AssignOperation.To>
-                                          <OutArgument x:TypeArguments="x:Object">[datInfoTable.rows(intCounter)(15)]</OutArgument>
+                                          <OutArgument x:TypeArguments="x:Object">[datInfoTable.rows(intInfoTableRows)(15)]</OutArgument>
                                         </ui:AssignOperation.To>
                                         <ui:AssignOperation.Value>
                                           <InArgument x:TypeArguments="x:Object">[datInfoTable(0)(15).tostring]</InArgument>
@@ -1221,6 +1221,14 @@
                             </ActivityAction>
                           </ui:ForEachRow.Body>
                         </ui:ForEachRow>
+                        <Assign DisplayName="Reset info table rows" sap:VirtualizedContainerService.HintSize="684,62" sap2010:WorkflowViewState.IdRef="Assign_177">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[intInfoTableRows]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                          </Assign.Value>
+                        </Assign>
                         <Assign DisplayName="Set attachments Address" sap:VirtualizedContainerService.HintSize="684,62" sap2010:WorkflowViewState.IdRef="Assign_153">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">[strAttachmentAddress]</OutArgument>
@@ -1341,7 +1349,7 @@
                                           <av:PointCollection x:Key="ConnectorLocation">120,953.166666666667 120,1003.16666666667</av:PointCollection>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <Sequence DisplayName="Set Route" sap:VirtualizedContainerService.HintSize="962,656" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                                      <Sequence DisplayName="Set Route" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_66">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1407,7 +1415,7 @@
                                               <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
-                                          <Sequence DisplayName="Get Email Body" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_68">
+                                          <Sequence DisplayName="Get Email Body" sap:VirtualizedContainerService.HintSize="538.666666666667,608.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_68">
                                             <Sequence.Variables>
                                               <Variable x:TypeArguments="x:String" Name="strEmailTemplateFolder" />
                                             </Sequence.Variables>
@@ -1474,7 +1482,7 @@
                                                   </Assign.Value>
                                                 </Assign>
                                               </Sequence>
-                                              <Sequence x:Key="Successful" sap:VirtualizedContainerService.HintSize="426,272" sap2010:WorkflowViewState.IdRef="Sequence_76">
+                                              <Sequence x:Key="Successful" sap:VirtualizedContainerService.HintSize="426,274.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_76">
                                                 <sap:WorkflowViewStateService.ViewState>
                                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1490,14 +1498,14 @@
                                                   </Assign.Value>
                                                 </Assign>
                                               </Sequence>
-                                              <Sequence x:Key="Partial Success" sap:VirtualizedContainerService.HintSize="426,371.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_69">
+                                              <Sequence x:Key="Partial Success" sap:VirtualizedContainerService.HintSize="426,376.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_69">
                                                 <sap:WorkflowViewStateService.ViewState>
                                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                   </scg:Dictionary>
                                                 </sap:WorkflowViewStateService.ViewState>
                                                 <ui:ReadTextFile Content="[OUT_strEmailBody]" DisplayName="ReadTextFile - Partial Success" FileName="[strEmailTemplateFolder+&quot;\Partial Success.txt&quot;]" sap:VirtualizedContainerService.HintSize="384,80.6666666666667" sap2010:WorkflowViewState.IdRef="ReadTextFile_5" />
-                                                <Assign sap:VirtualizedContainerService.HintSize="384,62" sap2010:WorkflowViewState.IdRef="Assign_161">
+                                                <Assign DisplayName="Assign Email Body" sap:VirtualizedContainerService.HintSize="384,62" sap2010:WorkflowViewState.IdRef="Assign_161">
                                                   <Assign.To>
                                                     <OutArgument x:TypeArguments="x:String">[OUT_strEmailBody]</OutArgument>
                                                   </Assign.To>

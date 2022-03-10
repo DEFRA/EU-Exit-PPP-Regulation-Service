@@ -5,7 +5,7 @@
     <x:Property Name="IN_Destination" Type="InArgument(x:String)" />
     <x:Property Name="IN_SharepointTitle" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1386,1844</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1386,1991.33333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="18">
@@ -56,19 +56,19 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Move File - Amended" sap:VirtualizedContainerService.HintSize="1016,1779.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_5">
+  <Sequence DisplayName="Move File - Amended" sap:VirtualizedContainerService.HintSize="916,1926.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_5">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Sharepoint Move File" sap:VirtualizedContainerService.HintSize="974,1687.33333333333" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" ScopeGuid="c592f7fd-f0f3-4a7c-92a0-b440c62ff6fb" Version="V1">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Sharepoint Move File" sap:VirtualizedContainerService.HintSize="874,1688.66666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" ScopeGuid="c592f7fd-f0f3-4a7c-92a0-b440c62ff6fb" Version="V1">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="940,1469.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="840,1470.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Boolean" Name="boolMoveWindowEmbedded" />
             </Sequence.Variables>
@@ -77,7 +77,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1000" DisplayName="Click 'Title'" sap:VirtualizedContainerService.HintSize="898,106" sap2010:WorkflowViewState.IdRef="Click_9" KeyModifiers="None" MouseButton="BTN_RIGHT">
+            <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1000" DisplayName="Click 'Title'" sap:VirtualizedContainerService.HintSize="798,106" sap2010:WorkflowViewState.IdRef="Click_9" KeyModifiers="None" MouseButton="BTN_RIGHT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -96,7 +96,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Move to'" sap:VirtualizedContainerService.HintSize="898,106" sap2010:WorkflowViewState.IdRef="Click_10" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Move to'" sap:VirtualizedContainerService.HintSize="798,106" sap2010:WorkflowViewState.IdRef="Click_10" KeyModifiers="None" MouseButton="BTN_LEFT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -118,7 +118,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
-            <ui:UiElementExists DisplayName="Element Exists - Modern View" Exists="[boolMoveWindowEmbedded]" sap:VirtualizedContainerService.HintSize="898,106" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+            <ui:UiElementExists DisplayName="Element Exists - Modern View" Exists="[boolMoveWindowEmbedded]" sap:VirtualizedContainerService.HintSize="798,106" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
               <ui:UiElementExists.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="47df8f5a-0cbc-46d7-b2d2-c524dd2f0a7a" InformativeScreenshot="1c742b9fba238a8072d5df55ac730407" Selector="[String.Format(&quot;&lt;html app='msedge.exe' htmlwindowname='{{}}' title='{0}' /&gt;&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;iframe' tag='IFRAME' /&gt;&lt;webctrl tag='H1' /&gt;&quot;, IN_SharepointTitle)]">
                   <ui:Target.TimeoutMS>
@@ -130,57 +130,62 @@
                 </ui:Target>
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
-            <If Condition="[boolMoveWindowEmbedded = True]" DisplayName="If window exists" sap:VirtualizedContainerService.HintSize="898,936" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[boolMoveWindowEmbedded = True]" DisplayName="If window exists" sap:VirtualizedContainerService.HintSize="798,938" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="476,524" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <Sequence sap:VirtualizedContainerService.HintSize="376,346.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_6">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each - Follow given filepath" sap:VirtualizedContainerService.HintSize="434,234" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[IN_Destination]">
-                    <ui:ForEach.Body>
-                      <ActivityAction x:TypeArguments="x:String">
-                        <ActivityAction.Argument>
-                          <DelegateInArgument x:TypeArguments="x:String" Name="item" />
-                        </ActivityAction.Argument>
-                        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click - Filepath item" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
-                          <ui:Click.CursorPosition>
-                            <ui:CursorPosition Position="Center">
-                              <ui:CursorPosition.OffsetX>
-                                <InArgument x:TypeArguments="x:Int32" />
-                              </ui:CursorPosition.OffsetX>
-                              <ui:CursorPosition.OffsetY>
-                                <InArgument x:TypeArguments="x:Int32" />
-                              </ui:CursorPosition.OffsetY>
-                            </ui:CursorPosition>
-                          </ui:Click.CursorPosition>
-                          <ui:Click.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="439ed74f-358d-4f2a-9033-c7534ece6005" InformativeScreenshot="05a7570cabee27390a7b957e0a83fd58" Selector="[String.Format(&quot;&lt;webctrl aaname='{0}' parentid='appRoot' tag='SPAN' /&gt;&quot;, item)]" WaitForReady="COMPLETE">
-                              <ui:Target.TimeoutMS>
-                                <InArgument x:TypeArguments="x:Int32" />
-                              </ui:Target.TimeoutMS>
-                            </ui:Target>
-                          </ui:Click.Target>
-                        </ui:Click>
-                      </ActivityAction>
-                    </ui:ForEach.Body>
-                  </ui:ForEach>
-                  <uix:NClick ClickType="Single" DisplayName="Click 'Move here'" sap:VirtualizedContainerService.HintSize="434,158" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="c592f7fd-f0f3-4a7c-92a0-b440c62ff6fb" Version="V1">
-                    <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="https://defra.sharepoint.com/teams/Team430/OCR%20Phase%202%20Registrations/Forms/AllItems.aspx?xsdata=MDN8MDF8fDJkZGE5YmE0OWJlZTQ2ZDg4N2VkOTQyMmI5M2E0MGQ1fDc3MGEyNDUwMDIyNzRjNjI5MGM3NGUzODUzN2YxMTAyfDF8MHw2Mzc4MDYwMTUyNTg1MTIwOTJ8R29vZHxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazkwYUdWeUlpd2lWMVFpT2pFeGZRPT0%3D&amp;sdata=VjQvdDFNdVRWM2VQVU5xL1pjTWpUVGQwdThwbm1Md2FPUTB6U21DME03RT0%3D&amp;ovuser=770a2450%2D0227%2D4c62%2D90c7%2D4e38537f1102%2CKai%2ELumber%40defra%2Egov%2Euk&amp;OR=Teams%2DHL&amp;CT=1645213319405&amp;sourceId=&amp;params=%7B%22AppName%22%3A%22Teams%2DDesktop%22%2C%22AppVersion%22%3A%2227%2F22010300411%22%7D&amp;id=%2Fteams%2FTeam430%2FOCR%20Phase%202%20Registrations%2FWeekly%20Lists&amp;viewid=8c7bfcc7%2De474%2D4f85%2Dada9%2Dcb707f8f0bc5" DesignTimeRectangle="1604, 422, 110, 32" ElementType="Button" FriendlyName="'Move here'" FullSelectorArgument="&lt;webctrl aaname='Move here' parentid='appRoot' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Move here' parentid='appRoot' tag='BUTTON' type='' check:text='Move here' /&gt;" Guid="4792f547-fc3a-4dad-bb8f-04e000c11d22" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAHIAAAAkCAYAAABVCm6XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAO1SURBVHhe7ZtPSxtBGMb7WXrud/Bkj/0CBQ9+gpzEQ8GbnvSUi3gI5GAJDYQ9lFCEhJY0VKUbi02krqUkSoNpE41B2aDk6Tuz806ySVobiYsj88BDMvu+M5PMb/5d9gmsHoUsyEciDfKN9w7PXr/A0+RzawMsWAlmLA0ygDg7UsH6oXpWMmNpkOOTrR+6WRak4WZZkIabZUEabpYFabhZFqThZlmQhptlQRpu1j2DXEexqzq42sbiSHwOqXMV75awPBK/Xy/XO9RxB8Xd8XETzIoO5LgB28qhpqIW5N3MigZkt4M2ffiniVB88aQF9FpoyBwL8i5mRQSyhHyTPnseNoZi/mlO52iQuTTy5x34PfHLSDcdeN/jmKFY7Jjgk8oVboefdeHuifIrbNTraHPdbh35z3M6d9Aa5LcCvOsgHddVpHL9nJlPOXi++IGkXhft3w7mVSw4FuooHtfh07d2fZ2e/3//0zArMpDLexX5Z8sH6k/Jcgv5jwM54nmGyiLxpgX3+yaW3CzcS5kA73Chvx0306qPFeSvqCzP4DkFp4taNYHYjgNXtkUTKMO/qe8gV8RpsPcTiJ8EQHTbuSy8Gyr7FSR3VrBaDeKN4zUZ5/PdP88hJtufrP9pmBUdyORaMOAXObykP5wUK1QO/hDIwyoVgNoPgsbtZByUxQzvFKjuApwL+n5dQVzECttoULFxIgaXBl5Ubjpy9cq6FfmEJoEqD5hBeke8YjbhipWpfsvSTxEXk43rqEnjl7BE5QAkxQscn6z/aZgVIUh1JtJW5IiZTt8CWOGcYPCGz61wzsyBqE1b6RfeVqnNLcrbLcmzeJy8o8H2AuutVfcV7kffqIcVitNWrNqbtP9pmBUpSN4W274YQBoAud0M5fxrRZ5ng5muyv5pNlghegUEE8RvZhErrIQ8/1a1NeDbQOoVuRtuK/Z+QfY3AnLC/qdhVrQgeUsV0oM/lJNJoyzOJX1GOiheyAS64PQvDfFf9EzdhvW5S9tu6kzk0uWoSnVpAJf2CyifFVT/Yd8GkleYf1lByhVAEkjRRcZV2+QoyMn6n4ZZEYMkyzODb5jjc2Y+pFHsiEFWoptfsbLSP3eE1eVJnJWrg88zcThnAzfeXgeN0zSdrQM5yreCJM9/LaEmnin5fhWOyh8FSZ6g/2mYdc8gre/bLAvScLMsSMPNsiANN8uCNNwsC9JwsyxIw82yIA03y4I03CwL0nCzNEj7Eo9p/stLPPa1OrMsWI19rc7KbFmQj0LAH1ATRVZGUvhoAAAAAElFTkSuQmCC" InformativeScreenshot="fbe4082b50fb1213cfbf4fd7e9627389.png" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='{}' title='*' /&gt;" SearchSteps="FuzzySelector, Image">
-                        <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                            <uix:Target DesignTimeRectangle="1625, 427, 68, 19" ElementType="Text" FriendlyName="'Move here'" FullSelectorArgument="&lt;webctrl aaname='Move here' parentid='appRoot' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Move here' parentid='appRoot' tag='SPAN' type='' check:text='Move here' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEgAAAAXCAYAAACoNQllAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAMYSURBVFhH7VXLattAFO239Ee8y08UssgXeBWyKHgXr5KVNyELgxcBg8FoUbwIyLSopkmonJJaoVFCsRMq7NaviASJBJ/eecmSLWe8ySoaOEgz98y9M2fm3nn3vrKBDKuRCaRBJpAGmUAaZAJpkAmkQSaQBjGBDtAKIdrjCXZiJIFNVCfSHraxu2R/Xex6PgX20TpLt78W0gVKW8ixiZ60vm2BQh9T+gT9coK4czcCZiMMOOdNC9RGc0jfmYvDBVvQNyNOJJBZQ3PiI5jROGvPPtybEnJky9+SqNQ6jvKjxkLY56z/EYeeh6maG3poft+MuHFEAv2y4D4JOp66qJpzTu6bCTdgC6Q2CzH9Z2BL2kR58NC69RDQ39Q7oHF9/FSBds8d7qRzKcm8P0Lza4zDxuvUZ8TnEeybIxTsBuwHToB7tT1Py2FNxiii+Uh9XuM25aZD9Lpl5E8N2NwXHUxdrWkOwWV22sRFGaU7sdHIt9mA+0z9wEHltIi9rrAPbve5XdXPYGIiz/2vFz9doMq+2Mi9iQ/kqMJuFN/UgkBXXeoAvd8khvJTN9BhJ+JbNHcbxj39PzkoMZt1ggF1B3ds0bQhNnlo8NvG5zp8hMSV/RiUQO61OuEj2OwmybUU/jA7O0Q1Rx5G0EaB+kIgslvKvl78FQLJmkNX0mAnQ39ChCRHLGqxLiQ5uUs2m1Lqh0ov8nlMvLM2r3Vpzb2O+xOIUiyKlYwTvbCLLWGnlJT+1o2/UiCVHtOALYwc82u3wHnpBk0a4mRkP+g3xIlGJyaED4YN5K1iAlufpK8YdAJFN+gs6Sv/eZvHWxJozfirBVKpxVq0qQVOvYYOy/uoBhlo3XMCFeZ5sSv9pTH5OkZ1jdKvOmZcKupdmksLK1xY6IwtGT8JnUDqRgQPDqo222gZVSrAtkyXZYHWi/+CQASek+rFSefkvtTQ8tniZaOXoOUU53nNIIs+q0V78fF6CcY49gLOfAz6NapdMY6EViDC1s82emxMtiDowpD8ZYEIa8SPCZQhDZlAGmQCaZAJpEEmkAaZQC9iA/8BKslV/g0oRpUAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
-                          </scg:List>
-                        </uix:TargetAnchorable.Anchors>
-                      </uix:TargetAnchorable>
-                    </uix:NClick.Target>
-                  </uix:NClick>
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Archive'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f0bd7d92-aa28-4c99-8afe-4a38188e188d" InformativeScreenshot="ef29805b27fcef0b82e6fe2b2b8e5184" Selector="[String.Format(&quot;&lt;html app='msedge.exe' htmlwindowname='{{}}' title='{0}' /&gt;&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;iframe' tag='IFRAME' /&gt;&lt;webctrl aria-role='link' tag='BUTTON' aaname='{1}' /&gt;&quot;, IN_SharepointTitle, IN_Destination)]">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:Click.Target>
+                  </ui:Click>
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Move here'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_13" KeyModifiers="None" MouseButton="BTN_LEFT">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3d413d33-c4e9-499e-8b63-a01c1748e94d" InformativeScreenshot="6679a45464cf72b2ea764ac3522b9fd3" Selector="[String.Format(&quot;&lt;html app='msedge.exe' htmlwindowname='{{}}' title='{0}' /&gt;&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;iframe' tag='IFRAME' /&gt;&lt;webctrl parentid='appRoot' parentname='Move here' tag='SPAN' aaname='Move here' /&gt;&quot;, IN_SharepointTitle)]">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:Click.Target>
+                  </ui:Click>
                 </Sequence>
               </If.Then>
               <If.Else>
-                <Sequence sap:VirtualizedContainerService.HintSize="376,782" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <Sequence sap:VirtualizedContainerService.HintSize="376,784.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -261,5 +266,10 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </uix:NApplicationCard>
+    <ui:CloseApplication ContinueOnError="True" DisplayName="Close Application 'EDGE'" sap:VirtualizedContainerService.HintSize="874,106" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
+      <ui:CloseApplication.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9e3c8590-e258-4801-8e67-bec3868be7b7" InformativeScreenshot="e19ccfa6bda98f7e72009004301ec555" Selector="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='*' /&gt;" TimeoutMS="3000" WaitForReady="COMPLETE" />
+      </ui:CloseApplication.Target>
+    </ui:CloseApplication>
   </Sequence>
 </Activity>
