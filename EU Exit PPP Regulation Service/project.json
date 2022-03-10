@@ -18,7 +18,7 @@
   "webServices": [],
   "schemaVersion": "4.0",
   "studioVersion": "20.4.3.0",
-  "projectVersion": "1.0.2",
+  "projectVersion": "1.0.13",
   "runtimeOptions": {
     "autoDispose": false,
     "isPausable": true,
@@ -40,46 +40,8 @@
     "fileInfoCollection": []
   },
   "arguments": {
-    "input": [
-      {
-        "name": "IN_datAttachmentTable",
-        "type": "System.Data.DataTable, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-        "required": false,
-        "hasDefault": false
-      },
-      {
-        "name": "INOUT_strRoute",
-        "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-        "required": false,
-        "hasDefault": false
-      },
-      {
-        "name": "INOUT_intODSPhase2",
-        "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-        "required": false,
-        "hasDefault": false
-      },
-      {
-        "name": "INOUT_intPhase2",
-        "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-        "required": false,
-        "hasDefault": false
-      }
-    ],
-    "output": [
-      {
-        "name": "INOUT_strRoute",
-        "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-      },
-      {
-        "name": "INOUT_intODSPhase2",
-        "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-      },
-      {
-        "name": "INOUT_intPhase2",
-        "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-      }
-    ]
+    "input": [],
+    "output": []
   },
   "expressionLanguage": "VisualBasic"
 }

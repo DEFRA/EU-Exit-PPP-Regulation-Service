@@ -113,12 +113,13 @@
           <av:PointCollection x:Key="ConnectorLocation">1200,206.5 1200,256.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Save/Count Attachments" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence DisplayName="Save/Count Attachments" sap:VirtualizedContainerService.HintSize="376,469.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
+        <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="KillProcess_6" ProcessName="EXCEL" />
         <ui:MoveOutlookMessage Account="[IN_dictConfig(&quot;Email Account&quot;).ToString]" DisplayName="Move Message to In Progress folder" sap:VirtualizedContainerService.HintSize="334,86.6666666666667" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_1" MailFolder="[IN_dictConfig(&quot;Email Inbox Folder&quot;).ToString+&quot;\&quot;+IN_dictConfig(&quot;User Email Subfolder&quot;).ToString+&quot;\&quot;+IN_dictConfig(&quot;Email In Progress Folder&quot;).ToString]" MailMessage="[IN_MailTransactionItem]" />
         <ui:SaveMailAttachments Attachments="[ieAttachments]" DisplayName="Save Attachments to Folder" FolderPath="[in_strAttachmentsFolder]" sap:VirtualizedContainerService.HintSize="334,86.6666666666667" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_1" Message="[IN_MailTransactionItem]" />
         <Assign DisplayName="Count Attachments - intAttachments" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_1">
@@ -150,7 +151,7 @@
                   <av:PointCollection x:Key="ConnectorLocation">960.333333333333,334.5 960.333333333333,384.5</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Check Attachment Types" sap:VirtualizedContainerService.HintSize="899.333333333333,6598" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <Sequence DisplayName="Check Attachment Types" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_10">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Int32" Default="0" Name="intTotalCounter" />
                   <Variable x:TypeArguments="x:String" Name="strTableOutput" />
@@ -367,7 +368,7 @@
                                       <ActivityAction.Argument>
                                         <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                       </ActivityAction.Argument>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="272,246.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                                      <Sequence sap:VirtualizedContainerService.HintSize="272,247.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_66">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -424,7 +425,7 @@
                                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="476.666666666667,22" sap2010:WorkflowViewState.IdRef="KillProcess_5" ProcessName="EXCEL" />
+                                <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="476.666666666667,22" sap2010:WorkflowViewState.IdRef="KillProcess_5" ProcessName="EXCEL" />
                                 <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Excel Application Scope - Open unprotected ODS file in Excel" sap:VirtualizedContainerService.HintSize="476.666666666667,1286.66666666667" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_7" InstanceCachePeriod="3000" WorkbookPath="[strNewFilePath]">
                                   <ui:ExcelApplicationScope.Body>
                                     <ActivityAction x:TypeArguments="ui:WorkbookApplication">
@@ -712,13 +713,13 @@
                             </scg:List>
                           </ui:MultipleAssign.AssignOperations>
                         </ui:MultipleAssign>
-                        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[OUT_datAttachmentTable]" DisplayName="For Each Row in Attachments Table" sap:VirtualizedContainerService.HintSize="1076.66666666667,7758" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[OUT_datAttachmentTable]" DisplayName="For Each Row in Attachments Table" sap:VirtualizedContainerService.HintSize="1076.66666666667,7820" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
                           <ui:ForEachRow.Body>
                             <ActivityAction x:TypeArguments="sd:DataRow">
                               <ActivityAction.Argument>
                                 <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
                               </ActivityAction.Argument>
-                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1042.66666666667,7634" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1042.66666666667,7696" sap2010:WorkflowViewState.IdRef="Sequence_19">
                                 <Sequence.Variables>
                                   <Variable x:TypeArguments="x:String" Name="strFileName" />
                                   <Variable x:TypeArguments="x:String" Name="strProgramme" />
@@ -1009,6 +1010,7 @@
                                     </Sequence>
                                   </If.Then>
                                 </If>
+                                <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="1000.66666666667,22" sap2010:WorkflowViewState.IdRef="KillProcess_7" ProcessName="EXCEL" />
                                 <If Condition="[strFileName.Contains(&quot;.xlsx&quot;) or strFileName.Contains(&quot;.xlsm&quot;) or strFileName.Contains(&quot;.xlsb&quot;) or strFileName.Contains(&quot;.xls&quot;) or strFileName.Contains(&quot;.ods&quot;)]" DisplayName="If the attachement is an Excel format file:" sap:VirtualizedContainerService.HintSize="1000.66666666667,4329.33333333333" sap2010:WorkflowViewState.IdRef="If_14">
                                   <If.Then>
                                     <Sequence sap:VirtualizedContainerService.HintSize="854.666666666667,4175.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_34">
