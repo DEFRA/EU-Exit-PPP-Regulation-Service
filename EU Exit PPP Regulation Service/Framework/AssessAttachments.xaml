@@ -3,7 +3,7 @@
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="IN_dictConfig" Type="InArgument(scg:Dictionary(x:String, ui:GenericValue))" />
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="IN_MailTransactionItem" Type="InArgument(snm:MailMessage)" />
     <x:Property Name="OUT_datAttachmentTable" Type="OutArgument(sd:DataTable)" />
-    <x:Property Name="OUT_strRoute" Type="InArgument(x:String)" />
+    <x:Property Name="OUT_strRoute" Type="OutArgument(x:String)" />
     <x:Property Name="OUT_intODSPhase2" Type="OutArgument(x:Int32)" />
     <x:Property Name="OUT_intPhase2" Type="OutArgument(x:Int32)" />
     <x:Property Name="IN_strAttachmentsFolder" Type="InArgument(x:String)" />
@@ -12,7 +12,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1698.66666666667,1061.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1699,1062</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="58">
@@ -84,7 +84,7 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Flowchart DisplayName="Assess Attachments" sap:VirtualizedContainerService.HintSize="1708.66666666667,996.666666666667" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+  <Flowchart DisplayName="Assess Attachments" sap:VirtualizedContainerService.HintSize="1709,997" sap2010:WorkflowViewState.IdRef="Flowchart_1">
     <Flowchart.Variables>
       <Variable x:TypeArguments="scg:IEnumerable(x:String)" Name="ieAttachments" />
       <Variable x:TypeArguments="x:Int32" Name="intAttachments" />
@@ -96,7 +96,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
         <av:Point x:Key="ShapeLocation">1170,12.5</av:Point>
-        <av:Size x:Key="ShapeSize">60,74.6666666666667</av:Size>
+        <av:Size x:Key="ShapeSize">60,75</av:Size>
         <av:PointCollection x:Key="ConnectorLocation">1200,87.1666666666667 1200,137.166666666667</av:PointCollection>
         <x:Double x:Key="Width">1674.6666666666665</x:Double>
         <x:Double x:Key="Height">960.666666666667</x:Double>
@@ -109,11 +109,11 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">1100,137.166666666667</av:Point>
-          <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">1200,206.5 1200,256.5</av:PointCollection>
+          <av:Size x:Key="ShapeSize">200,68</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">1200,205.166666666667 1200,235.166666666667 1200.33333333333,235.166666666667 1200.33333333333,256.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Save/Count Attachments" sap:VirtualizedContainerService.HintSize="376,469.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence DisplayName="Save/Count Attachments" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -132,14 +132,14 @@
         </Assign>
       </Sequence>
       <FlowStep.Next>
-        <FlowDecision x:Name="__ReferenceID1" Condition="[intAttachments&gt;0]" DisplayName="1 + Attachments?" sap:VirtualizedContainerService.HintSize="99.3333333333333,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+        <FlowDecision x:Name="__ReferenceID1" Condition="[intAttachments&gt;0]" DisplayName="1 + Attachments?" sap:VirtualizedContainerService.HintSize="100,87" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <av:Point x:Key="ShapeLocation">1150.33333333333,256.5</av:Point>
-              <av:Size x:Key="ShapeSize">99.3333333333333,86.6666666666667</av:Size>
-              <av:PointCollection x:Key="TrueConnector">1150.33333333333,299.833333333333 1060.33333333333,299.833333333334</av:PointCollection>
-              <av:PointCollection x:Key="FalseConnector">1249.66666666667,299.833333333333 1339.66666666667,299.833333333334</av:PointCollection>
+              <av:Size x:Key="ShapeSize">100,87</av:Size>
+              <av:PointCollection x:Key="TrueConnector">1150.33333333333,300 1120.33333333333,300 1120.33333333333,298.166666666667 1060.33333333333,298.166666666667</av:PointCollection>
+              <av:PointCollection x:Key="FalseConnector">1249.33333333333,300 1279.33333333333,300 1279.33333333333,298.166666666667 1339.66666666667,298.166666666667</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <FlowDecision.True>
@@ -147,11 +147,11 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">860.333333333333,265.166666666667</av:Point>
-                  <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">960.333333333333,334.5 960.333333333333,384.5</av:PointCollection>
+                  <av:Size x:Key="ShapeSize">200,68</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">960.333333333333,333.166666666667 960.333333333333,363.166666666667 960.666666666666,363.166666666667 960.666666666666,384.5</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Check Attachment Types" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <Sequence DisplayName="Check Attachment Types" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_10">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Int32" Default="0" Name="intTotalCounter" />
                   <Variable x:TypeArguments="x:String" Name="strTableOutput" />
@@ -663,14 +663,14 @@
                 </ui:ForEach>
               </Sequence>
               <FlowStep.Next>
-                <FlowDecision x:Name="__ReferenceID3" Condition="[intCorrectCounter&gt;0]" DisplayName="1+ Correct File Types?" sap:VirtualizedContainerService.HintSize="121.333333333333,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+                <FlowDecision x:Name="__ReferenceID3" Condition="[intCorrectCounter&gt;0]" DisplayName="1+ Correct File Types?" sap:VirtualizedContainerService.HintSize="122,87" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <av:Point x:Key="ShapeLocation">899.666666666666,384.5</av:Point>
-                      <av:Size x:Key="ShapeSize">121.333333333333,86.6666666666667</av:Size>
-                      <av:PointCollection x:Key="TrueConnector">899.666666666666,427.833333333333 799.666666666666,427.833333333334</av:PointCollection>
-                      <av:PointCollection x:Key="FalseConnector">1021,427.833333333333 1111,427.833333333334</av:PointCollection>
+                      <av:Size x:Key="ShapeSize">122,87</av:Size>
+                      <av:PointCollection x:Key="TrueConnector">899.666666666666,428 869.666666666666,428 869.666666666666,426.166666666667 799.666666666666,426.166666666667</av:PointCollection>
+                      <av:PointCollection x:Key="FalseConnector">1021.66666666667,428 1051.66666666667,428 1051.66666666667,427.166666666667 1111,427.166666666667</av:PointCollection>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <FlowDecision.True>
@@ -678,11 +678,11 @@
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <av:Point x:Key="ShapeLocation">599.666666666666,393.166666666667</av:Point>
-                          <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
-                          <av:PointCollection x:Key="ConnectorLocation">699.666666666666,462.5 699.666666666666,512.5</av:PointCollection>
+                          <av:Size x:Key="ShapeSize">200,68</av:Size>
+                          <av:PointCollection x:Key="ConnectorLocation">699.666666666666,461.166666666667 699.666666666666,491.166666666667 699.833333333333,491.166666666667 699.833333333333,512.5</av:PointCollection>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Sequence DisplayName="Check File Type" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                      <Sequence DisplayName="Check File Type" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_15">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:String" Name="strTableOutput" />
                         </Sequence.Variables>
@@ -1512,14 +1512,14 @@
                         </ui:ForEachRow>
                       </Sequence>
                       <FlowStep.Next>
-                        <FlowDecision x:Name="__ReferenceID6" Condition="[booCannotOpen=False]" DisplayName="Open Successfully?" sap:VirtualizedContainerService.HintSize="106.666666666667,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
+                        <FlowDecision x:Name="__ReferenceID6" Condition="[booCannotOpen=False]" DisplayName="Open Successfully?" sap:VirtualizedContainerService.HintSize="107,87" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               <av:Point x:Key="ShapeLocation">646.333333333333,512.5</av:Point>
-                              <av:Size x:Key="ShapeSize">106.666666666667,86.6666666666667</av:Size>
-                              <av:PointCollection x:Key="FalseConnector">753,555.833333333333 852.999999999999,555.833333333334</av:PointCollection>
-                              <av:PointCollection x:Key="TrueConnector">646.333333333333,555.833333333333 550,555.833333333334</av:PointCollection>
+                              <av:Size x:Key="ShapeSize">107,87</av:Size>
+                              <av:PointCollection x:Key="FalseConnector">753.333333333333,556 783.333333333333,556 783.333333333333,554.166666666667 852.999999999999,554.166666666667</av:PointCollection>
+                              <av:PointCollection x:Key="TrueConnector">646.333333333333,556 616.333333333333,556 616.333333333333,554.166666666667 550,554.166666666667</av:PointCollection>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <FlowDecision.True>
@@ -1527,16 +1527,16 @@
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <av:Point x:Key="ShapeLocation">350,521.166666666667</av:Point>
-                                  <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
+                                  <av:Size x:Key="ShapeSize">200,68</av:Size>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Sequence DisplayName="Route - Success" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                              <Sequence DisplayName="Route - Success" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_41">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <Assign DisplayName="Set strRoute to &quot;Success&quot;" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_57">
+                                <Assign DisplayName="Set strRoute to &quot;Success&quot;" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_57">
                                   <Assign.To>
                                     <OutArgument x:TypeArguments="x:String">[OUT_strRoute]</OutArgument>
                                   </Assign.To>
@@ -1544,7 +1544,7 @@
                                     <InArgument x:TypeArguments="x:String">Success</InArgument>
                                   </Assign.Value>
                                 </Assign>
-                                <WriteLine DisplayName="Write Line - Continue to next stage" sap:VirtualizedContainerService.HintSize="262,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_22" Text="Continue to next stage" />
+                                <WriteLine DisplayName="Write Line - Continue to next stage" sap:VirtualizedContainerService.HintSize="262,61" sap2010:WorkflowViewState.IdRef="WriteLine_22" Text="Continue to next stage" />
                               </Sequence>
                             </FlowStep>
                           </FlowDecision.True>
@@ -1553,10 +1553,10 @@
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <av:Point x:Key="ShapeLocation">852.999999999999,521.166666666667</av:Point>
-                                  <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
+                                  <av:Size x:Key="ShapeSize">200,68</av:Size>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Sequence DisplayName="Route- Unopenable Email" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                              <Sequence DisplayName="Route- Unopenable Email" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_35">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1583,16 +1583,16 @@
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <av:Point x:Key="ShapeLocation">1111,393.166666666667</av:Point>
-                          <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
+                          <av:Size x:Key="ShapeSize">200,68</av:Size>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Sequence DisplayName="Route - No Valid Files Email" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                      <Sequence DisplayName="Route - No Valid Files Email" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_16">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Assign DisplayName="Set strRoute to &quot;Incorrect Type&quot;" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_55">
+                        <Assign DisplayName="Set strRoute to &quot;Incorrect Type&quot;" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_55">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">[OUT_strRoute]</OutArgument>
                           </Assign.To>
@@ -1600,7 +1600,7 @@
                             <InArgument x:TypeArguments="x:String">Incorrect Type</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <WriteLine DisplayName="Write Line - No Valid Files" sap:VirtualizedContainerService.HintSize="262,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_20" Text="No valid files" />
+                        <WriteLine DisplayName="Write Line - No Valid Files" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="WriteLine_20" Text="No valid files" />
                       </Sequence>
                     </FlowStep>
                   </FlowDecision.False>
@@ -1613,17 +1613,17 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">1339.66666666667,265.166666666667</av:Point>
-                  <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
+                  <av:Size x:Key="ShapeSize">200,68</av:Size>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Route- No Attachements Email" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_17">
+              <Sequence DisplayName="Route- No Attachements Email" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_17">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:BuildDataTable DataTable="[OUT_datAttachmentTable]" DisplayName="Build Data Table - List of Attachments - None" sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Attachment_x0020_Name&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;Attachment_x0020_Name&gt;No Attachments Found&lt;/Attachment_x0020_Name&gt;&#xA;  &lt;/TableName&gt;&#xA;&lt;/NewDataSet&gt;" />
-                <Assign DisplayName="Set strRoute to &quot;No File&quot;" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_56">
+                <ui:BuildDataTable DataTable="[OUT_datAttachmentTable]" DisplayName="Build Data Table - List of Attachments - None" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Attachment_x0020_Name&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;Attachment_x0020_Name&gt;No Attachments Found&lt;/Attachment_x0020_Name&gt;&#xA;  &lt;/TableName&gt;&#xA;&lt;/NewDataSet&gt;" />
+                <Assign DisplayName="Set strRoute to &quot;No File&quot;" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_56">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[OUT_strRoute]</OutArgument>
                   </Assign.To>
@@ -1631,7 +1631,7 @@
                     <InArgument x:TypeArguments="x:String">No File</InArgument>
                   </Assign.Value>
                 </Assign>
-                <WriteLine DisplayName="Write Line - No Attachments" sap:VirtualizedContainerService.HintSize="334,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_21" Text="No Attachments" />
+                <WriteLine DisplayName="Write Line - No Attachments" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_21" Text="No Attachments" />
               </Sequence>
             </FlowStep>
           </FlowDecision.False>

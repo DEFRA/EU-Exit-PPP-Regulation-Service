@@ -10426,15 +10426,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\M1006990\\.nuget\\packages\\": {}
+    "C:\\Users\\x953923\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
       "projectUniqueName": "EU Exit PPP Regulation Service",
       "projectName": "EU Exit PPP Regulation Service",
-      "projectPath": "C:\\Users\\M1006990\\Downloads\\EU-Exit-PPP-Regulation-Service\\EU Exit PPP Regulation Service\\EU Exit PPP Regulation Service\\.local",
-      "packagesPath": "C:\\Users\\M1006990\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\M1006990\\Downloads\\EU-Exit-PPP-Regulation-Service\\EU Exit PPP Regulation Service\\EU Exit PPP Regulation Service\\.local"
+      "projectPath": "\\\\GFD218DF\\x953923$\\EU-Exit-PPP-Regulation-Service\\EU Exit PPP Regulation Service\\.local",
+      "packagesPath": "C:\\Users\\x953923\\.nuget\\packages\\",
+      "outputPath": "\\\\GFD218DF\\x953923$\\EU-Exit-PPP-Regulation-Service\\EU Exit PPP Regulation Service\\.local"
     },
     "frameworks": {
       "net461": {
