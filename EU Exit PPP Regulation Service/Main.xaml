@@ -78,7 +78,7 @@
     </sap:WorkflowViewStateService.ViewState>
     <State x:Name="__ReferenceID6" DisplayName="Initialize" sap:VirtualizedContainerService.HintSize="134,61" sap2010:WorkflowViewState.IdRef="State_7">
       <State.Entry>
-        <Sequence DisplayName="Initialise" sap:VirtualizedContainerService.HintSize="563,2477" sap2010:WorkflowViewState.IdRef="Sequence_1">
+        <Sequence DisplayName="Initialise" sap:VirtualizedContainerService.HintSize="376,1406" sap2010:WorkflowViewState.IdRef="Sequence_1">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Boolean" Name="booExists" />
           </Sequence.Variables>
@@ -87,7 +87,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Set business rule exception to Nothing" sap:VirtualizedContainerService.HintSize="521,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+          <Assign DisplayName="Set business rule exception to Nothing" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_4">
             <Assign.To>
               <OutArgument x:TypeArguments="ui:BusinessRuleException">[exeBRE]</OutArgument>
             </Assign.To>
@@ -95,7 +95,7 @@
               <InArgument x:TypeArguments="ui:BusinessRuleException">[Nothing]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Set system exception to Nothing" sap:VirtualizedContainerService.HintSize="521,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign DisplayName="Set system exception to Nothing" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_5">
             <Assign.To>
               <OutArgument x:TypeArguments="s:Exception">[exeError]</OutArgument>
             </Assign.To>
@@ -103,15 +103,21 @@
               <InArgument x:TypeArguments="s:Exception">[Nothing]</InArgument>
             </Assign.Value>
           </Assign>
-          <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="521,22" sap2010:WorkflowViewState.IdRef="KillProcess_2" ProcessName="EXCEL" />
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Read Config" sap:VirtualizedContainerService.HintSize="521,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Framework\ReadConfig.xaml">
+          <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="KillProcess_2" ProcessName="EXCEL" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Read Config" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Framework\ReadConfig.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="s:String[]" x:Key="in_strConfigSheets">[{"Assets","Local Config"}]</InArgument>
-              <OutArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="out_dictConfig">[dictConfig]</OutArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_dictConfigFile">Data\Config.xlsx</InArgument>
+              <InArgument x:TypeArguments="s:String[]" x:Key="in_strConfigSheets">
+                <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="{}{&quot;Assets&quot;,&quot;Local Config&quot;}" />
+              </InArgument>
+              <OutArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="out_dictConfig">
+                <mva:VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" ExpressionText="dictConfig" />
+              </OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_dictConfigFile">
+                <Literal x:TypeArguments="x:String">Data\Config.xlsx</Literal>
+              </InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <Assign DisplayName="Assign strLogFilePath" sap:VirtualizedContainerService.HintSize="521,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+          <Assign DisplayName="Assign strLogFilePath" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_3">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[strLogFilePath]</OutArgument>
             </Assign.To>
@@ -119,7 +125,7 @@
               <InArgument x:TypeArguments="x:String">[String.Format(dictConfig("Local Log File Path"),Environment.UserName,DateTime.Now.ToString("dd.MM.yyyy"))]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign Working Folder" sap:VirtualizedContainerService.HintSize="521,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+          <Assign DisplayName="Assign Working Folder" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_17">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[strWorkingFolder]</OutArgument>
             </Assign.To>
@@ -127,7 +133,7 @@
               <InArgument x:TypeArguments="x:String">[String.Format(dictConfig("Working Folder"),Environment.UserName,"")]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign Attachments Folder" sap:VirtualizedContainerService.HintSize="521,60" sap2010:WorkflowViewState.IdRef="Assign_18">
+          <Assign DisplayName="Assign Attachments Folder" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_18">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[strAttachmentsFolder]</OutArgument>
             </Assign.To>
@@ -135,8 +141,21 @@
               <InArgument x:TypeArguments="x:String">[strWorkingFolder+"\Attachments"]</InArgument>
             </Assign.Value>
           </Assign>
-          <ui:FolderExistsX DisplayName="Does working folder exist?" Exists="[booExists]" sap:VirtualizedContainerService.HintSize="521,132" sap2010:WorkflowViewState.IdRef="FolderExistsX_1" Path="[strWorkingFolder]" />
-          <If Condition="[booExists]" DisplayName="Working folder exists:" sap:VirtualizedContainerService.HintSize="521,676" sap2010:WorkflowViewState.IdRef="If_3">
+          <ui:FolderExistsX DisplayName="Does working folder exist?" Exists="[booExists]" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="FolderExistsX_1" Path="[strWorkingFolder]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:FolderExistsX>
+          <If Condition="[booExists]" DisplayName="Working folder exists:" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="If_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
             <If.Else>
               <Sequence DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="376,528" sap2010:WorkflowViewState.IdRef="Sequence_18">
                 <sap:WorkflowViewStateService.ViewState>
@@ -151,20 +170,32 @@
               </Sequence>
             </If.Else>
           </If>
-          <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="521,22" sap2010:WorkflowViewState.IdRef="KillProcess_3" ProcessName="EXCEL" />
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="521,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Framework\Create Log File.xaml">
+          <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="KillProcess_3" ProcessName="EXCEL" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Framework\Create Log File.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">[strLogFilePath]</InArgument>
               <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">False</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="521,22" sap2010:WorkflowViewState.IdRef="KillProcess_4" ProcessName="EXCEL" />
-          <ui:CloseApplication ContinueOnError="True" DisplayName="Close Application 'EDGE'" sap:VirtualizedContainerService.HintSize="521,106" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
+          <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="KillProcess_4" ProcessName="EXCEL" />
+          <ui:CloseApplication ContinueOnError="True" DisplayName="Close Application 'EDGE'" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
             <ui:CloseApplication.Target>
               <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9e3c8590-e258-4801-8e67-bec3868be7b7" InformativeScreenshot="e19ccfa6bda98f7e72009004301ec555" Selector="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='*' /&gt;" TimeoutMS="3000" WaitForReady="COMPLETE" />
             </ui:CloseApplication.Target>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
           </ui:CloseApplication>
-          <TryCatch DisplayName="Try Catch - Upload Master Sheet" sap:VirtualizedContainerService.HintSize="521,361" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+          <TryCatch DisplayName="Try Catch - Upload Master Sheet" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
             <TryCatch.Try>
               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Upload Master Sheet" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\Upload Master Sheet.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
@@ -196,7 +227,7 @@
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Exception" sap:VirtualizedContainerService.HintSize="376,284" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence DisplayName="Exception" sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_3">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -225,7 +256,7 @@
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="BRE" sap:VirtualizedContainerService.HintSize="376,284" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <Sequence DisplayName="BRE" sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_4">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -369,22 +400,12 @@
                               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Framework\GetTransactionData.xaml">
                                 <ui:InvokeWorkflowFile.Arguments>
                                   <OutArgument x:TypeArguments="x:String" x:Key="out_TransactionID" />
-                                  <InArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="in_dictConfig">
-                                    <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" ExpressionText="dictConfig" />
-                                  </InArgument>
+                                  <InArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="in_dictConfig">[dictConfig]</InArgument>
                                   <InArgument x:TypeArguments="x:Int32" x:Key="in_intTransactionNumber" />
-                                  <OutArgument x:TypeArguments="snm:MailMessage" x:Key="out_mailTransactionItem">
-                                    <mva:VisualBasicReference x:TypeArguments="snm:MailMessage" ExpressionText="mailTransactionItem" />
-                                  </OutArgument>
-                                  <InOutArgument x:TypeArguments="x:Int32" x:Key="inout_intTransactionData">
-                                    <mva:VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="intTransactionNumber" />
-                                  </InOutArgument>
-                                  <OutArgument x:TypeArguments="x:String" x:Key="OUT_strSender">
-                                    <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strSender" />
-                                  </OutArgument>
-                                  <OutArgument x:TypeArguments="x:String" x:Key="OUT_strDateTimeReceived">
-                                    <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strDateTimeReceived" />
-                                  </OutArgument>
+                                  <OutArgument x:TypeArguments="snm:MailMessage" x:Key="out_mailTransactionItem">[mailTransactionItem]</OutArgument>
+                                  <InOutArgument x:TypeArguments="x:Int32" x:Key="inout_intTransactionData">[intTransactionNumber]</InOutArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="OUT_strSender">[strSender]</OutArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="OUT_strDateTimeReceived">[strDateTimeReceived]</OutArgument>
                                 </ui:InvokeWorkflowFile.Arguments>
                               </ui:InvokeWorkflowFile>
                             </Sequence>
@@ -436,9 +457,9 @@
                             <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="mailTransactionItem isnot Nothing and exeError is Nothing" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_2" />
                           </Transition.Condition>
                           <Transition.To>
-                            <State x:Name="__ReferenceID3" DisplayName="Process" sap:VirtualizedContainerService.HintSize="623,2580" sap2010:WorkflowViewState.IdRef="State_4">
+                            <State x:Name="__ReferenceID3" DisplayName="Process" sap:VirtualizedContainerService.HintSize="135,61" sap2010:WorkflowViewState.IdRef="State_4">
                               <State.Entry>
-                                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="577,2193" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="577,2376" sap2010:WorkflowViewState.IdRef="TryCatch_1">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -446,7 +467,7 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <TryCatch.Try>
-                                    <Sequence sap:VirtualizedContainerService.HintSize="539,1966" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                                    <Sequence sap:VirtualizedContainerService.HintSize="539,2149" sap2010:WorkflowViewState.IdRef="Sequence_2">
                                       <Sequence.Variables>
                                         <Variable x:TypeArguments="sd:DataTable" Name="datAttachmentTable" />
                                         <Variable x:TypeArguments="x:String" Name="strEmailBody" />
@@ -462,30 +483,14 @@
                                       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="497,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Initiating Transaction Number &quot;+intTransactionNumber.tostring]" />
                                       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="497,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\AssessAttachments.xaml">
                                         <ui:InvokeWorkflowFile.Arguments>
-                                          <InArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="IN_dictConfig">
-                                            <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" ExpressionText="dictConfig" />
-                                          </InArgument>
-                                          <InArgument x:TypeArguments="snm:MailMessage" x:Key="IN_MailTransactionItem">
-                                            <mva:VisualBasicValue x:TypeArguments="snm:MailMessage" ExpressionText="mailTransactionItem" />
-                                          </InArgument>
-                                          <OutArgument x:TypeArguments="sd:DataTable" x:Key="OUT_datAttachmentTable">
-                                            <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="datAttachmentTable" />
-                                          </OutArgument>
-                                          <OutArgument x:TypeArguments="x:String" x:Key="OUT_strRoute">
-                                            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strRoute" />
-                                          </OutArgument>
-                                          <OutArgument x:TypeArguments="x:Int32" x:Key="OUT_intODSPhase2">
-                                            <mva:VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="intODSPhase2" />
-                                          </OutArgument>
-                                          <OutArgument x:TypeArguments="x:Int32" x:Key="OUT_intPhase2">
-                                            <mva:VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="intPhase2" />
-                                          </OutArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strAttachmentsFolder">
-                                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strAttachmentsFolder" />
-                                          </InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkingFolder">
-                                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strWorkingFolder" />
-                                          </InArgument>
+                                          <InArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="IN_dictConfig">[dictConfig]</InArgument>
+                                          <InArgument x:TypeArguments="snm:MailMessage" x:Key="IN_MailTransactionItem">[mailTransactionItem]</InArgument>
+                                          <OutArgument x:TypeArguments="sd:DataTable" x:Key="OUT_datAttachmentTable">[datAttachmentTable]</OutArgument>
+                                          <OutArgument x:TypeArguments="x:String" x:Key="OUT_strRoute">[strRoute]</OutArgument>
+                                          <OutArgument x:TypeArguments="x:Int32" x:Key="OUT_intODSPhase2">[intODSPhase2]</OutArgument>
+                                          <OutArgument x:TypeArguments="x:Int32" x:Key="OUT_intPhase2">[intPhase2]</OutArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strAttachmentsFolder">[strAttachmentsFolder]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkingFolder">[strWorkingFolder]</InArgument>
                                         </ui:InvokeWorkflowFile.Arguments>
                                       </ui:InvokeWorkflowFile>
                                       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Pausepoint 2 workflow" sap:VirtualizedContainerService.HintSize="497,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Framework/Pausepoint 2.xaml">
@@ -497,64 +502,28 @@
                                       </ui:InvokeWorkflowFile>
                                       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="497,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Framework\Check for S2 - QC and Cleanse Data.xaml">
                                         <ui:InvokeWorkflowFile.Arguments>
-                                          <InArgument x:TypeArguments="sd:DataTable" x:Key="IN_datAttachmentTable">
-                                            <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="datAttachmentTable" />
-                                          </InArgument>
-                                          <InOutArgument x:TypeArguments="x:String" x:Key="INOUT_strRoute">
-                                            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strRoute" />
-                                          </InOutArgument>
-                                          <InArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="IN_dictConfig">
-                                            <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" ExpressionText="dictConfig" />
-                                          </InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strSender">
-                                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strSender" />
-                                          </InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strAttachmentsFolder">
-                                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strAttachmentsFolder" />
-                                          </InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkingFolder">
-                                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strWorkingFolder" />
-                                          </InArgument>
-                                          <OutArgument x:TypeArguments="x:String" x:Key="OUT_strEmailBody">
-                                            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strEmailBody" />
-                                          </OutArgument>
-                                          <OutArgument x:TypeArguments="x:String" x:Key="OUT_strEmailSubject">
-                                            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strEmailSubject" />
-                                          </OutArgument>
-                                          <InArgument x:TypeArguments="x:Int32" x:Key="IN_intODSPhase2">
-                                            <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="intODSPhase2" />
-                                          </InArgument>
-                                          <InArgument x:TypeArguments="x:Int32" x:Key="IN_intPhase2">
-                                            <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="intPhase2" />
-                                          </InArgument>
-                                          <OutArgument x:TypeArguments="x:Int32" x:Key="OUT_intSites">
-                                            <mva:VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="intSites" />
-                                          </OutArgument>
-                                          <OutArgument x:TypeArguments="x:Int32" x:Key="OUT_intRejected">
-                                            <mva:VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="intRejected" />
-                                          </OutArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strDateTimeReceived">
-                                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strDateTimeReceived" />
-                                          </InArgument>
+                                          <InArgument x:TypeArguments="sd:DataTable" x:Key="IN_datAttachmentTable">[datAttachmentTable]</InArgument>
+                                          <InOutArgument x:TypeArguments="x:String" x:Key="INOUT_strRoute">[strRoute]</InOutArgument>
+                                          <InArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="IN_dictConfig">[dictConfig]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strSender">[strSender]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strAttachmentsFolder">[strAttachmentsFolder]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkingFolder">[strWorkingFolder]</InArgument>
+                                          <OutArgument x:TypeArguments="x:String" x:Key="OUT_strEmailBody">[strEmailBody]</OutArgument>
+                                          <OutArgument x:TypeArguments="x:String" x:Key="OUT_strEmailSubject">[strEmailSubject]</OutArgument>
+                                          <InArgument x:TypeArguments="x:Int32" x:Key="IN_intODSPhase2">[intODSPhase2]</InArgument>
+                                          <InArgument x:TypeArguments="x:Int32" x:Key="IN_intPhase2">[intPhase2]</InArgument>
+                                          <OutArgument x:TypeArguments="x:Int32" x:Key="OUT_intSites">[intSites]</OutArgument>
+                                          <OutArgument x:TypeArguments="x:Int32" x:Key="OUT_intRejected">[intRejected]</OutArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strDateTimeReceived">[strDateTimeReceived]</InArgument>
                                         </ui:InvokeWorkflowFile.Arguments>
                                       </ui:InvokeWorkflowFile>
                                       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="497,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Framework\Pausepoint 4.xaml">
                                         <ui:InvokeWorkflowFile.Arguments>
-                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strFormTitle">
-                                            <Literal x:TypeArguments="x:String">PausePoint 4</Literal>
-                                          </InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strFormBody">
-                                            <Literal x:TypeArguments="x:String">Please check that the below email text is correct. Click continue if no issues are seen.</Literal>
-                                          </InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strSender">
-                                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strSender" />
-                                          </InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strEmailBody">
-                                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strEmailBody" />
-                                          </InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strRoute">
-                                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strRoute" />
-                                          </InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strFormTitle">PausePoint 4</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strFormBody">Please check that the below email text is correct. Click continue if no issues are seen.</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strSender">[strSender]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strEmailBody">[strEmailBody]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="IN_strRoute">[strRoute]</InArgument>
                                         </ui:InvokeWorkflowFile.Arguments>
                                       </ui:InvokeWorkflowFile>
                                       <ui:GetOutlookMailMessages Filter="{x:Null}" TimeoutMS="{x:Null}" Account="[dictConfig(&quot;Email Account&quot;)]" DisplayName="Get Outlook Mail Messages - In Progress" GetAttachements="False" sap:VirtualizedContainerService.HintSize="497,22" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="[dictConfig(&quot;Email Inbox Folder&quot;)+&quot;\&quot;+dictConfig(&quot;User Email Subfolder&quot;)+&quot;\&quot;+dictConfig(&quot;Email In Progress Folder&quot;)]" MarkAsRead="False" Messages="[mailMessages]" OnlyUnreadMessages="False" Top="1" />
@@ -567,14 +536,14 @@
                                         </Assign.Value>
                                       </Assign>
                                       <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="497,61" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Route: &quot; + strRoute]" />
-                                      <Switch x:TypeArguments="x:String" DisplayName="Switch - Send/Archive Email" Expression="[strRoute]" sap:VirtualizedContainerService.HintSize="497,425" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                                      <Switch x:TypeArguments="x:String" DisplayName="Switch - Send/Archive Email" Expression="[strRoute]" sap:VirtualizedContainerService.HintSize="497,608" sap2010:WorkflowViewState.IdRef="Switch`1_3">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <ui:MoveOutlookMessage x:Key="Phase 1" Account="[dictConfig(&quot;Email Account&quot;).tostring]" DisplayName="Move Outlook Message - Phase 1" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_1" MailFolder="[dictConfig(&quot;Email Inbox Folder&quot;)+&quot;\&quot;+dictConfig(&quot;Email Phase 1 Folder&quot;)]" MailMessage="[mailTransactionItem]" />
+                                        <ui:MoveOutlookMessage x:Key="Phase 1" Account="[dictConfig(&quot;Email Account&quot;)]" DisplayName="Move Outlook Message - Phase 1" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_11" MailFolder="[dictConfig(&quot;Email Inbox Folder&quot;)+&quot;\&quot;+dictConfig(&quot;Email Phase 1 Folder&quot;)]" MailMessage="[mailTransactionItem]" />
                                         <Sequence x:Key="Incorrect Type" sap:VirtualizedContainerService.HintSize="376,270" sap2010:WorkflowViewState.IdRef="Sequence_8">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -592,7 +561,7 @@
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
                                           </ui:SendOutlookMail>
-                                          <ui:MoveOutlookMessage Account="[dictConfig(&quot;Email Account&quot;).tostring]" DisplayName="Move Outlook Message - Exception Robot Response" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_2" MailFolder="[dictConfig(&quot;Email Inbox Folder&quot;)+&quot;\&quot;+dictConfig(&quot;Email Exception Response Folder&quot;)]" MailMessage="[mailTransactionItem]" />
+                                          <ui:MoveOutlookMessage Account="[dictConfig(&quot;Email Account&quot;)]" DisplayName="Move Outlook Message - Exception Robot Response" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_2" MailFolder="[dictConfig(&quot;Email Inbox Folder&quot;)+&quot;\&quot;+dictConfig(&quot;Email Exception Response Folder&quot;)]" MailMessage="[mailTransactionItem]" />
                                         </Sequence>
                                         <Sequence x:Key="Error Opening" sap:VirtualizedContainerService.HintSize="376,364" sap2010:WorkflowViewState.IdRef="Sequence_9">
                                           <sap:WorkflowViewStateService.ViewState>
@@ -620,7 +589,7 @@
                                           </ui:SendOutlookMail>
                                           <ui:MoveOutlookMessage Account="[dictConfig(&quot;Email Account&quot;).tostring]" DisplayName="Move Outlook Message - Exception Robot Response" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_4" MailFolder="[dictConfig(&quot;Email Inbox Folder&quot;)+&quot;\&quot;+dictConfig(&quot;Email Exception Response Folder&quot;)]" MailMessage="[mailTransactionItem]" />
                                         </Sequence>
-                                        <Sequence x:Key="Successful" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                        <Sequence x:Key="Successful" sap:VirtualizedContainerService.HintSize="376,66" sap2010:WorkflowViewState.IdRef="Sequence_11">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -818,19 +787,19 @@
                                                   <Literal x:TypeArguments="x:Boolean" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Phase2_Forms">
-                                                  <Literal x:TypeArguments="x:String" Value="" />
+                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intPhase2.ToString" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_ODS_Phase2_Forms">
-                                                  <Literal x:TypeArguments="x:String" Value="" />
+                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intODSPhase2.ToString" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Populated_Sites">
-                                                  <Literal x:TypeArguments="x:String" Value="" />
+                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intSites.ToString" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">
-                                                  <Literal x:TypeArguments="x:String" Value="" />
+                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intRejected.ToString" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">
-                                                  <Literal x:TypeArguments="x:String" Value="" />
+                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strRoute" />
                                                 </InArgument>
                                               </ui:InvokeWorkflowFile.Arguments>
                                             </ui:InvokeWorkflowFile>
@@ -872,19 +841,19 @@
                                                   <Literal x:TypeArguments="x:Boolean" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Phase2_Forms">
-                                                  <Literal x:TypeArguments="x:String" Value="" />
+                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intPhase2.ToString" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_ODS_Phase2_Forms">
-                                                  <Literal x:TypeArguments="x:String" Value="" />
+                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intODSPhase2.ToString" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Populated_Sites">
-                                                  <Literal x:TypeArguments="x:String" Value="" />
+                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intSites.ToString" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">
-                                                  <Literal x:TypeArguments="x:String" Value="" />
+                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intRejected.ToString" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">
-                                                  <Literal x:TypeArguments="x:String" Value="" />
+                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strRoute" />
                                                 </InArgument>
                                               </ui:InvokeWorkflowFile.Arguments>
                                             </ui:InvokeWorkflowFile>
@@ -958,7 +927,7 @@
                                                   <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="(Now - dateStartTime).ToString" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">
-                                                  <Literal x:TypeArguments="x:String">TRUE</Literal>
+                                                  <Literal x:TypeArguments="x:String">Successful</Literal>
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_strFailureMessage">
                                                   <Literal x:TypeArguments="x:String" Value="" />
@@ -970,7 +939,7 @@
                                                   <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Environment.UserName.ToString" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_strNotes">
-                                                  <Literal x:TypeArguments="x:String">Error in process transaction</Literal>
+                                                  <Literal x:TypeArguments="x:String" Value="" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">
                                                   <Literal x:TypeArguments="x:Boolean" />
@@ -1040,230 +1009,213 @@
                           <Transition.To>
                             <State x:Name="__ReferenceID5" DisplayName="Consolidate List" sap:VirtualizedContainerService.HintSize="134,61" sap2010:WorkflowViewState.IdRef="State_8">
                               <State.Entry>
-                                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="CommentOut_4">
-                                  <ui:CommentOut.Body>
-                                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="682,3531" sap2010:WorkflowViewState.IdRef="Sequence_30">
-                                      <sap:WorkflowViewStateService.ViewState>
-                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                        </scg:Dictionary>
-                                      </sap:WorkflowViewStateService.ViewState>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="640,3439" sap2010:WorkflowViewState.IdRef="Sequence_23">
-                                        <Sequence.Variables>
-                                          <Variable x:TypeArguments="x:String" Name="strWeeklyInUse" />
-                                        </Sequence.Variables>
+                                <Sequence sap:VirtualizedContainerService.HintSize="640,3440" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                  <Sequence.Variables>
+                                    <Variable x:TypeArguments="x:String" Name="strWeeklyInUse" />
+                                  </Sequence.Variables>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="598,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Framework\Pausepoint 5.xaml">
+                                    <ui:InvokeWorkflowFile.Arguments>
+                                      <InArgument x:TypeArguments="x:String" x:Key="IN_strFormTitle">PausePoint 5</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="IN_strFormBody">Please check the local consolidated list stored on the desktop for any errors. If no errors are seen please press continue.</InArgument>
+                                    </ui:InvokeWorkflowFile.Arguments>
+                                  </ui:InvokeWorkflowFile>
+                                  <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Weekly in Use" DisplayName="Get Asset - Weekly In Use" FolderPath="[dictConfig(&quot;Orchestrator Folder Path&quot;).ToString]" sap:VirtualizedContainerService.HintSize="598,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+                                    <ui:GetRobotAsset.Value>
+                                      <OutArgument x:TypeArguments="x:String">[strWeeklyInUse]</OutArgument>
+                                    </ui:GetRobotAsset.Value>
+                                  </ui:GetRobotAsset>
+                                  <If Condition="[strWeeklyInUse.Contains(&quot;Updating&quot;)]" DisplayName="If sheet is checked out:" sap:VirtualizedContainerService.HintSize="598,232" sap2010:WorkflowViewState.IdRef="If_5">
+                                    <If.Then>
+                                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box - Checked out" sap:VirtualizedContainerService.HintSize="334,84" sap2010:WorkflowViewState.IdRef="MessageBox_4" Text="[&quot;The weekly consolidated list is currently checked out by &quot;+strWeeklyInUse.replace(&quot; Updating&quot;,&quot;&quot;)+&quot;. The robot will proceed once the sheet has been checked in.&quot;]" />
+                                    </If.Then>
+                                  </If>
+                                  <ui:InterruptibleWhile Condition="[strWeeklyInUse.Contains(&quot;Updating&quot;)]" DisplayName="While the file is in use" sap:VirtualizedContainerService.HintSize="598,456" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                                    <ui:InterruptibleWhile.Body>
+                                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,291" sap2010:WorkflowViewState.IdRef="Sequence_25">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="598,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Framework\Pausepoint 5.xaml">
-                                          <ui:InvokeWorkflowFile.Arguments>
-                                            <InArgument x:TypeArguments="x:String" x:Key="IN_strFormTitle">PausePoint 5</InArgument>
-                                            <InArgument x:TypeArguments="x:String" x:Key="IN_strFormBody">Please check the local consolidated list stored on the desktop for any errors. If no errors are seen please press continue.</InArgument>
-                                          </ui:InvokeWorkflowFile.Arguments>
-                                        </ui:InvokeWorkflowFile>
-                                        <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Weekly in Use" DisplayName="Get Asset - Weekly In Use" FolderPath="[dictConfig(&quot;Orchestrator Folder Path&quot;).ToString]" sap:VirtualizedContainerService.HintSize="598,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+                                        <Delay DisplayName="Delay - 5s" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                                        <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Weekly in Use" DisplayName="Get Asset - Weekly In Use" FolderPath="[dictConfig(&quot;Orchestrator Folder Path&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
                                           <ui:GetRobotAsset.Value>
                                             <OutArgument x:TypeArguments="x:String">[strWeeklyInUse]</OutArgument>
                                           </ui:GetRobotAsset.Value>
                                         </ui:GetRobotAsset>
-                                        <If Condition="[strWeeklyInUse.Contains(&quot;Updating&quot;)]" DisplayName="If sheet is checked out:" sap:VirtualizedContainerService.HintSize="598,231" sap2010:WorkflowViewState.IdRef="If_5">
-                                          <If.Then>
-                                            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box - Checked out" sap:VirtualizedContainerService.HintSize="334,84" sap2010:WorkflowViewState.IdRef="MessageBox_4" Text="[&quot;The weekly consolidated list is currently checked out by &quot;+strWeeklyInUse.replace(&quot; Updating&quot;,&quot;&quot;)+&quot;. The robot will proceed once the sheet has been checked in.&quot;]" />
-                                          </If.Then>
-                                        </If>
-                                        <ui:InterruptibleWhile Condition="[strWeeklyInUse.Contains(&quot;Updating&quot;)]" DisplayName="While the file is in use" sap:VirtualizedContainerService.HintSize="598,456" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
-                                          <ui:InterruptibleWhile.Body>
-                                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,291" sap2010:WorkflowViewState.IdRef="Sequence_25">
-                                              <sap:WorkflowViewStateService.ViewState>
-                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                </scg:Dictionary>
-                                              </sap:WorkflowViewStateService.ViewState>
-                                              <Delay DisplayName="Delay - 5s" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
-                                              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Weekly in Use" DisplayName="Get Asset - Weekly In Use" FolderPath="[dictConfig(&quot;Orchestrator Folder Path&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
-                                                <ui:GetRobotAsset.Value>
-                                                  <OutArgument x:TypeArguments="x:String">[strWeeklyInUse]</OutArgument>
-                                                </ui:GetRobotAsset.Value>
-                                              </ui:GetRobotAsset>
-                                            </Sequence>
-                                          </ui:InterruptibleWhile.Body>
-                                        </ui:InterruptibleWhile>
-                                        <TryCatch DisplayName="Try Catch - Update Weekly List" sap:VirtualizedContainerService.HintSize="598,1902" sap2010:WorkflowViewState.IdRef="TryCatch_4">
-                                          <TryCatch.Try>
-                                            <Sequence sap:VirtualizedContainerService.HintSize="560,1675" sap2010:WorkflowViewState.IdRef="Sequence_22">
-                                              <sap:WorkflowViewStateService.ViewState>
-                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                </scg:Dictionary>
-                                              </sap:WorkflowViewStateService.ViewState>
-                                              <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Weekly in Use" DisplayName="Set Asset - Updating" FolderPath="[dictConfig(&quot;Orchestrator Folder Path&quot;).ToString]" sap:VirtualizedContainerService.HintSize="518,22" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[environment.username.tostring+&quot; Updating&quot;]" />
-                                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Check In OR Out - Amended workflow" sap:VirtualizedContainerService.HintSize="518,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_29" UnSafe="False" WorkflowFileName="Framework\Check In OR Out - Amended.xaml">
-                                                <ui:InvokeWorkflowFile.Arguments>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">["OCR Phase 2 Consolidated Weekly List of Operators "+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx"]</InArgument>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">[dictConfig("SharePoint Weekly URL").ToString]</InArgument>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="IN_CheckInOrOut">out</InArgument>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">[dictConfig("SharePoint Weekly Title").ToString]</InArgument>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="IN_Check_In_Comment">
-                                                    <Literal x:TypeArguments="x:String" Value="" />
-                                                  </InArgument>
-                                                </ui:InvokeWorkflowFile.Arguments>
-                                              </ui:InvokeWorkflowFile>
-                                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CheckInOutStatusAmended workflow" sap:VirtualizedContainerService.HintSize="518,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="Framework\Get File - Amended.xaml">
-                                                <ui:InvokeWorkflowFile.Arguments>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">["OCR Phase 2 Consolidated Weekly List of Operators "+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx"]</InArgument>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="IN_SharePointURL">[dictConfig("SharePoint Weekly URL").ToString]</InArgument>
-                                                  <InArgument x:TypeArguments="x:Int32" x:Key="IN_FileDownloadWait_Seconds">180</InArgument>
-                                                </ui:InvokeWorkflowFile.Arguments>
-                                              </ui:InvokeWorkflowFile>
-                                              <ui:RetryScope sap2010:Annotation.AnnotationText="bizarre excel error occurs someimes - This segment tries to kill and retry excel merge" DisplayName="Consolidate Excel - Local to Weekly" sap:VirtualizedContainerService.HintSize="518,732" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="2" RetryInterval="00:00:00">
-                                                <ui:RetryScope.ActivityBody>
-                                                  <ActivityAction>
-                                                    <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="476,558" sap2010:WorkflowViewState.IdRef="Sequence_24">
-                                                      <Sequence.Variables>
-                                                        <Variable x:TypeArguments="sd:DataTable" Name="datLocalSheet" />
-                                                      </Sequence.Variables>
-                                                      <sap:WorkflowViewStateService.ViewState>
-                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                        </scg:Dictionary>
-                                                      </sap:WorkflowViewStateService.ViewState>
-                                                      <ui:KillProcess ContinueOnError="{x:Null}" Process="{x:Null}" AppliesTo="OnlyCurrentUser" DisplayName="Kill Process - Excel" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="EXCEL" />
-                                                      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Read Weekly Sheet" sap:VirtualizedContainerService.HintSize="434,168" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[strWorkingFolder+&quot;\Local Consolidated List&quot;+&quot;.xlsx&quot;]">
-                                                        <ui:ExcelApplicationScope.Body>
-                                                          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                                                            <ActivityAction.Argument>
-                                                              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                                                            </ActivityAction.Argument>
-                                                            <ui:ExcelReadRange AddHeaders="True" DataTable="[datLocalSheet]" DisplayName="Read Range - Local" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Sheet1">
-                                                              <ui:ExcelReadRange.Range>
-                                                                <InArgument x:TypeArguments="x:String">
-                                                                  <Literal x:TypeArguments="x:String" Value="" />
-                                                                </InArgument>
-                                                              </ui:ExcelReadRange.Range>
-                                                              <sap:WorkflowViewStateService.ViewState>
-                                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                                </scg:Dictionary>
-                                                              </sap:WorkflowViewStateService.ViewState>
-                                                            </ui:ExcelReadRange>
-                                                          </ActivityAction>
-                                                        </ui:ExcelApplicationScope.Body>
-                                                        <sap:WorkflowViewStateService.ViewState>
-                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                          </scg:Dictionary>
-                                                        </sap:WorkflowViewStateService.ViewState>
-                                                      </ui:ExcelApplicationScope>
-                                                      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Update Weekly Sheet" sap:VirtualizedContainerService.HintSize="434,196" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[string.Format(&quot;C:\Users\{0}\Downloads\{1}&quot;,Environment.UserName,&quot;OCR Phase 2 Consolidated Weekly List of Operators &quot;+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;)]">
-                                                        <ui:ExcelApplicationScope.Body>
-                                                          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                                                            <ActivityAction.Argument>
-                                                              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                                                            </ActivityAction.Argument>
-                                                            <ui:ExcelAppendRange DataTable="[datLocalSheet]" DisplayName="Append Range - Weekly to Master" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_1" SheetName="Sheet1" />
-                                                          </ActivityAction>
-                                                        </ui:ExcelApplicationScope.Body>
-                                                        <sap:WorkflowViewStateService.ViewState>
-                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                          </scg:Dictionary>
-                                                        </sap:WorkflowViewStateService.ViewState>
-                                                      </ui:ExcelApplicationScope>
-                                                    </Sequence>
-                                                  </ActivityAction>
-                                                </ui:RetryScope.ActivityBody>
-                                                <ui:RetryScope.Condition>
-                                                  <ActivityFunc x:TypeArguments="x:Boolean" />
-                                                </ui:RetryScope.Condition>
-                                                <sap:WorkflowViewStateService.ViewState>
-                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                    <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
-                                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                  </scg:Dictionary>
-                                                </sap:WorkflowViewStateService.ViewState>
-                                              </ui:RetryScope>
-                                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Upload File - Amended workflow" sap:VirtualizedContainerService.HintSize="518,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_22" UnSafe="False" WorkflowFileName="Framework\Upload File - Amended.xaml">
-                                                <ui:InvokeWorkflowFile.Arguments>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="IN_LocalPath">[string.Format("C:\Users\{0}\Downloads\{1}",Environment.UserName,"OCR Phase 2 Consolidated Weekly List of Operators "+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx")]</InArgument>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="IN_SharePointURL">[dictConfig("SharePoint Weekly URL").ToString]</InArgument>
-                                                  <InArgument x:TypeArguments="x:Int32" x:Key="IN_FileUploadWait_Seconds">45</InArgument>
-                                                </ui:InvokeWorkflowFile.Arguments>
-                                              </ui:InvokeWorkflowFile>
-                                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Check In OR Out - Amended workflow" sap:VirtualizedContainerService.HintSize="518,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_23" UnSafe="False" WorkflowFileName="Framework\Check In OR Out - Amended.xaml">
-                                                <ui:InvokeWorkflowFile.Arguments>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">["OCR Phase 2 Consolidated Weekly List of Operators "+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx"]</InArgument>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">[dictConfig("SharePoint Weekly URL").ToString]</InArgument>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="IN_CheckInOrOut">in</InArgument>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">[dictConfig("SharePoint Weekly Title").ToString]</InArgument>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="IN_Check_In_Comment">["Updated by "+environment.username.ToString]</InArgument>
-                                                </ui:InvokeWorkflowFile.Arguments>
-                                              </ui:InvokeWorkflowFile>
-                                              <ui:DeleteFileX DisplayName="Delete File - Local copy" sap:VirtualizedContainerService.HintSize="518,79" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[strWorkingFolder+&quot;\OCR Phase 2 Consolidated Weekly List of Operators &quot;+Today.AddDays(-CInt(Today.DayOfWeek)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;]">
+                                      </Sequence>
+                                    </ui:InterruptibleWhile.Body>
+                                  </ui:InterruptibleWhile>
+                                  <TryCatch DisplayName="Try Catch - Update Weekly List" sap:VirtualizedContainerService.HintSize="598,1902" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                                    <TryCatch.Try>
+                                      <Sequence sap:VirtualizedContainerService.HintSize="560,1675" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Weekly in Use" DisplayName="Set Asset - Updating" FolderPath="[dictConfig(&quot;Orchestrator Folder Path&quot;).ToString]" sap:VirtualizedContainerService.HintSize="518,22" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[environment.username.tostring+&quot; Updating&quot;]" />
+                                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Check In OR Out - Amended workflow" sap:VirtualizedContainerService.HintSize="518,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_29" UnSafe="False" WorkflowFileName="Framework\Check In OR Out - Amended.xaml">
+                                          <ui:InvokeWorkflowFile.Arguments>
+                                            <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">["OCR Phase 2 Consolidated Weekly List of Operators "+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx"]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">[dictConfig("SharePoint Weekly URL").ToString]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="IN_CheckInOrOut">out</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">[dictConfig("SharePoint Weekly Title").ToString]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="IN_Check_In_Comment">
+                                              <Literal x:TypeArguments="x:String" Value="" />
+                                            </InArgument>
+                                          </ui:InvokeWorkflowFile.Arguments>
+                                        </ui:InvokeWorkflowFile>
+                                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CheckInOutStatusAmended workflow" sap:VirtualizedContainerService.HintSize="518,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="Framework\Get File - Amended.xaml">
+                                          <ui:InvokeWorkflowFile.Arguments>
+                                            <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">["OCR Phase 2 Consolidated Weekly List of Operators "+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx"]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="IN_SharePointURL">[dictConfig("SharePoint Weekly URL").ToString]</InArgument>
+                                            <InArgument x:TypeArguments="x:Int32" x:Key="IN_FileDownloadWait_Seconds">180</InArgument>
+                                          </ui:InvokeWorkflowFile.Arguments>
+                                        </ui:InvokeWorkflowFile>
+                                        <ui:RetryScope sap2010:Annotation.AnnotationText="bizarre excel error occurs someimes - This segment tries to kill and retry excel merge" DisplayName="Consolidate Excel - Local to Weekly" sap:VirtualizedContainerService.HintSize="518,732" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="2" RetryInterval="00:00:00">
+                                          <ui:RetryScope.ActivityBody>
+                                            <ActivityAction>
+                                              <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="476,558" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                                <Sequence.Variables>
+                                                  <Variable x:TypeArguments="sd:DataTable" Name="datLocalSheet" />
+                                                </Sequence.Variables>
                                                 <sap:WorkflowViewStateService.ViewState>
                                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                   </scg:Dictionary>
                                                 </sap:WorkflowViewStateService.ViewState>
-                                              </ui:DeleteFileX>
-                                              <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Weekly in Use" DisplayName="Set Asset - Free" FolderPath="[dictConfig(&quot;Orchestrator Folder Path&quot;).ToString]" sap:VirtualizedContainerService.HintSize="518,22" sap2010:WorkflowViewState.IdRef="SetAsset_2" Value="[&quot;Free&quot;]" />
-                                            </Sequence>
-                                          </TryCatch.Try>
-                                          <TryCatch.Catches>
-                                            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="564,21" sap2010:WorkflowViewState.IdRef="Catch`1_5">
-                                              <sap:WorkflowViewStateService.ViewState>
-                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                </scg:Dictionary>
-                                              </sap:WorkflowViewStateService.ViewState>
-                                              <ActivityAction x:TypeArguments="s:Exception">
-                                                <ActivityAction.Argument>
-                                                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                                                </ActivityAction.Argument>
-                                                <Sequence DisplayName="Exception" sap:VirtualizedContainerService.HintSize="376,530" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                                                <ui:KillProcess ContinueOnError="{x:Null}" Process="{x:Null}" AppliesTo="OnlyCurrentUser" DisplayName="Kill Process - Excel" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="EXCEL" />
+                                                <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Read Weekly Sheet" sap:VirtualizedContainerService.HintSize="434,168" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[strWorkingFolder+&quot;\Local Consolidated List&quot;+&quot;.xlsx&quot;]">
+                                                  <ui:ExcelApplicationScope.Body>
+                                                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                                      <ActivityAction.Argument>
+                                                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                                      </ActivityAction.Argument>
+                                                      <ui:ExcelReadRange AddHeaders="True" DataTable="[datLocalSheet]" DisplayName="Read Range - Local" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Sheet1">
+                                                        <ui:ExcelReadRange.Range>
+                                                          <InArgument x:TypeArguments="x:String">
+                                                            <Literal x:TypeArguments="x:String" Value="" />
+                                                          </InArgument>
+                                                        </ui:ExcelReadRange.Range>
+                                                        <sap:WorkflowViewStateService.ViewState>
+                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                          </scg:Dictionary>
+                                                        </sap:WorkflowViewStateService.ViewState>
+                                                      </ui:ExcelReadRange>
+                                                    </ActivityAction>
+                                                  </ui:ExcelApplicationScope.Body>
                                                   <sap:WorkflowViewStateService.ViewState>
                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                     </scg:Dictionary>
                                                   </sap:WorkflowViewStateService.ViewState>
-                                                  <Assign DisplayName="Assign Error" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_21">
-                                                    <Assign.To>
-                                                      <OutArgument x:TypeArguments="s:Exception">[exeError]</OutArgument>
-                                                    </Assign.To>
-                                                    <Assign.Value>
-                                                      <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
-                                                    </Assign.Value>
-                                                  </Assign>
-                                                  <ui:LogMessage DisplayName="Log Message - Fatal Error" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Fatal" Message="[&quot;System exception consolidating master file: &quot; + exeError.Message + &quot; at Source: &quot; + exeError.Source]" />
-                                                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box - Error consolidating" sap:VirtualizedContainerService.HintSize="334,84" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Please note that the consolidation of the local list to the sharepoint weekly list has faield. Please complete this task manually.&quot;]" />
-                                                  <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Weekly in Use" DisplayName="Set Asset - Free" FolderPath="[dictConfig(&quot;Orchestrator Folder Path&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="SetAsset_3" Value="[&quot;Free&quot;]" />
-                                                  <Rethrow sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
-                                                </Sequence>
-                                              </ActivityAction>
-                                            </Catch>
-                                          </TryCatch.Catches>
-                                        </TryCatch>
-                                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Pausepoint 6" sap:VirtualizedContainerService.HintSize="598,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_24" UnSafe="False" WorkflowFileName="Framework\Pausepoint 5.xaml">
+                                                </ui:ExcelApplicationScope>
+                                                <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Update Weekly Sheet" sap:VirtualizedContainerService.HintSize="434,196" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[string.Format(&quot;C:\Users\{0}\Downloads\{1}&quot;,Environment.UserName,&quot;OCR Phase 2 Consolidated Weekly List of Operators &quot;+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;)]">
+                                                  <ui:ExcelApplicationScope.Body>
+                                                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                                      <ActivityAction.Argument>
+                                                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                                      </ActivityAction.Argument>
+                                                      <ui:ExcelAppendRange DataTable="[datLocalSheet]" DisplayName="Append Range - Weekly to Master" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_1" SheetName="Sheet1" />
+                                                    </ActivityAction>
+                                                  </ui:ExcelApplicationScope.Body>
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                </ui:ExcelApplicationScope>
+                                              </Sequence>
+                                            </ActivityAction>
+                                          </ui:RetryScope.ActivityBody>
+                                          <ui:RetryScope.Condition>
+                                            <ActivityFunc x:TypeArguments="x:Boolean" />
+                                          </ui:RetryScope.Condition>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ui:RetryScope>
+                                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Upload File - Amended workflow" sap:VirtualizedContainerService.HintSize="518,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_22" UnSafe="False" WorkflowFileName="Framework\Upload File - Amended.xaml">
                                           <ui:InvokeWorkflowFile.Arguments>
-                                            <InArgument x:TypeArguments="x:String" x:Key="IN_strFormTitle">Pausepoint 6</InArgument>
-                                            <InArgument x:TypeArguments="x:String" x:Key="IN_strFormBody">Please check that the data from the local file has been sucessfully added to the weekly list on sharepoint. Click continue if no issues are found</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="IN_LocalPath">[string.Format("C:\Users\{0}\Downloads\{1}",Environment.UserName,"OCR Phase 2 Consolidated Weekly List of Operators "+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx")]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="IN_SharePointURL">[dictConfig("SharePoint Weekly URL").ToString]</InArgument>
+                                            <InArgument x:TypeArguments="x:Int32" x:Key="IN_FileUploadWait_Seconds">45</InArgument>
                                           </ui:InvokeWorkflowFile.Arguments>
                                         </ui:InvokeWorkflowFile>
-                                        <ui:MoveFile ContinueOnError="{x:Null}" Destination="[strWorkingFolder+&quot;\Archive&quot;]" DisplayName="Move File to Archive" sap:VirtualizedContainerService.HintSize="598,157" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="False" Path="[strWorkingFolder+&quot;\Local Consolidated List&quot;+&quot;.xlsx&quot;]" />
+                                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Check In OR Out - Amended workflow" sap:VirtualizedContainerService.HintSize="518,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_23" UnSafe="False" WorkflowFileName="Framework\Check In OR Out - Amended.xaml">
+                                          <ui:InvokeWorkflowFile.Arguments>
+                                            <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">["OCR Phase 2 Consolidated Weekly List of Operators "+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx"]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">[dictConfig("SharePoint Weekly URL").ToString]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="IN_CheckInOrOut">in</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">[dictConfig("SharePoint Weekly Title").ToString]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="IN_Check_In_Comment">["Updated by "+environment.username.ToString]</InArgument>
+                                          </ui:InvokeWorkflowFile.Arguments>
+                                        </ui:InvokeWorkflowFile>
+                                        <ui:DeleteFileX DisplayName="Delete File - Local copy" sap:VirtualizedContainerService.HintSize="518,79" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[strWorkingFolder+&quot;\OCR Phase 2 Consolidated Weekly List of Operators &quot;+Today.AddDays(-CInt(Today.DayOfWeek)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;]">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ui:DeleteFileX>
+                                        <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Weekly in Use" DisplayName="Set Asset - Free" FolderPath="[dictConfig(&quot;Orchestrator Folder Path&quot;).ToString]" sap:VirtualizedContainerService.HintSize="518,22" sap2010:WorkflowViewState.IdRef="SetAsset_2" Value="[&quot;Free&quot;]" />
                                       </Sequence>
-                                    </Sequence>
-                                  </ui:CommentOut.Body>
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                </ui:CommentOut>
+                                    </TryCatch.Try>
+                                    <TryCatch.Catches>
+                                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="564,21" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ActivityAction x:TypeArguments="s:Exception">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                          </ActivityAction.Argument>
+                                          <Sequence DisplayName="Exception" sap:VirtualizedContainerService.HintSize="376,528" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <Assign DisplayName="Assign Error" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="s:Exception">[exeError]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <ui:LogMessage DisplayName="Log Message - Fatal Error" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Fatal" Message="[&quot;System exception consolidating master file: &quot; + exeError.Message + &quot; at Source: &quot; + exeError.Source]" />
+                                            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box - Error consolidating" sap:VirtualizedContainerService.HintSize="334,84" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Please note that the consolidation of the local list to the sharepoint weekly list has faield. Please complete this task manually.&quot;]" />
+                                            <ui:SetAsset TimeoutMS="{x:Null}" AssetName="Weekly in Use" DisplayName="Set Asset - Free" FolderPath="[dictConfig(&quot;Orchestrator Folder Path&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="SetAsset_3" Value="[&quot;Free&quot;]" />
+                                            <Rethrow sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+                                          </Sequence>
+                                        </ActivityAction>
+                                      </Catch>
+                                    </TryCatch.Catches>
+                                  </TryCatch>
+                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Pausepoint 6" sap:VirtualizedContainerService.HintSize="598,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_24" UnSafe="False" WorkflowFileName="Framework\Pausepoint 5.xaml">
+                                    <ui:InvokeWorkflowFile.Arguments>
+                                      <InArgument x:TypeArguments="x:String" x:Key="IN_strFormTitle">Pausepoint 6</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="IN_strFormBody">Please check that the data from the local file has been sucessfully added to the weekly list on sharepoint. Click continue if no issues are found</InArgument>
+                                    </ui:InvokeWorkflowFile.Arguments>
+                                  </ui:InvokeWorkflowFile>
+                                  <ui:MoveFile ContinueOnError="{x:Null}" Destination="[strWorkingFolder+&quot;\Archive&quot;]" DisplayName="Move File to Archive" sap:VirtualizedContainerService.HintSize="598,157" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="False" Path="[strWorkingFolder+&quot;\Local Consolidated List&quot;+&quot;.xlsx&quot;]" />
+                                </Sequence>
                               </State.Entry>
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1335,7 +1287,7 @@
                                   </Transition.Action>
                                   <Transition.Condition>[exeError is nothing and exeBRE is Nothing]</Transition.Condition>
                                 </Transition>
-                                <Transition DisplayName="Error" sap:VirtualizedContainerService.HintSize="819.333333333333,710" sap2010:WorkflowViewState.IdRef="Transition_26">
+                                <Transition DisplayName="Error" sap:VirtualizedContainerService.HintSize="816,683" sap2010:WorkflowViewState.IdRef="Transition_26">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <av:PointCollection x:Key="ConnectorLocation">273,352.166666666667 273,322.166666666667 163,322.166666666667 163,272.166666666666</av:PointCollection>
@@ -1347,9 +1299,9 @@
                                     <x:Reference>__ReferenceID0</x:Reference>
                                   </Transition.To>
                                   <Transition.Action>
-                                    <If Condition="[exeBRE is Nothing]" DisplayName="If failure is a System Exception" sap:VirtualizedContainerService.HintSize="714,268" sap2010:WorkflowViewState.IdRef="If_4">
+                                    <If Condition="[exeBRE is Nothing]" DisplayName="If failure is a System Exception" sap:VirtualizedContainerService.HintSize="713,260" sap2010:WorkflowViewState.IdRef="If_4">
                                       <If.Then>
-                                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Log Case" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_26" UnSafe="False" WorkflowFileName="Framework\Log Case.xaml">
+                                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Log Case" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_26" UnSafe="False" WorkflowFileName="Framework\Log Case.xaml">
                                           <ui:InvokeWorkflowFile.Arguments>
                                             <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">[strLogFilePath]</InArgument>
                                             <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">[intTransactionNumber.ToString]</InArgument>
@@ -1379,7 +1331,7 @@
                                         </ui:InvokeWorkflowFile>
                                       </If.Then>
                                       <If.Else>
-                                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Log Case" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_28" UnSafe="False" WorkflowFileName="Framework\Log Case.xaml">
+                                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Log Case" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_28" UnSafe="False" WorkflowFileName="Framework\Log Case.xaml">
                                           <ui:InvokeWorkflowFile.Arguments>
                                             <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">[strLogFilePath]</InArgument>
                                             <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">[intTransactionNumber.ToString]</InArgument>
@@ -1453,39 +1405,17 @@
                     <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box - System exception at startup" sap:VirtualizedContainerService.HintSize="334,84" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;System exception consolidating master file: &quot; + exeError.Message + &quot; at Source: &quot; + exeError.Source + Environment.NewLine + environment.NewLine + &quot;Please complete consolidation of the lists manually and refer this message to the delelopment team.&quot;]" />
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Log Case" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Framework\Log Case.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">
-                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strLogFilePath" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">
-                          <Literal x:TypeArguments="x:String">N/A</Literal>
-                        </InArgument>
-                        <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseEndTime">
-                          <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="Now" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseStartTime">
-                          <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="Now" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_dateCaseTotalTime">
-                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Now.ToString" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">
-                          <Literal x:TypeArguments="x:String">System Exception</Literal>
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_strFailureMessage">
-                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;System exception consolidating master file: &quot; + exeError.Message + &quot; at Source: &quot; + exeError.Source" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkpackageName">
-                          <Literal x:TypeArguments="x:String">EU Exit PPP Regulation Service</Literal>
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_strUser">
-                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Environment.UserName.ToString" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_strNotes">
-                          <Literal x:TypeArguments="x:String">Error in initial stages</Literal>
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">
-                          <Literal x:TypeArguments="x:Boolean" />
-                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">[strLogFilePath]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">N/A</InArgument>
+                        <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseEndTime">[Now]</InArgument>
+                        <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseStartTime">[Now]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_dateCaseTotalTime">[Now.ToString]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">System Exception</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_strFailureMessage">["System exception consolidating master file: " + exeError.Message + " at Source: " + exeError.Source]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkpackageName">EU Exit PPP Regulation Service</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_strUser">[Environment.UserName.ToString]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_strNotes">Error in initial stages</InArgument>
+                        <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">False</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Phase2_Forms">
                           <Literal x:TypeArguments="x:String" Value="" />
                         </InArgument>
@@ -1498,9 +1428,7 @@
                         <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">
                           <Literal x:TypeArguments="x:String" Value="" />
                         </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">
-                          <Literal x:TypeArguments="x:String">Initial error</Literal>
-                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">Initial error</InArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </Sequence>
@@ -1515,39 +1443,17 @@
                     <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box - BRE at consolidation" sap:VirtualizedContainerService.HintSize="334,84" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;Business exception consolidating master file: &quot; + exeBRE.Message]" />
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Log Case" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" UnSafe="False" WorkflowFileName="Framework\Log Case.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">
-                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strLogFilePath" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">
-                          <Literal x:TypeArguments="x:String">N/A</Literal>
-                        </InArgument>
-                        <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseEndTime">
-                          <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="Now" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseStartTime">
-                          <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="Now" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_dateCaseTotalTime">
-                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Now.ToString" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">
-                          <Literal x:TypeArguments="x:String">Business Exception</Literal>
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_strFailureMessage">
-                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Business exception consolidating master file: &quot; + exeBRE.Message + &quot; at Source: &quot; + exeBRE.Source" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkpackageName">
-                          <Literal x:TypeArguments="x:String">EU Exit PPP Regulation Service</Literal>
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_strUser">
-                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Environment.UserName.ToString" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_strNotes">
-                          <Literal x:TypeArguments="x:String">Error in initial stages</Literal>
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">
-                          <Literal x:TypeArguments="x:Boolean" />
-                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">[strLogFilePath]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">N/A</InArgument>
+                        <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseEndTime">[Now]</InArgument>
+                        <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseStartTime">[Now]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_dateCaseTotalTime">[Now.ToString]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">Business Exception</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_strFailureMessage">["Business exception consolidating master file: " + exeBRE.Message + " at Source: " + exeBRE.Source]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkpackageName">EU Exit PPP Regulation Service</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_strUser">[Environment.UserName.ToString]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_strNotes">Error in initial stages</InArgument>
+                        <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">False</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Phase2_Forms">
                           <Literal x:TypeArguments="x:String" Value="" />
                         </InArgument>
@@ -1560,9 +1466,7 @@
                         <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">
                           <Literal x:TypeArguments="x:String" Value="" />
                         </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">
-                          <Literal x:TypeArguments="x:String">Initial error</Literal>
-                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">Initial error</InArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </Sequence>
