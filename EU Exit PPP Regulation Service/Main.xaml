@@ -76,7 +76,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <State x:Name="__ReferenceID6" DisplayName="Initialize" sap:VirtualizedContainerService.HintSize="134,61" sap2010:WorkflowViewState.IdRef="State_7">
+    <State x:Name="__ReferenceID6" DisplayName="Initialize" sap:VirtualizedContainerService.HintSize="422,1793" sap2010:WorkflowViewState.IdRef="State_7">
       <State.Entry>
         <Sequence DisplayName="Initialise" sap:VirtualizedContainerService.HintSize="376,1406" sap2010:WorkflowViewState.IdRef="Sequence_1">
           <Sequence.Variables>
@@ -106,15 +106,9 @@
           <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="KillProcess_2" ProcessName="EXCEL" />
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Read Config" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Framework\ReadConfig.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="s:String[]" x:Key="in_strConfigSheets">
-                <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="{}{&quot;Assets&quot;,&quot;Local Config&quot;}" />
-              </InArgument>
-              <OutArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="out_dictConfig">
-                <mva:VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" ExpressionText="dictConfig" />
-              </OutArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_dictConfigFile">
-                <Literal x:TypeArguments="x:String">Data\Config.xlsx</Literal>
-              </InArgument>
+              <InArgument x:TypeArguments="s:String[]" x:Key="in_strConfigSheets">[{"Assets","Local Config"}]</InArgument>
+              <OutArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="out_dictConfig">[dictConfig]</OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_dictConfigFile">Data\Config.xlsx</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
           <Assign DisplayName="Assign strLogFilePath" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_3">
@@ -138,7 +132,7 @@
               <OutArgument x:TypeArguments="x:String">[strAttachmentsFolder]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[strWorkingFolder+"\Attachments"]</InArgument>
+              <InArgument x:TypeArguments="x:String">[strWorkingFolder+"\Attachments\"]</InArgument>
             </Assign.Value>
           </Assign>
           <ui:FolderExistsX DisplayName="Does working folder exist?" Exists="[booExists]" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="FolderExistsX_1" Path="[strWorkingFolder]">
@@ -457,9 +451,9 @@
                             <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="mailTransactionItem isnot Nothing and exeError is Nothing" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_2" />
                           </Transition.Condition>
                           <Transition.To>
-                            <State x:Name="__ReferenceID3" DisplayName="Process" sap:VirtualizedContainerService.HintSize="135,61" sap2010:WorkflowViewState.IdRef="State_4">
+                            <State x:Name="__ReferenceID3" DisplayName="Process" sap:VirtualizedContainerService.HintSize="623,2447" sap2010:WorkflowViewState.IdRef="State_4">
                               <State.Entry>
-                                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="577,2376" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="577,2060" sap2010:WorkflowViewState.IdRef="TryCatch_1">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -467,7 +461,7 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <TryCatch.Try>
-                                    <Sequence sap:VirtualizedContainerService.HintSize="539,2149" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                                    <Sequence sap:VirtualizedContainerService.HintSize="539,1833" sap2010:WorkflowViewState.IdRef="Sequence_2">
                                       <Sequence.Variables>
                                         <Variable x:TypeArguments="sd:DataTable" Name="datAttachmentTable" />
                                         <Variable x:TypeArguments="x:String" Name="strEmailBody" />
@@ -536,7 +530,7 @@
                                         </Assign.Value>
                                       </Assign>
                                       <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="497,61" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Route: &quot; + strRoute]" />
-                                      <Switch x:TypeArguments="x:String" DisplayName="Switch - Send/Archive Email" Expression="[strRoute]" sap:VirtualizedContainerService.HintSize="497,608" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                                      <Switch x:TypeArguments="x:String" DisplayName="Switch - Send/Archive Email" Expression="[strRoute]" sap:VirtualizedContainerService.HintSize="497,292" sap2010:WorkflowViewState.IdRef="Switch`1_3">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -544,7 +538,7 @@
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
                                         <ui:MoveOutlookMessage x:Key="Phase 1" Account="[dictConfig(&quot;Email Account&quot;)]" DisplayName="Move Outlook Message - Phase 1" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_11" MailFolder="[dictConfig(&quot;Email Inbox Folder&quot;)+&quot;\&quot;+dictConfig(&quot;Email Phase 1 Folder&quot;)]" MailMessage="[mailTransactionItem]" />
-                                        <Sequence x:Key="Incorrect Type" sap:VirtualizedContainerService.HintSize="376,270" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                        <Sequence x:Key="Incorrect Type" sap:VirtualizedContainerService.HintSize="376,364" sap2010:WorkflowViewState.IdRef="Sequence_8">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -753,108 +747,44 @@
                                           <If.Then>
                                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Log Case" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="Framework\Log Case.xaml">
                                               <ui:InvokeWorkflowFile.Arguments>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strLogFilePath" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strSender + strDateTimeReceived" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseEndTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="Now" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseStartTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="dateStartTime" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_dateCaseTotalTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="(Now - dateStartTime).ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">
-                                                  <Literal x:TypeArguments="x:String">System Exception</Literal>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFailureMessage">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;System exception encountered: &quot; + exeError.Message + &quot; at Source: &quot; + exeError.Source" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkpackageName">
-                                                  <Literal x:TypeArguments="x:String">EU Exit PPP Regulation Service</Literal>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strUser">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Environment.UserName.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strNotes">
-                                                  <Literal x:TypeArguments="x:String">Error in process transaction</Literal>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">
-                                                  <Literal x:TypeArguments="x:Boolean" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intPhase2.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_ODS_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intODSPhase2.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Populated_Sites">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intSites.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intRejected.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strRoute" />
-                                                </InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">[strLogFilePath]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">[strSender + strDateTimeReceived]</InArgument>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseEndTime">[Now]</InArgument>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseStartTime">[dateStartTime]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_dateCaseTotalTime">[(Now - dateStartTime).ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">System Exception</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFailureMessage">["System exception encountered: " + exeError.Message + " at Source: " + exeError.Source]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkpackageName">EU Exit PPP Regulation Service</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strUser">[Environment.UserName.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strNotes">Error in process transaction</InArgument>
+                                                <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">False</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Phase2_Forms">[intPhase2.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_ODS_Phase2_Forms">[intODSPhase2.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Populated_Sites">[intSites.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">[intRejected.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">[strRoute]</InArgument>
                                               </ui:InvokeWorkflowFile.Arguments>
                                             </ui:InvokeWorkflowFile>
                                           </If.Then>
                                           <If.Else>
                                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Log Case" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_18" UnSafe="False" WorkflowFileName="Framework\Log Case.xaml">
                                               <ui:InvokeWorkflowFile.Arguments>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strLogFilePath" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strSender + strDateTimeReceived" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseEndTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="Now" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseStartTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="dateStartTime" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_dateCaseTotalTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="(Now - dateStartTime).ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">
-                                                  <Literal x:TypeArguments="x:String">Business Exception</Literal>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFailureMessage">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Business exception encountered: &quot; + exeBRE.Message + &quot; at Source: &quot; + exeBRE.Source" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkpackageName">
-                                                  <Literal x:TypeArguments="x:String">EU Exit PPP Regulation Service</Literal>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strUser">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Environment.UserName.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strNotes">
-                                                  <Literal x:TypeArguments="x:String">Error in process transaction</Literal>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">
-                                                  <Literal x:TypeArguments="x:Boolean" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intPhase2.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_ODS_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intODSPhase2.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Populated_Sites">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intSites.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intRejected.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strRoute" />
-                                                </InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">[strLogFilePath]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">[strSender + strDateTimeReceived]</InArgument>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseEndTime">[Now]</InArgument>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseStartTime">[dateStartTime]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_dateCaseTotalTime">[(Now - dateStartTime).ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">Business Exception</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFailureMessage">["Business exception encountered: " + exeBRE.Message + " at Source: " + exeBRE.Source]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkpackageName">EU Exit PPP Regulation Service</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strUser">[Environment.UserName.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strNotes">Error in process transaction</InArgument>
+                                                <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">False</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Phase2_Forms">[intPhase2.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_ODS_Phase2_Forms">[intODSPhase2.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Populated_Sites">[intSites.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">[intRejected.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">[strRoute]</InArgument>
                                               </ui:InvokeWorkflowFile.Arguments>
                                             </ui:InvokeWorkflowFile>
                                           </If.Else>
@@ -911,54 +841,26 @@
                                             <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="KillProcess_5" ProcessName="EXCEL" />
                                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Log Case" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" UnSafe="False" WorkflowFileName="Framework\Log Case.xaml">
                                               <ui:InvokeWorkflowFile.Arguments>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strLogFilePath" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strSender + strDateTimeReceived" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseEndTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="Now" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseStartTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="dateStartTime" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_dateCaseTotalTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="(Now - dateStartTime).ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">
-                                                  <Literal x:TypeArguments="x:String">Successful</Literal>
-                                                </InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">[strLogFilePath]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">[strSender + strDateTimeReceived]</InArgument>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseEndTime">[Now]</InArgument>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseStartTime">[dateStartTime]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_dateCaseTotalTime">[(Now - dateStartTime).ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">Successful</InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_strFailureMessage">
                                                   <Literal x:TypeArguments="x:String" Value="" />
                                                 </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkpackageName">
-                                                  <Literal x:TypeArguments="x:String">EU Exit PPP Regulation Service</Literal>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strUser">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Environment.UserName.ToString" />
-                                                </InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkpackageName">EU Exit PPP Regulation Service</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strUser">[Environment.UserName.ToString]</InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_strNotes">
                                                   <Literal x:TypeArguments="x:String" Value="" />
                                                 </InArgument>
-                                                <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">
-                                                  <Literal x:TypeArguments="x:Boolean" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intPhase2.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_ODS_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intODSPhase2.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Populated_Sites">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intSites.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intRejected.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strRoute" />
-                                                </InArgument>
+                                                <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">False</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Phase2_Forms">[intPhase2.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_ODS_Phase2_Forms">[intODSPhase2.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Populated_Sites">[intSites.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">[intRejected.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">[strRoute]</InArgument>
                                               </ui:InvokeWorkflowFile.Arguments>
                                             </ui:InvokeWorkflowFile>
                                           </Sequence>
