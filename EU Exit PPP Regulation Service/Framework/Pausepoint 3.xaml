@@ -1,10 +1,9 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Pausepoint_2" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Pausepoint_2" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="IN_strFormTitle" Type="InArgument(x:String)" />
     <x:Property Name="IN_strFormBody" Type="InArgument(x:String)" />
     <x:Property Name="IN_datInfoTable" Type="InArgument(sd:DataTable)" />
     <x:Property Name="IN_strWorkingFolder" Type="InArgument(x:String)" />
-    <x:Property Name="IN_strDataMissing" Type="InArgument(x:String)" />
     <x:Property Name="IN_strAttachmentAddress" Type="InArgument(x:String)" />
   </x:Members>
   <this:Pausepoint_2.IN_strFormTitle>
@@ -13,7 +12,7 @@
   <this:Pausepoint_2.IN_strFormBody>
     <InArgument x:TypeArguments="x:String" />
   </this:Pausepoint_2.IN_strFormBody>
-  <sap:VirtualizedContainerService.HintSize>1386,2264.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1356.66666666667,2264.66666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="24">
@@ -167,21 +166,11 @@
         </ActivityAction>
       </ufa:FormActivity.DelayBody>
       <ufa:FormActivity.FormFieldsCollection>
-        <InArgument x:TypeArguments="x:String" x:Key="formBody">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strFormBody" />
-        </InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="dat1to5">
-          <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dat1to5" />
-        </InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="dat6to10">
-          <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dat6to10" />
-        </InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="dat11to15">
-          <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dat11to15" />
-        </InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="dat16to20">
-          <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dat16to20" />
-        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="formBody">[in_strFormBody]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="dat1to5">[dat1to5]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="dat6to10">[dat6to10]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="dat11to15">[dat11to15]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="dat16to20">[dat16to20]</InArgument>
       </ufa:FormActivity.FormFieldsCollection>
     </ufa:FormActivity>
     <If Condition="[booDismissed or strSelectedOption = &quot;stop&quot;]" DisplayName="If stop or dismissed" sap:VirtualizedContainerService.HintSize="758,1114.66666666667" sap2010:WorkflowViewState.IdRef="If_2">

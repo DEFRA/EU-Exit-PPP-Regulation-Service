@@ -441,33 +441,23 @@
                                 <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">[IN_Weekly_SharePointTitle]</InArgument>
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddNewWeeklyList workflow" sap:VirtualizedContainerService.HintSize="530,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="AddNewWeeklyList.xaml">
+                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddNewWeeklyList workflow" sap:VirtualizedContainerService.HintSize="530,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="Framework\AddNewWeeklyList.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="IN_Weekly_URL">
                                   <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_Weekly_URL" />
                                 </InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="IN_FilePath">
-                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_strWorkingFolder+&quot;\OCR Phase 2 Consolidated Weekly List of Operators&quot;+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;" />
+                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_strWorkingFolder+&quot;\OCR Phase 2 Consolidated Weekly List of Operators &quot;+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;" />
                                 </InArgument>
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Check In OR Out - Amended workflow" sap:VirtualizedContainerService.HintSize="530,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" UnSafe="False" WorkflowFileName="Framework\Check In OR Out - Amended.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">
-                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_strWorkingFolder+&quot;\OCR Phase 2 Consolidated Weekly List of Operators &quot;+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;" />
-                                </InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">
-                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_Weekly_URL" />
-                                </InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_CheckInOrOut">
-                                  <Literal x:TypeArguments="x:String">in</Literal>
-                                </InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">
-                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_Weekly_SharePointTitle" />
-                                </InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_Check_In_Comment">
-                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_CheckIn_Comment" />
-                                </InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">[IN_strWorkingFolder+"\OCR Phase 2 Consolidated Weekly List of Operators "+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx"]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">[IN_Weekly_URL]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_CheckInOrOut">in</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">[IN_Weekly_SharePointTitle]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_Check_In_Comment">[IN_CheckIn_Comment]</InArgument>
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
                             <ui:DeleteFileX DisplayName="Delete File - Local Weekly" sap:VirtualizedContainerService.HintSize="530,80.6666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_9" Path="[IN_strWorkingFolder+&quot;\OCR Phase 2 Consolidated Weekly List of Operators&quot;+Today.AddDays(-cint(Today.DayOfWeek)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;]">

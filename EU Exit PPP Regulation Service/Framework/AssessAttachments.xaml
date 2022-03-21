@@ -12,7 +12,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1699,1062</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1698.66666666667,1061.33333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="58">
@@ -85,7 +85,7 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Flowchart DisplayName="Assess Attachments" sap:VirtualizedContainerService.HintSize="1709,997" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+  <Flowchart DisplayName="Assess Attachments" sap:VirtualizedContainerService.HintSize="1708.66666666667,996.666666666667" sap2010:WorkflowViewState.IdRef="Flowchart_1">
     <Flowchart.Variables>
       <Variable x:TypeArguments="scg:IEnumerable(x:String)" Name="ieAttachments" />
       <Variable x:TypeArguments="x:Int32" Name="intAttachments" />
@@ -97,7 +97,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
         <av:Point x:Key="ShapeLocation">1170,12.5</av:Point>
-        <av:Size x:Key="ShapeSize">60,75</av:Size>
+        <av:Size x:Key="ShapeSize">60,74.6666666666667</av:Size>
         <av:PointCollection x:Key="ConnectorLocation">1200,87.1666666666667 1200,137.166666666667</av:PointCollection>
         <x:Double x:Key="Width">1674.6666666666665</x:Double>
         <x:Double x:Key="Height">960.666666666667</x:Double>
@@ -110,11 +110,11 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">1100,137.166666666667</av:Point>
-          <av:Size x:Key="ShapeSize">200,68</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">1200,205.166666666667 1200,235.166666666667 1200.33333333333,235.166666666667 1200.33333333333,256.5</av:PointCollection>
+          <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">1200,206.5 1200,256.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Save/Count Attachments" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence DisplayName="Save/Count Attachments" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -133,14 +133,14 @@
         </Assign>
       </Sequence>
       <FlowStep.Next>
-        <FlowDecision x:Name="__ReferenceID1" Condition="[intAttachments&gt;0]" DisplayName="1 + Attachments?" sap:VirtualizedContainerService.HintSize="100,87" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+        <FlowDecision x:Name="__ReferenceID1" Condition="[intAttachments&gt;0]" DisplayName="1 + Attachments?" sap:VirtualizedContainerService.HintSize="99.3333333333333,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <av:Point x:Key="ShapeLocation">1150.33333333333,256.5</av:Point>
-              <av:Size x:Key="ShapeSize">100,87</av:Size>
-              <av:PointCollection x:Key="TrueConnector">1150.33333333333,300 1120.33333333333,300 1120.33333333333,299.166666666667 1060.33333333333,299.166666666667</av:PointCollection>
-              <av:PointCollection x:Key="FalseConnector">1249.33333333333,300 1279.33333333333,300 1279.33333333333,298.166666666667 1339.66666666667,298.166666666667</av:PointCollection>
+              <av:Size x:Key="ShapeSize">99.3333333333333,86.6666666666667</av:Size>
+              <av:PointCollection x:Key="TrueConnector">1150.33333333333,299.833333333333 1060.33333333333,299.833333333334</av:PointCollection>
+              <av:PointCollection x:Key="FalseConnector">1249.66666666666,299.833333333333 1339.66666666667,299.833333333334</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <FlowDecision.True>
@@ -148,11 +148,11 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">860.333333333333,265.166666666667</av:Point>
-                  <av:Size x:Key="ShapeSize">200,66</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">960.333333333333,331.166666666667 960.333333333333,361.166666666667 959.666666666666,361.166666666667 959.666666666666,384.5</av:PointCollection>
+                  <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">960.333333333333,334.5 960.333333333333,384.5</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Check Attachment Types" sap:VirtualizedContainerService.HintSize="1083,6883" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <Sequence DisplayName="Check Attachment Types" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_10">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Int32" Default="0" Name="intTotalCounter" />
                   <Variable x:TypeArguments="x:String" Name="strTableOutput" />
@@ -162,20 +162,20 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:BuildDataTable DataTable="[OUT_datAttachmentTable]" DisplayName="Build Data Table - List of Attachments" sap:VirtualizedContainerService.HintSize="1041,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Attachment_x0020_Name&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Recognised_x003F_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Phase_x0020_1_x0020_or_x0020_2_x003F_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Language&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Openable_x003F_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each Item in ieAttachments" sap:VirtualizedContainerService.HintSize="1041,730" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[ieAttachments]">
+                <ui:BuildDataTable DataTable="[OUT_datAttachmentTable]" DisplayName="Build Data Table - List of Attachments" sap:VirtualizedContainerService.HintSize="1045.33333333333,58.6666666666667" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Attachment_x0020_Name&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Recognised_x003F_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Phase_x0020_1_x0020_or_x0020_2_x003F_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Language&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Openable_x003F_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each Item in ieAttachments" sap:VirtualizedContainerService.HintSize="1045.33333333333,740" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[ieAttachments]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
                       </ActivityAction.Argument>
-                      <Sequence sap:VirtualizedContainerService.HintSize="673,605" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                      <Sequence sap:VirtualizedContainerService.HintSize="674,612" sap2010:WorkflowViewState.IdRef="Sequence_43">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <If Condition="[Path.GetExtension(item.ToString).ToLower=&quot;.zip&quot;]" DisplayName="If the item is a Zip file" sap:VirtualizedContainerService.HintSize="631,513" sap2010:WorkflowViewState.IdRef="If_2">
+                        <If Condition="[Path.GetExtension(item.ToString).ToLower=&quot;.zip&quot;]" DisplayName="If the item is a Zip file" sap:VirtualizedContainerService.HintSize="632,520" sap2010:WorkflowViewState.IdRef="If_2">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -183,13 +183,13 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <If.Then>
-                            <Sequence DisplayName="Extract files and delete Zip Files" sap:VirtualizedContainerService.HintSize="486,363" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                            <Sequence DisplayName="Extract files and delete Zip Files" sap:VirtualizedContainerService.HintSize="486,366" sap2010:WorkflowViewState.IdRef="Sequence_8">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <uascw:ExtractFiles DestinationFolderInfo="{x:Null}" Password="{x:Null}" CodePage="Default" DestinationFolder="[IN_strAttachmentsFolder]" DisplayName="Extract/Unzip Files from Attachment" ExtractToADedicatedFolder="False" FileToExtract="[item.ToString]" sap:VirtualizedContainerService.HintSize="444,209" sap2010:WorkflowViewState.IdRef="ExtractFiles_2" SkipUnsupportedFiles="False" />
+                              <uascw:ExtractFiles DestinationFolderInfo="{x:Null}" Password="{x:Null}" CodePage="Default" DestinationFolder="[IN_strAttachmentsFolder]" DisplayName="Extract/Unzip Files from Attachment" ExtractToADedicatedFolder="False" FileToExtract="[item.ToString]" sap:VirtualizedContainerService.HintSize="444,212" sap2010:WorkflowViewState.IdRef="ExtractFiles_2" SkipUnsupportedFiles="False" />
                               <ui:Delete ContinueOnError="{x:Null}" DisplayName="Delete Zip File" sap:VirtualizedContainerService.HintSize="444,22" sap2010:WorkflowViewState.IdRef="Delete_2" Path="[item.ToString]" />
                             </Sequence>
                           </If.Then>
@@ -198,13 +198,13 @@
                     </ActivityAction>
                   </ui:ForEach.Body>
                 </ui:ForEach>
-                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop around all files in a specific hard coded directory" DisplayName="For Each File in Directory" sap:VirtualizedContainerService.HintSize="1041,4999" sap2010:WorkflowViewState.IdRef="ForEach`1_9" Values="[System.IO.Directory.getfiles(IN_strAttachmentsFolder)]">
+                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop around all files in a specific hard coded directory" DisplayName="For Each File in Directory" sap:VirtualizedContainerService.HintSize="1045.33333333333,5041.33333333333" sap2010:WorkflowViewState.IdRef="ForEach`1_9" Values="[System.IO.Directory.getfiles(IN_strAttachmentsFolder)]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
                       </ActivityAction.Argument>
-                      <Sequence sap:VirtualizedContainerService.HintSize="1005,4843" sap2010:WorkflowViewState.IdRef="Sequence_71">
+                      <Sequence sap:VirtualizedContainerService.HintSize="1008.66666666667,4882.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_71">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:String" Name="strNewFilePath" />
                           <Variable x:TypeArguments="x:String" Name="strOriginalFileName" />
@@ -217,7 +217,7 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <If Condition="[Path.GetExtension(item.ToString).ToLower=&quot;.ods&quot;]" DisplayName="If the file is a .ods file" sap:VirtualizedContainerService.HintSize="963,4751" sap2010:WorkflowViewState.IdRef="If_18">
+                        <If Condition="[Path.GetExtension(item.ToString).ToLower=&quot;.ods&quot;]" DisplayName="If the file is a .ods file" sap:VirtualizedContainerService.HintSize="966.666666666667,4790.66666666667" sap2010:WorkflowViewState.IdRef="If_18">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -225,13 +225,13 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <If.Then>
-                            <Sequence DisplayName="Remove Protection" sap:VirtualizedContainerService.HintSize="818,4601" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                            <Sequence DisplayName="Remove Protection" sap:VirtualizedContainerService.HintSize="820.666666666667,4636.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_64">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <ui:MultipleAssign sap2010:Annotation.AnnotationText="Prepare string for current file path and new file path&#xA;Save the original file name for use later in the sequence when re-creating the file" DisplayName="Assign Old File Paths, New File Path &amp; Original File Name" sap:VirtualizedContainerService.HintSize="776,222" sap2010:WorkflowViewState.IdRef="MultipleAssign_17">
+                              <ui:MultipleAssign sap2010:Annotation.AnnotationText="Prepare string for current file path and new file path&#xA;Save the original file name for use later in the sequence when re-creating the file" DisplayName="Assign Old File Paths, New File Path &amp; Original File Name" sap:VirtualizedContainerService.HintSize="778.666666666667,222.666666666667" sap2010:WorkflowViewState.IdRef="MultipleAssign_17">
                                 <ui:MultipleAssign.AssignOperations>
                                   <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                                     <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_74">
@@ -266,39 +266,39 @@
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                               </ui:MultipleAssign>
-                              <uda:ExtractFileActivity Password="{x:Null}" sap2010:Annotation.AnnotationText="Extract all files in the ODS file to a hard coded local machine folder" DisplayName="Extract ODS File" sap:VirtualizedContainerService.HintSize="776,134" sap2010:WorkflowViewState.IdRef="ExtractFileActivity_4" Overwrite="True" ToExtractPath="[IN_strAttachmentsFolder + &quot;\ZipExtract”]" ZipPath="[strCurrentFilePath]">
+                              <uda:ExtractFileActivity Password="{x:Null}" sap2010:Annotation.AnnotationText="Extract all files in the ODS file to a hard coded local machine folder" DisplayName="Extract ODS File" sap:VirtualizedContainerService.HintSize="778.666666666667,134.666666666667" sap2010:WorkflowViewState.IdRef="ExtractFileActivity_4" Overwrite="True" ToExtractPath="[IN_strAttachmentsFolder + &quot;\ZipExtract”]" ZipPath="[strCurrentFilePath]">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                               </uda:ExtractFileActivity>
-                              <ui:ReadTextFile sap2010:Annotation.AnnotationText="Store all contents of the XML file to a string variable" Content="[strAllContentXML]" DisplayName="Read XML File Contents" FileName="[IN_strAttachmentsFolder + &quot;\ZipExtract\content.xml&quot;]" sap:VirtualizedContainerService.HintSize="776,111" sap2010:WorkflowViewState.IdRef="ReadTextFile_4">
+                              <ui:ReadTextFile sap2010:Annotation.AnnotationText="Store all contents of the XML file to a string variable" Content="[strAllContentXML]" DisplayName="Read XML File Contents" FileName="[IN_strAttachmentsFolder + &quot;\ZipExtract\content.xml&quot;]" sap:VirtualizedContainerService.HintSize="778.666666666667,111.333333333333" sap2010:WorkflowViewState.IdRef="ReadTextFile_4">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                               </ui:ReadTextFile>
-                              <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="776,1391" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                              <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="778.666666666667,1408.66666666667" sap2010:WorkflowViewState.IdRef="TryCatch_5">
                                 <TryCatch.Try>
-                                  <Sequence sap:VirtualizedContainerService.HintSize="738,1159" sap2010:WorkflowViewState.IdRef="Sequence_72">
+                                  <Sequence sap:VirtualizedContainerService.HintSize="740,1170.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_72">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <If Condition="[strAllContentXML.IndexOf(&quot;table:protected=&quot;&quot;true&quot;&quot;&quot;) &gt; 0]" sap:VirtualizedContainerService.HintSize="696,1067" sap2010:WorkflowViewState.IdRef="If_22">
+                                    <If Condition="[strAllContentXML.IndexOf(&quot;table:protected=&quot;&quot;true&quot;&quot;&quot;) &gt; 0]" sap:VirtualizedContainerService.HintSize="698,1078.66666666667" sap2010:WorkflowViewState.IdRef="If_22">
                                       <If.Then>
-                                        <ui:InterruptibleDoWhile sap2010:Annotation.AnnotationText="Loop around any protection tags in the string (there could be 0 or multiple)" Condition="[strAllContentXML.IndexOf(&quot;table:protected=&quot;&quot;true&quot;&quot;&quot;) &gt; 0]" DisplayName="Do While any protection tags remain in the XML string" sap:VirtualizedContainerService.HintSize="551,917" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_4">
+                                        <ui:InterruptibleDoWhile sap2010:Annotation.AnnotationText="Loop around any protection tags in the string (there could be 0 or multiple)" Condition="[strAllContentXML.IndexOf(&quot;table:protected=&quot;&quot;true&quot;&quot;&quot;) &gt; 0]" DisplayName="Do While any protection tags remain in the XML string" sap:VirtualizedContainerService.HintSize="552,924.666666666667" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_4">
                                           <ui:InterruptibleDoWhile.Body>
-                                            <Sequence sap:VirtualizedContainerService.HintSize="515,719" sap2010:WorkflowViewState.IdRef="Sequence_65">
+                                            <Sequence sap:VirtualizedContainerService.HintSize="515.333333333333,724.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_65">
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                 </scg:Dictionary>
                                               </sap:WorkflowViewStateService.ViewState>
-                                              <Sequence DisplayName="Remove Protection Tags" sap:VirtualizedContainerService.HintSize="473,409" sap2010:WorkflowViewState.IdRef="Sequence_60">
+                                              <Sequence DisplayName="Remove Protection Tags" sap:VirtualizedContainerService.HintSize="473.333333333333,412" sap2010:WorkflowViewState.IdRef="Sequence_60">
                                                 <Sequence.Variables>
                                                   <Variable x:TypeArguments="x:Int32" Name="nStartPosition" />
                                                   <Variable x:TypeArguments="x:Int32" Name="nEndPosition" />
@@ -309,7 +309,7 @@
                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                   </scg:Dictionary>
                                                 </sap:WorkflowViewStateService.ViewState>
-                                                <ui:MultipleAssign sap2010:Annotation.AnnotationText="nStartPosition - Find the start position of the protection tag&#xA;nEndPosition - Find the end position of the protection tag (looking for the hard coded end tag of 'xmldsig#sha1', up to 200 characters after the initial start position&#xA;strProtectedText - return the full string for the protection tag&#xA;strAllContentXML - replace the strProtectedText with the relevant protection turned off string" DisplayName="Multiple Assign variables required and updated string" sap:VirtualizedContainerService.HintSize="431,317" sap2010:WorkflowViewState.IdRef="MultipleAssign_18">
+                                                <ui:MultipleAssign sap2010:Annotation.AnnotationText="nStartPosition - Find the start position of the protection tag&#xA;nEndPosition - Find the end position of the protection tag (looking for the hard coded end tag of 'xmldsig#sha1', up to 200 characters after the initial start position&#xA;strProtectedText - return the full string for the protection tag&#xA;strAllContentXML - replace the strProtectedText with the relevant protection turned off string" DisplayName="Multiple Assign variables required and updated string" sap:VirtualizedContainerService.HintSize="431.333333333333,320" sap2010:WorkflowViewState.IdRef="MultipleAssign_18">
                                                   <ui:MultipleAssign.AssignOperations>
                                                     <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                                                       <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_77">
@@ -353,7 +353,7 @@
                                                   </sap:WorkflowViewStateService.ViewState>
                                                 </ui:MultipleAssign>
                                               </Sequence>
-                                              <ui:WriteTextFile sap2010:Annotation.AnnotationText="Save the updated XML string to a file on the hard coded location on the local machine" DisplayName="Write XML File" FileName="[IN_strAttachmentsFolder + &quot;\ZipExtract\content.xml&quot;]" sap:VirtualizedContainerService.HintSize="473,178" sap2010:WorkflowViewState.IdRef="WriteTextFile_4" Text="[strAllContentXML]">
+                                              <ui:WriteTextFile sap2010:Annotation.AnnotationText="Save the updated XML string to a file on the hard coded location on the local machine" DisplayName="Write XML File" FileName="[IN_strAttachmentsFolder + &quot;\ZipExtract\content.xml&quot;]" sap:VirtualizedContainerService.HintSize="473.333333333333,180.666666666667" sap2010:WorkflowViewState.IdRef="WriteTextFile_4" Text="[strAllContentXML]">
                                                 <sap:WorkflowViewStateService.ViewState>
                                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -373,7 +373,7 @@
                                   </Sequence>
                                 </TryCatch.Try>
                                 <TryCatch.Catches>
-                                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="742,22" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="744.666666666667,22" sap2010:WorkflowViewState.IdRef="Catch`1_5">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -384,26 +384,26 @@
                                       <ActivityAction.Argument>
                                         <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                       </ActivityAction.Argument>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="272,216" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                                      <Sequence sap:VirtualizedContainerService.HintSize="272,246.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_66">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <ui:Delete sap2010:Annotation.AnnotationText="Delete the hard coded ZipExtract folder" ContinueOnError="True" DisplayName="Delete Extracted Folder" sap:VirtualizedContainerService.HintSize="230,66" sap2010:WorkflowViewState.IdRef="Delete_17" Path="[IN_strAttachmentsFolder + &quot;\ZipExtract”]">
+                                        <ui:Delete sap2010:Annotation.AnnotationText="Delete the hard coded ZipExtract folder" ContinueOnError="True" DisplayName="Delete Extracted Folder" sap:VirtualizedContainerService.HintSize="230,67.3333333333333" sap2010:WorkflowViewState.IdRef="Delete_17" Path="[IN_strAttachmentsFolder + &quot;\ZipExtract”]">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
                                         </ui:Delete>
-                                        <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="230,62" sap2010:WorkflowViewState.IdRef="WriteLine_24" Text="Unlocked File" />
+                                        <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="230,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_24" Text="Unlocked File" />
                                       </Sequence>
                                     </ActivityAction>
                                   </Catch>
                                 </TryCatch.Catches>
                               </TryCatch>
-                              <uda:ZipFileActivity Password="{x:Null}" sap2010:Annotation.AnnotationText="Compresses the folder with the updated file to a hard coded local machine location" DisplayName="Compress Folder to a Zip file" sap:VirtualizedContainerService.HintSize="776,134" sap2010:WorkflowViewState.IdRef="ZipFileActivity_5" ZipPath="[IN_strAttachmentsFolder + &quot;\Unprotectedfile&quot;]">
+                              <uda:ZipFileActivity Password="{x:Null}" sap2010:Annotation.AnnotationText="Compresses the folder with the updated file to a hard coded local machine location" DisplayName="Compress Folder to a Zip file" sap:VirtualizedContainerService.HintSize="778.666666666667,134.666666666667" sap2010:WorkflowViewState.IdRef="ZipFileActivity_5" ZipPath="[IN_strAttachmentsFolder + &quot;\Unprotectedfile&quot;]">
                                 <uda:ZipFileActivity.ToZipPath>
                                   <InArgument x:TypeArguments="x:String">[IN_strAttachmentsFolder + "\ZipExtract\”]</InArgument>
                                 </uda:ZipFileActivity.ToZipPath>
@@ -413,54 +413,54 @@
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                               </uda:ZipFileActivity>
-                              <ui:MoveFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="This will rename the hard coded newly created zip file to the original file name (with  &quot; -UNPROTECTED&quot; appended to the name of the file) and change it to file type XLS" Destination="[strNewFilePath]" DisplayName="Rename Zip file to XLS" sap:VirtualizedContainerService.HintSize="776,220" sap2010:WorkflowViewState.IdRef="MoveFile_9" Overwrite="False" Path="[IN_strAttachmentsFolder + &quot;\Unprotectedfile&quot;]">
+                              <ui:MoveFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="This will rename the hard coded newly created zip file to the original file name (with  &quot; -UNPROTECTED&quot; appended to the name of the file) and change it to file type XLS" Destination="[strNewFilePath]" DisplayName="Rename Zip file to XLS" sap:VirtualizedContainerService.HintSize="778.666666666667,224" sap2010:WorkflowViewState.IdRef="MoveFile_9" Overwrite="False" Path="[IN_strAttachmentsFolder + &quot;\Unprotectedfile&quot;]">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                               </ui:MoveFile>
-                              <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete the hard coded ZipExtract folder" DisplayName="Delete Extracted Folder" sap:VirtualizedContainerService.HintSize="776,66" sap2010:WorkflowViewState.IdRef="Delete_18" Path="[IN_strAttachmentsFolder + &quot;\ZipExtract”]">
+                              <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete the hard coded ZipExtract folder" DisplayName="Delete Extracted Folder" sap:VirtualizedContainerService.HintSize="778.666666666667,67.3333333333333" sap2010:WorkflowViewState.IdRef="Delete_18" Path="[IN_strAttachmentsFolder + &quot;\ZipExtract”]">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                               </ui:Delete>
-                              <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete the hard coded original protected file" DisplayName="Delete Original File" sap:VirtualizedContainerService.HintSize="776,66" sap2010:WorkflowViewState.IdRef="Delete_19" Path="[strCurrentFilePath]">
+                              <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete the hard coded original protected file" DisplayName="Delete Original File" sap:VirtualizedContainerService.HintSize="778.666666666667,67.3333333333333" sap2010:WorkflowViewState.IdRef="Delete_19" Path="[strCurrentFilePath]">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                               </ui:Delete>
-                              <Sequence DisplayName="Desktop - Interact with Excel" sap:VirtualizedContainerService.HintSize="776,1845" sap2010:WorkflowViewState.IdRef="Sequence_70">
+                              <Sequence DisplayName="Desktop - Interact with Excel" sap:VirtualizedContainerService.HintSize="778.666666666667,1854" sap2010:WorkflowViewState.IdRef="Sequence_70">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="477,22" sap2010:WorkflowViewState.IdRef="KillProcess_5" ProcessName="EXCEL" />
-                                <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Excel Application Scope - Open unprotected ODS file in Excel" sap:VirtualizedContainerService.HintSize="477,1585" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_7" InstanceCachePeriod="3000" WorkbookPath="[strNewFilePath]">
+                                <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="476.666666666667,22" sap2010:WorkflowViewState.IdRef="KillProcess_5" ProcessName="EXCEL" />
+                                <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Excel Application Scope - Open unprotected ODS file in Excel" sap:VirtualizedContainerService.HintSize="476.666666666667,1592.66666666667" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_7" InstanceCachePeriod="3000" WorkbookPath="[strNewFilePath]">
                                   <ui:ExcelApplicationScope.Body>
                                     <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                                       <ActivityAction.Argument>
                                         <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                                       </ActivityAction.Argument>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="443,1476" sap2010:WorkflowViewState.IdRef="Sequence_69">
+                                      <Sequence sap:VirtualizedContainerService.HintSize="442.666666666667,1484" sap2010:WorkflowViewState.IdRef="Sequence_69">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <Sequence DisplayName="Do - Save As Excel Spreadsheet" sap:VirtualizedContainerService.HintSize="401,1384" sap2010:WorkflowViewState.IdRef="Sequence_68">
+                                        <Sequence DisplayName="Do - Save As Excel Spreadsheet" sap:VirtualizedContainerService.HintSize="400.666666666667,1392" sap2010:WorkflowViewState.IdRef="Sequence_68">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
-                                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button  File Tab'" sap:VirtualizedContainerService.HintSize="359,106" sap2010:WorkflowViewState.IdRef="Click_17" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button  File Tab'" sap:VirtualizedContainerService.HintSize="358.666666666667,106" sap2010:WorkflowViewState.IdRef="Click_17" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
                                             <ui:Click.CursorPosition>
                                               <ui:CursorPosition OffsetX="27" OffsetY="8" Position="TopLeft" />
                                             </ui:Click.CursorPosition>
@@ -475,7 +475,7 @@
                                               </ui:Target>
                                             </ui:Click.Target>
                                           </ui:Click>
-                                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'List Item  Save As'" sap:VirtualizedContainerService.HintSize="359,106" sap2010:WorkflowViewState.IdRef="Click_18" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'List Item  Save As'" sap:VirtualizedContainerService.HintSize="358.666666666667,106" sap2010:WorkflowViewState.IdRef="Click_18" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
                                             <ui:Click.CursorPosition>
                                               <ui:CursorPosition OffsetX="77" OffsetY="28" Position="TopLeft" />
                                             </ui:Click.CursorPosition>
@@ -490,7 +490,7 @@
                                               </ui:Target>
                                             </ui:Click.Target>
                                           </ui:Click>
-                                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click More options..." sap:VirtualizedContainerService.HintSize="359,106" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click More options..." sap:VirtualizedContainerService.HintSize="358.666666666667,106" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
                                             <ui:Click.CursorPosition>
                                               <ui:CursorPosition OffsetX="42" OffsetY="15" Position="TopLeft" />
                                             </ui:Click.CursorPosition>
@@ -505,7 +505,7 @@
                                               </ui:Target>
                                             </ui:Click.Target>
                                           </ui:Click>
-                                          <Assign DisplayName="Save final file name" sap:VirtualizedContainerService.HintSize="359,60" sap2010:WorkflowViewState.IdRef="Assign_67">
+                                          <Assign DisplayName="Save final file name" sap:VirtualizedContainerService.HintSize="358.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_67">
                                             <Assign.To>
                                               <OutArgument x:TypeArguments="x:String">[strFinalFileName]</OutArgument>
                                             </Assign.To>
@@ -513,7 +513,7 @@
                                               <InArgument x:TypeArguments="x:String">[strOriginalFileName + " - UNPROTECTED"]</InArgument>
                                             </Assign.Value>
                                           </Assign>
-                                          <Assign DisplayName="Save final file name" sap:VirtualizedContainerService.HintSize="359,60" sap2010:WorkflowViewState.IdRef="Assign_68">
+                                          <Assign DisplayName="Save final file name" sap:VirtualizedContainerService.HintSize="358.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_68">
                                             <Assign.To>
                                               <OutArgument x:TypeArguments="x:String">[strFinalFileName]</OutArgument>
                                             </Assign.To>
@@ -521,7 +521,7 @@
                                               <InArgument x:TypeArguments="x:String">[strFinalFileName.Replace(".ods","")]</InArgument>
                                             </Assign.Value>
                                           </Assign>
-                                          <Assign DisplayName="Save final file name" sap:VirtualizedContainerService.HintSize="359,60" sap2010:WorkflowViewState.IdRef="Assign_69">
+                                          <Assign DisplayName="Save final file name" sap:VirtualizedContainerService.HintSize="358.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_69">
                                             <Assign.To>
                                               <OutArgument x:TypeArguments="x:String">[strFinalFileName]</OutArgument>
                                             </Assign.To>
@@ -529,7 +529,7 @@
                                               <InArgument x:TypeArguments="x:String">[strFinalFileName.Replace(".xls","")]</InArgument>
                                             </Assign.Value>
                                           </Assign>
-                                          <Assign DisplayName="Save final file name" sap:VirtualizedContainerService.HintSize="359,60" sap2010:WorkflowViewState.IdRef="Assign_70">
+                                          <Assign DisplayName="Save final file name" sap:VirtualizedContainerService.HintSize="358.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_70">
                                             <Assign.To>
                                               <OutArgument x:TypeArguments="x:String">[strFinalFileName]</OutArgument>
                                             </Assign.To>
@@ -537,7 +537,7 @@
                                               <InArgument x:TypeArguments="x:String">[strFinalFileName.Replace(".xlsx","")]</InArgument>
                                             </Assign.Value>
                                           </Assign>
-                                          <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" DisplayName="Type Into File name the original file name" EmptyField="True" sap:VirtualizedContainerService.HintSize="359,134" sap2010:WorkflowViewState.IdRef="TypeInto_5" SendWindowMessages="False" SimulateType="True" Text="[strFinalFileName]">
+                                          <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" DisplayName="Type Into File name the original file name" EmptyField="True" sap:VirtualizedContainerService.HintSize="358.666666666667,134" sap2010:WorkflowViewState.IdRef="TypeInto_5" SendWindowMessages="False" SimulateType="True" Text="[strFinalFileName]">
                                             <ui:TypeInto.Target>
                                               <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a54a9463-e48f-4d77-9595-1b5093ad2c4c" InformativeScreenshot="2cc951ee38da0580f079f8f57d854613" Selector="&lt;wnd app='excel.exe' cls='#32770' title='Save As' /&gt;&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;wnd aaname='File name:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;">
                                                 <ui:Target.TimeoutMS>
@@ -549,7 +549,7 @@
                                               </ui:Target>
                                             </ui:TypeInto.Target>
                                           </ui:TypeInto>
-                                          <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Save as type xlsx" sap:VirtualizedContainerService.HintSize="359,134" sap2010:WorkflowViewState.IdRef="SelectItem_5" Item="Excel Workbook*">
+                                          <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Save as type xlsx" sap:VirtualizedContainerService.HintSize="358.666666666667,134" sap2010:WorkflowViewState.IdRef="SelectItem_5" Item="Excel Workbook*">
                                             <ui:SelectItem.Items>
                                               <scg:List x:TypeArguments="x:String" Capacity="32">
                                                 <x:String>Excel Workbook (*.xlsx)</x:String>
@@ -594,7 +594,7 @@
                                               </ui:Target>
                                             </ui:SelectItem.Target>
                                           </ui:SelectItem>
-                                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Save 'Button' in Excel dialogue box" sap:VirtualizedContainerService.HintSize="359,106" sap2010:WorkflowViewState.IdRef="Click_20" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Save 'Button' in Excel dialogue box" sap:VirtualizedContainerService.HintSize="358.666666666667,106" sap2010:WorkflowViewState.IdRef="Click_20" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
                                             <ui:Click.CursorPosition>
                                               <ui:CursorPosition OffsetX="61" OffsetY="12" Position="TopLeft" />
                                             </ui:Click.CursorPosition>
@@ -620,7 +620,7 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                 </ui:ExcelApplicationScope>
-                                <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete the hard coded original protected file" DisplayName="Delete Original File" sap:VirtualizedContainerService.HintSize="477,66" sap2010:WorkflowViewState.IdRef="Delete_20" Path="[strNewFilePath]">
+                                <ui:Delete ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Delete the hard coded original protected file" DisplayName="Delete Original File" sap:VirtualizedContainerService.HintSize="476.666666666667,67.3333333333333" sap2010:WorkflowViewState.IdRef="Delete_20" Path="[strNewFilePath]">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -640,13 +640,13 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:ForEach>
-                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each Attachment" sap:VirtualizedContainerService.HintSize="1041,883" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[System.IO.Directory.getfiles(IN_strAttachmentsFolder)]">
+                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each Attachment" sap:VirtualizedContainerService.HintSize="1045.33333333333,896.666666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[System.IO.Directory.getfiles(IN_strAttachmentsFolder)]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="Get File Extension" sap:VirtualizedContainerService.HintSize="591,758" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                      <Sequence DisplayName="Get File Extension" sap:VirtualizedContainerService.HintSize="592,768.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_37">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:String" Name="strFileType" />
                           <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ieMatch" />
@@ -657,7 +657,7 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Assign DisplayName="Add 1 to Total Counter" sap:VirtualizedContainerService.HintSize="549,60" sap2010:WorkflowViewState.IdRef="Assign_44">
+                        <Assign DisplayName="Add 1 to Total Counter" sap:VirtualizedContainerService.HintSize="550,62" sap2010:WorkflowViewState.IdRef="Assign_44">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:Int32">[intTotalCounter]</OutArgument>
                           </Assign.To>
@@ -665,7 +665,7 @@
                             <InArgument x:TypeArguments="x:Int32">[intTotalCounter+1]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <Assign DisplayName="Check if Extension Matches" sap:VirtualizedContainerService.HintSize="549,60" sap2010:WorkflowViewState.IdRef="Assign_45">
+                        <Assign DisplayName="Check if Extension Matches" sap:VirtualizedContainerService.HintSize="550,62" sap2010:WorkflowViewState.IdRef="Assign_45">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:Boolean">[booMatches]</OutArgument>
                           </Assign.To>
@@ -673,15 +673,15 @@
                             <InArgument x:TypeArguments="x:Boolean">[System.Text.RegularExpressions.Regex.IsMatch((new fileinfo(item.ToString)).name,"\.xlsm|\.xlsx|\.xlsb|\.xls|\.ods|\.docx|\.docm|\.doc|\.odt")]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <If Condition="[booMatches=True]" DisplayName="If the file type can be processed:" sap:VirtualizedContainerService.HintSize="549,466" sap2010:WorkflowViewState.IdRef="If_15">
+                        <If Condition="[booMatches=True]" DisplayName="If the file type can be processed:" sap:VirtualizedContainerService.HintSize="550,472.666666666667" sap2010:WorkflowViewState.IdRef="If_15">
                           <If.Then>
-                            <Sequence DisplayName="Add to Attachements Table" sap:VirtualizedContainerService.HintSize="304,316" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                            <Sequence DisplayName="Add to Attachements Table" sap:VirtualizedContainerService.HintSize="304,318.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_36">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Assign DisplayName="Add 1 to Correct Counter" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_46">
+                              <Assign DisplayName="Add 1 to Correct Counter" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_46">
                                 <Assign.To>
                                   <OutArgument x:TypeArguments="x:Int32">[intCorrectCounter]</OutArgument>
                                 </Assign.To>
@@ -689,7 +689,7 @@
                                   <InArgument x:TypeArguments="x:Int32">[intCorrectCounter+1]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="WriteLine_25" Text="[&quot;Correct counter: &quot; + intCorrectCounter.ToString]" />
+                              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="262,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_25" Text="[&quot;Correct counter: &quot; + intCorrectCounter.ToString]" />
                               <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{(new fileinfo(item.ToString)).name,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;}]" DataTable="[OUT_datAttachmentTable]" DisplayName="Add Data Row - datAttachments" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="AddDataRow_3" />
                             </Sequence>
                           </If.Then>
@@ -703,14 +703,14 @@
                 </ui:ForEach>
               </Sequence>
               <FlowStep.Next>
-                <FlowDecision x:Name="__ReferenceID3" Condition="[intCorrectCounter&gt;0]" DisplayName="1+ Correct File Types?" sap:VirtualizedContainerService.HintSize="120,87" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+                <FlowDecision x:Name="__ReferenceID3" Condition="[intCorrectCounter&gt;0]" DisplayName="1+ Correct File Types?" sap:VirtualizedContainerService.HintSize="121.333333333333,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <av:Point x:Key="ShapeLocation">899.666666666666,384.5</av:Point>
-                      <av:Size x:Key="ShapeSize">120,87</av:Size>
-                      <av:PointCollection x:Key="TrueConnector">899.666666666666,428 869.666666666666,428 869.666666666666,426.166666666667 799.666666666666,426.166666666667</av:PointCollection>
-                      <av:PointCollection x:Key="FalseConnector">1019.66666666667,428 1049.66666666667,428 1049.66666666667,427.166666666667 1111,427.166666666667</av:PointCollection>
+                      <av:Size x:Key="ShapeSize">121.333333333333,86.6666666666667</av:Size>
+                      <av:PointCollection x:Key="TrueConnector">899.666666666666,427.833333333333 799.666666666666,427.833333333334</av:PointCollection>
+                      <av:PointCollection x:Key="FalseConnector">1021,427.833333333333 1111,427.833333333334</av:PointCollection>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <FlowDecision.True>
@@ -718,11 +718,11 @@
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <av:Point x:Key="ShapeLocation">599.666666666666,393.166666666667</av:Point>
-                          <av:Size x:Key="ShapeSize">200,66</av:Size>
-                          <av:PointCollection x:Key="ConnectorLocation">699.666666666666,459.166666666667 699.666666666666,489.166666666667 699.833333333333,489.166666666667 699.833333333333,512.5</av:PointCollection>
+                          <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
+                          <av:PointCollection x:Key="ConnectorLocation">699.666666666666,462.5 699.666666666666,512.5</av:PointCollection>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Sequence DisplayName="Check File Type" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                      <Sequence DisplayName="Check File Type" sap:VirtualizedContainerService.HintSize="876,1519.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_15">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:String" Name="strTableOutput" />
                         </Sequence.Variables>
@@ -731,7 +731,7 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:MultipleAssign DisplayName="Multiple Assign - Set initial counters" sap:VirtualizedContainerService.HintSize="790,131" sap2010:WorkflowViewState.IdRef="MultipleAssign_19">
+                        <ui:MultipleAssign DisplayName="Multiple Assign - Set initial counters" sap:VirtualizedContainerService.HintSize="834,130" sap2010:WorkflowViewState.IdRef="MultipleAssign_19">
                           <ui:MultipleAssign.AssignOperations>
                             <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_81">
@@ -753,13 +753,13 @@
                             </scg:List>
                           </ui:MultipleAssign.AssignOperations>
                         </ui:MultipleAssign>
-                        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[OUT_datAttachmentTable]" DisplayName="For Each Row in Attachments Table" sap:VirtualizedContainerService.HintSize="790,1047" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[OUT_datAttachmentTable]" DisplayName="For Each Row in Attachments Table" sap:VirtualizedContainerService.HintSize="834,1257.33333333333" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
                           <ui:ForEachRow.Body>
                             <ActivityAction x:TypeArguments="sd:DataRow">
                               <ActivityAction.Argument>
                                 <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
                               </ActivityAction.Argument>
-                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="756,926" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="800,1133.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_19">
                                 <Sequence.Variables>
                                   <Variable x:TypeArguments="x:String" Name="strFileName" />
                                   <Variable x:TypeArguments="x:String" Name="strProgramme" />
@@ -772,12 +772,12 @@
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:GetRowItem Column="{x:Null}" ColumnName="{x:Null}" ColumnIndex="0" DisplayName="Get the file name from first column" sap:VirtualizedContainerService.HintSize="714,188" sap2010:WorkflowViewState.IdRef="GetRowItem_1" Row="[Row]">
+                                <ui:GetRowItem Column="{x:Null}" ColumnName="{x:Null}" ColumnIndex="0" DisplayName="Get the file name from first column" sap:VirtualizedContainerService.HintSize="758,190" sap2010:WorkflowViewState.IdRef="GetRowItem_1" Row="[Row]">
                                   <ui:GetRowItem.Value>
                                     <OutArgument x:TypeArguments="x:String">[strFileName]</OutArgument>
                                   </ui:GetRowItem.Value>
                                 </ui:GetRowItem>
-                                <If Condition="[strFileName.Contains(&quot;.docx&quot;) or strFileName.Contains(&quot;.docm&quot;) or strFileName.Contains(&quot;.doc&quot;) or strFileName.Contains(&quot;.odt&quot;)]" DisplayName="If the file is in Word Format" sap:VirtualizedContainerService.HintSize="714,52" sap2010:WorkflowViewState.IdRef="If_4">
+                                <If Condition="[strFileName.Contains(&quot;.docx&quot;) or strFileName.Contains(&quot;.docm&quot;) or strFileName.Contains(&quot;.doc&quot;) or strFileName.Contains(&quot;.odt&quot;)]" DisplayName="If the file is in Word Format" sap:VirtualizedContainerService.HintSize="758,52.6666666666667" sap2010:WorkflowViewState.IdRef="If_4">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1064,8 +1064,8 @@
                                     </Sequence>
                                   </If.Then>
                                 </If>
-                                <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="714,22" sap2010:WorkflowViewState.IdRef="KillProcess_7" ProcessName="EXCEL" />
-                                <If Condition="[strFileName.Contains(&quot;.xlsx&quot;) or strFileName.Contains(&quot;.xlsm&quot;) or strFileName.Contains(&quot;.xlsb&quot;) or strFileName.Contains(&quot;.xls&quot;) or strFileName.Contains(&quot;.ods&quot;)]" DisplayName="If the attachement is an Excel format file:" sap:VirtualizedContainerService.HintSize="714,52" sap2010:WorkflowViewState.IdRef="If_14">
+                                <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - EXCEL" sap:VirtualizedContainerService.HintSize="758,22" sap2010:WorkflowViewState.IdRef="KillProcess_7" ProcessName="EXCEL" />
+                                <If Condition="[strFileName.Contains(&quot;.xlsx&quot;) or strFileName.Contains(&quot;.xlsm&quot;) or strFileName.Contains(&quot;.xlsb&quot;) or strFileName.Contains(&quot;.xls&quot;) or strFileName.Contains(&quot;.ods&quot;)]" DisplayName="If the attachement is an Excel format file:" sap:VirtualizedContainerService.HintSize="758,52.6666666666667" sap2010:WorkflowViewState.IdRef="If_14">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1580,9 +1580,9 @@
                                     </Sequence>
                                   </If.Then>
                                 </If>
-                                <If Condition="[row(&quot;Phase 1 or 2?&quot;).ToString=&quot;Phase 2&quot;]" DisplayName="If attachment is Phase 2 file" sap:VirtualizedContainerService.HintSize="714,360" sap2010:WorkflowViewState.IdRef="If_23">
+                                <If Condition="[row(&quot;Phase 1 or 2?&quot;).ToString=&quot;Phase 2&quot;]" DisplayName="If attachment is Phase 2 file" sap:VirtualizedContainerService.HintSize="758,564" sap2010:WorkflowViewState.IdRef="If_23">
                                   <If.Then>
-                                    <If Condition="[strFileName.Contains(&quot;.ods&quot;)]" DisplayName="If attachment is a .ods file:" sap:VirtualizedContainerService.HintSize="569,210" sap2010:WorkflowViewState.IdRef="If_20">
+                                    <If Condition="[strFileName.tolower.Contains(&quot;.ods&quot;)]" DisplayName="If attachment is a .ods file:" sap:VirtualizedContainerService.HintSize="612,410" sap2010:WorkflowViewState.IdRef="If_20">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1590,17 +1590,32 @@
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
                                       <If.Then>
-                                        <Assign DisplayName="Add 1 to Phase 2 ODS Counter" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_65">
-                                          <Assign.To>
-                                            <OutArgument x:TypeArguments="x:Int32">[OUT_intODSPhase2]</OutArgument>
-                                          </Assign.To>
-                                          <Assign.Value>
-                                            <InArgument x:TypeArguments="x:Int32">[OUT_intODSPhase2+1]</InArgument>
-                                          </Assign.Value>
-                                        </Assign>
+                                        <Sequence sap:VirtualizedContainerService.HintSize="304,256" sap2010:WorkflowViewState.IdRef="Sequence_73">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Assign DisplayName="Add 1 to Phase 2 ODS Counter" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_65">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Int32">[OUT_intODSPhase2]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Int32">[OUT_intODSPhase2+1]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign DisplayName="Add 1 to Phase 2 Counter" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_71">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Int32">[OUT_intPhase2]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Int32">[OUT_intPhase2+1]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </Sequence>
                                       </If.Then>
                                       <If.Else>
-                                        <Assign DisplayName="Add 1 to Phase 2 Counter" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_66">
+                                        <Assign DisplayName="Add 1 to Phase 2 Counter" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_66">
                                           <Assign.To>
                                             <OutArgument x:TypeArguments="x:Int32">[OUT_intPhase2]</OutArgument>
                                           </Assign.To>
@@ -1624,14 +1639,14 @@
                         </ui:ForEachRow>
                       </Sequence>
                       <FlowStep.Next>
-                        <FlowDecision x:Name="__ReferenceID6" Condition="[booCannotOpen=False]" DisplayName="Open Successfully?" sap:VirtualizedContainerService.HintSize="107,87" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
+                        <FlowDecision x:Name="__ReferenceID6" Condition="[booCannotOpen=False]" DisplayName="Open Successfully?" sap:VirtualizedContainerService.HintSize="106.666666666667,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               <av:Point x:Key="ShapeLocation">646.333333333333,512.5</av:Point>
-                              <av:Size x:Key="ShapeSize">107,87</av:Size>
-                              <av:PointCollection x:Key="FalseConnector">753.333333333333,556 783.333333333333,556 783.333333333333,554.166666666667 852.999999999999,554.166666666667</av:PointCollection>
-                              <av:PointCollection x:Key="TrueConnector">646.333333333333,556 616.333333333333,556 616.333333333333,554.166666666667 550,554.166666666667</av:PointCollection>
+                              <av:Size x:Key="ShapeSize">106.666666666667,86.6666666666667</av:Size>
+                              <av:PointCollection x:Key="FalseConnector">753,555.833333333333 852.999999999999,555.833333333334</av:PointCollection>
+                              <av:PointCollection x:Key="TrueConnector">646.333333333333,555.833333333333 550,555.833333333334</av:PointCollection>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <FlowDecision.True>
@@ -1639,16 +1654,16 @@
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <av:Point x:Key="ShapeLocation">350,521.166666666667</av:Point>
-                                  <av:Size x:Key="ShapeSize">200,66</av:Size>
+                                  <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Sequence DisplayName="Route - Success" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                              <Sequence DisplayName="Route - Success" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_41">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <Assign DisplayName="Set strRoute to &quot;Success&quot;" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_57">
+                                <Assign DisplayName="Set strRoute to &quot;Success&quot;" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_57">
                                   <Assign.To>
                                     <OutArgument x:TypeArguments="x:String">[OUT_strRoute]</OutArgument>
                                   </Assign.To>
@@ -1656,7 +1671,7 @@
                                     <InArgument x:TypeArguments="x:String">Success</InArgument>
                                   </Assign.Value>
                                 </Assign>
-                                <WriteLine DisplayName="Write Line - Continue to next stage" sap:VirtualizedContainerService.HintSize="262,61" sap2010:WorkflowViewState.IdRef="WriteLine_22" Text="Continue to next stage" />
+                                <WriteLine DisplayName="Write Line - Continue to next stage" sap:VirtualizedContainerService.HintSize="262,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_22" Text="Continue to next stage" />
                               </Sequence>
                             </FlowStep>
                           </FlowDecision.True>
@@ -1665,10 +1680,10 @@
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <av:Point x:Key="ShapeLocation">852.999999999999,521.166666666667</av:Point>
-                                  <av:Size x:Key="ShapeSize">200,66</av:Size>
+                                  <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Sequence DisplayName="Route- Unopenable Email" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                              <Sequence DisplayName="Route- Unopenable Email" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_35">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1695,10 +1710,10 @@
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <av:Point x:Key="ShapeLocation">1111,393.166666666667</av:Point>
-                          <av:Size x:Key="ShapeSize">200,66</av:Size>
+                          <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Sequence DisplayName="Route - No Valid Files Email" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                      <Sequence DisplayName="Route - No Valid Files Email" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_16">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1725,10 +1740,10 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">1339.66666666667,265.166666666667</av:Point>
-                  <av:Size x:Key="ShapeSize">200,66</av:Size>
+                  <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Route- No Attachements Email" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_17">
+              <Sequence DisplayName="Route- No Attachements Email" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_17">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
