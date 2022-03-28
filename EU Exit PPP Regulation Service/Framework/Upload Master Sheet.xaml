@@ -22,7 +22,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1356.66666666667,857.333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1090.66666666667,857.333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Flowchart_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="26">
@@ -126,20 +126,40 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <FlowDecision.True>
-        <FlowStep x:Name="__ReferenceID5">
+        <FlowStep x:Name="__ReferenceID9">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <av:Point x:Key="ShapeLocation">29.666666666667,277.166666666667</av:Point>
-              <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
+              <av:Point x:Key="ShapeLocation">29.666666666667,268.833333333334</av:Point>
+              <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message - Already Processing" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Another user is already updating the master consolidated sheet. proceeding to main process.&quot;]">
+          <Sequence DisplayName="Log and continue" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_51">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-          </ui:LogMessage>
+            <If Condition="[strPPP_Robot_Link.Contains(&quot;updating&quot;)]" sap:VirtualizedContainerService.HintSize="714,248.666666666667" sap2010:WorkflowViewState.IdRef="If_4">
+              <If.Then>
+                <ui:LogMessage DisplayName="Log Message - Already Processing" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Another user is already updating the master consolidated sheet. Proceeding to main process.&quot;]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:LogMessage>
+              </If.Then>
+              <If.Else>
+                <ui:LogMessage DisplayName="Log Message - Up to date" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;the master consolidated sheet has already been updated. Proceeding to main process&quot;]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:LogMessage>
+              </If.Else>
+            </If>
+          </Sequence>
         </FlowStep>
       </FlowDecision.True>
       <FlowDecision.False>
@@ -231,7 +251,7 @@
                       <av:PointCollection x:Key="ConnectorLocation">407.333333333333,466.166666666666 407.333333333333,516.166666666667</av:PointCollection>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Sequence DisplayName="Get Weekly &amp; Check Master Status" sap:VirtualizedContainerService.HintSize="572,736.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                  <Sequence DisplayName="Get Weekly &amp; Check Master Status" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_21">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:String" Name="OUT_Checking_Status" />
                     </Sequence.Variables>
@@ -292,7 +312,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <FlowDecision.True>
-                        <FlowStep x:Name="__ReferenceID6">
+                        <FlowStep x:Name="__ReferenceID5">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <av:Point x:Key="ShapeLocation">32.3333333333334,524.833333333333</av:Point>
@@ -300,7 +320,7 @@
                               <av:PointCollection x:Key="ConnectorLocation">132.333333333333,594.166666666667 132.333333333333,644.166666666667</av:PointCollection>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Sequence DisplayName="Upload to Master &amp; Archive Weekly" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                          <Sequence DisplayName="Upload to Master &amp; Archive Weekly" sap:VirtualizedContainerService.HintSize="572,2642.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_23">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="sd:DataTable" Name="datHeaders" />
                               <Variable x:TypeArguments="x:Boolean" Name="booExists" />
@@ -325,10 +345,18 @@
                             </Assign>
                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Check In OR Out - Amended workflow" sap:VirtualizedContainerService.HintSize="530,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Framework\Check In OR Out - Amended.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">[IN_FileName]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">[IN_Master_URL]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_CheckInOrOut">out</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">[IN_MasterSheet_SharePointTitle]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">
+                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_MasterSheet_FileName" />
+                                </InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">
+                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_Master_URL" />
+                                </InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_CheckInOrOut">
+                                  <Literal x:TypeArguments="x:String">out</Literal>
+                                </InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">
+                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_MasterSheet_SharePointTitle" />
+                                </InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="IN_Check_In_Comment">
                                   <Literal x:TypeArguments="x:String" Value="" />
                                 </InArgument>
@@ -456,7 +484,7 @@
                                 <InArgument x:TypeArguments="x:String" x:Key="IN_Check_In_Comment">[IN_CheckIn_Comment]</InArgument>
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
-                            <ui:DeleteFileX DisplayName="Delete File - Local Weekly" sap:VirtualizedContainerService.HintSize="530,80.6666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_9" Path="[IN_strWorkingFolder+&quot;\OCR Phase 2 Consolidated Weekly List of Operators&quot;+Today.AddDays(-cint(Today.DayOfWeek)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;]">
+                            <ui:DeleteFileX DisplayName="Delete File - Local Weekly" sap:VirtualizedContainerService.HintSize="530,80.6666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_9" Path="[IN_strWorkingFolder+&quot;\OCR Phase 2 Consolidated Weekly List of Operators&quot;+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;]">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -479,7 +507,7 @@
                             </ui:DeleteFileX>
                           </Sequence>
                           <FlowStep.Next>
-                            <FlowStep x:Name="__ReferenceID7">
+                            <FlowStep x:Name="__ReferenceID6">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <av:Point x:Key="ShapeLocation">32.3333333333334,644.166666666667</av:Point>
@@ -512,7 +540,7 @@
                         </FlowStep>
                       </FlowDecision.True>
                       <FlowDecision.False>
-                        <FlowStep x:Name="__ReferenceID9">
+                        <FlowStep x:Name="__ReferenceID8">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <av:Point x:Key="ShapeLocation">582.333333333333,524.833333333333</av:Point>
@@ -547,7 +575,7 @@
                 </FlowStep>
               </FlowDecision.True>
               <FlowDecision.False>
-                <FlowStep x:Name="__ReferenceID8">
+                <FlowStep x:Name="__ReferenceID7">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <av:Point x:Key="ShapeLocation">833.333333333333,396.166666666667</av:Point>
