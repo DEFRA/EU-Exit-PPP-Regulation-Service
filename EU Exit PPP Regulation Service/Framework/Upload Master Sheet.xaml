@@ -22,7 +22,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1090.66666666667,857.333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1356,857.333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Flowchart_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="26">
@@ -150,7 +150,7 @@
                 </ui:LogMessage>
               </If.Then>
               <If.Else>
-                <ui:LogMessage DisplayName="Log Message - Up to date" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;the master consolidated sheet has already been updated. Proceeding to main process&quot;]">
+                <ui:LogMessage DisplayName="Log Message - Up to date" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;The master consolidated sheet has already been updated. Proceeding to main process&quot;]">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -260,6 +260,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box - Upload Warning" sap:VirtualizedContainerService.HintSize="530,85.3333333333333" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Weekly load into the Consolidated Master List on Sharepoint.&quot;+environment.newline+environment.NewLine+&quot;Click OK to continue.&quot;]" />
                     <Assign DisplayName="Set file path for last weeks's sheet" sap:VirtualizedContainerService.HintSize="530,62" sap2010:WorkflowViewState.IdRef="Assign_11">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[strFULL_FilePath_LastWeek]</OutArgument>
@@ -320,7 +321,7 @@
                               <av:PointCollection x:Key="ConnectorLocation">132.333333333333,594.166666666667 132.333333333333,644.166666666667</av:PointCollection>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Sequence DisplayName="Upload to Master &amp; Archive Weekly" sap:VirtualizedContainerService.HintSize="572,2642.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                          <Sequence DisplayName="Upload to Master &amp; Archive Weekly" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_23">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="sd:DataTable" Name="datHeaders" />
                               <Variable x:TypeArguments="x:Boolean" Name="booExists" />
@@ -345,18 +346,10 @@
                             </Assign>
                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Check In OR Out - Amended workflow" sap:VirtualizedContainerService.HintSize="530,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Framework\Check In OR Out - Amended.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">
-                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_MasterSheet_FileName" />
-                                </InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">
-                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_Master_URL" />
-                                </InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_CheckInOrOut">
-                                  <Literal x:TypeArguments="x:String">out</Literal>
-                                </InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">
-                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_MasterSheet_SharePointTitle" />
-                                </InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">[IN_MasterSheet_FileName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">[IN_Master_URL]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_CheckInOrOut">out</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">[IN_MasterSheet_SharePointTitle]</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="IN_Check_In_Comment">
                                   <Literal x:TypeArguments="x:String" Value="" />
                                 </InArgument>
@@ -380,10 +373,10 @@
                                 <InArgument x:TypeArguments="x:Int32" x:Key="IN_FileDownloadWait_Seconds">180</InArgument>
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
-                            <ui:RetryScope sap2010:Annotation.AnnotationText="bizarre excel error occurs someimes - This segment tries to kill and retry excel merge" DisplayName="Consolidate Excel - Weekly to Master" sap:VirtualizedContainerService.HintSize="530,734" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="2" RetryInterval="00:00:00">
+                            <ui:RetryScope sap2010:Annotation.AnnotationText="bizarre excel error occurs someimes - This segment tries to kill and retry excel merge" DisplayName="Consolidate Excel - Weekly to Master" sap:VirtualizedContainerService.HintSize="530,653.333333333333" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="2" RetryInterval="00:00:00">
                               <ui:RetryScope.ActivityBody>
                                 <ActivityAction>
-                                  <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="476,556.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                  <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="476,476" sap2010:WorkflowViewState.IdRef="Sequence_22">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -416,21 +409,7 @@
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
                                     </ui:ExcelApplicationScope>
-                                    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Update Master Sheet" sap:VirtualizedContainerService.HintSize="434,195.333333333333" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_6" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[string.Format(&quot;C:\Users\{0}\Downloads\{1}&quot;,Environment.UserName,IN_MasterSheet_FileName)]">
-                                      <ui:ExcelApplicationScope.Body>
-                                        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                                          <ActivityAction.Argument>
-                                            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                                          </ActivityAction.Argument>
-                                          <ui:ExcelAppendRange DataTable="[dtaWeeklySheet]" DisplayName="Append Range - Weekly to Master" sap:VirtualizedContainerService.HintSize="334,86.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_3" SheetName="Sheet1" />
-                                        </ActivityAction>
-                                      </ui:ExcelApplicationScope.Body>
-                                      <sap:WorkflowViewStateService.ViewState>
-                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                        </scg:Dictionary>
-                                      </sap:WorkflowViewStateService.ViewState>
-                                    </ui:ExcelApplicationScope>
+                                    <ui:AppendRange DataTable="[dtaWeeklySheet]" DisplayName="Append Range - Weekly to Master" sap:VirtualizedContainerService.HintSize="434,114.666666666667" sap2010:WorkflowViewState.IdRef="AppendRange_1" SheetName="Sheet1" WorkbookPath="[string.Format(&quot;C:\Users\{0}\Downloads\{1}&quot;,Environment.UserName,IN_MasterSheet_FileName)]" />
                                   </Sequence>
                                 </ActivityAction>
                               </ui:RetryScope.ActivityBody>
@@ -469,28 +448,6 @@
                                 <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">[IN_Weekly_SharePointTitle]</InArgument>
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddNewWeeklyList workflow" sap:VirtualizedContainerService.HintSize="530,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="Framework\AddNewWeeklyList.xaml">
-                              <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_Weekly_URL">[IN_Weekly_URL]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_FilePath">[IN_strWorkingFolder+"\OCR Phase 2 Consolidated Weekly List of Operators "+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx"]</InArgument>
-                              </ui:InvokeWorkflowFile.Arguments>
-                            </ui:InvokeWorkflowFile>
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Check In OR Out - Amended workflow" sap:VirtualizedContainerService.HintSize="530,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" UnSafe="False" WorkflowFileName="Framework\Check In OR Out - Amended.xaml">
-                              <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">[IN_strWorkingFolder+"\OCR Phase 2 Consolidated Weekly List of Operators "+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx"]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">[IN_Weekly_URL]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_CheckInOrOut">in</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">[IN_Weekly_SharePointTitle]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_Check_In_Comment">[IN_CheckIn_Comment]</InArgument>
-                              </ui:InvokeWorkflowFile.Arguments>
-                            </ui:InvokeWorkflowFile>
-                            <ui:DeleteFileX DisplayName="Delete File - Local Weekly" sap:VirtualizedContainerService.HintSize="530,80.6666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_9" Path="[IN_strWorkingFolder+&quot;\OCR Phase 2 Consolidated Weekly List of Operators&quot;+Today.AddDays(-cint(Today.DayOfWeek-1)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;]">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                            </ui:DeleteFileX>
                             <ui:DeleteFileX DisplayName="Delete File - Local master" sap:VirtualizedContainerService.HintSize="530,80.6666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_7" Path="[strFULL_FilePath_Master]">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">

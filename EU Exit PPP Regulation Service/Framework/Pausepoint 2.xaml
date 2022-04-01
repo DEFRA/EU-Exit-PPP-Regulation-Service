@@ -10,7 +10,7 @@
   <this:Pausepoint_2.IN_strFormBody>
     <InArgument x:TypeArguments="x:String" />
   </this:Pausepoint_2.IN_strFormBody>
-  <sap:VirtualizedContainerService.HintSize>1356.66666666667,1454</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1356,1454</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="32">

@@ -960,21 +960,6 @@
           "lib/net45/Reusable Components.dll": {}
         }
       },
-      "SharePoint.Reusable.Components/1.0.3": {
-        "type": "package",
-        "dependencies": {
-          "UiPath.Excel.Activities": "2.8.6",
-          "UiPath.Mail.Activities": "1.8.6",
-          "UiPath.System.Activities": "21.10.4",
-          "UiPath.UIAutomation.Activities": "21.4.3"
-        },
-        "compile": {
-          "lib/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/SharePoint.dll": {}
-        }
-      },
       "SharpZipLib/1.2.0": {
         "type": "package",
         "compile": {
@@ -5085,23 +5070,6 @@
         "lib/net45/project.json",
         "reusable.components.1.0.13.nupkg.sha512",
         "reusable.components.nuspec"
-      ]
-    },
-    "SharePoint.Reusable.Components/1.0.3": {
-      "sha512": "3kwRpkrS40S2Oiznc9QnTPgfSO1DLLDIjy3Gze6fy+3Qjv3uMEEphgU3DcAk1WtHPeIa/wMhG9YTQ5iFhTcqnA==",
-      "type": "package",
-      "path": "sharepoint.reusable.components/1.0.3",
-      "files": [
-        ".nupkg.metadata",
-        "lib/net45/.settings/Release/settings-1a5b880a.json",
-        "lib/net45/.settings/Release/settings-5190454b.json",
-        "lib/net45/.settings/Release/settings-590bb27b.json",
-        "lib/net45/.settings/Release/settings-9e9290da.json",
-        "lib/net45/.settings/Release/settings-a1b2dac1.json",
-        "lib/net45/SharePoint.dll",
-        "lib/net45/project.json",
-        "sharepoint.reusable.components.1.0.3.nupkg.sha512",
-        "sharepoint.reusable.components.nuspec"
       ]
     },
     "SharpZipLib/1.2.0": {
@@ -10413,7 +10381,6 @@
     "": [],
     ".NETFramework,Version=v4.6.1": [
       "Reusable.Components >= 1.0.13 <= 1.0.13",
-      "SharePoint.Reusable.Components >= 1.0.3 <= 1.0.3",
       "UiPath.Excel.Activities >= 2.11.4 <= 2.11.4",
       "UiPath.Form.Activities >= 1.8.0 <= 1.8.0",
       "UiPath.Mail.Activities >= 1.8.6 <= 1.8.6",
@@ -10443,11 +10410,6 @@
             "include": "Runtime",
             "target": "Package",
             "version": "[1.0.13, 1.0.13]"
-          },
-          "SharePoint.Reusable.Components": {
-            "include": "Runtime",
-            "target": "Package",
-            "version": "[1.0.3, 1.0.3]"
           },
           "UiPath.Excel.Activities": {
             "include": "Runtime",

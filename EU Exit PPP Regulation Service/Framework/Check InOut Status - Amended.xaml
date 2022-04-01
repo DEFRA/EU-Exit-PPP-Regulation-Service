@@ -5,10 +5,10 @@
     <x:Property Name="IN_FileName" Type="InArgument(x:String)" />
     <x:Property Name="IN_SharePointTitle" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1316.66666666667,1074.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1356,1201.33333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="32">
+    <scg:List x:TypeArguments="x:String" Capacity="18">
       <x:String>System.Activities</x:String>
       <x:String>System</x:String>
       <x:String>System.Collections</x:String>
@@ -30,7 +30,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="32">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="23">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>System</AssemblyReference>
@@ -53,25 +53,28 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Check InOut Status" sap:VirtualizedContainerService.HintSize="780,1012.66666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="Simulate" ScopeGuid="c592f7fd-f0f3-4a7c-92a0-b440c62ff6fb" Version="V1">
+  <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Check InOut Status" sap:VirtualizedContainerService.HintSize="960,1136.66666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="Simulate" ScopeGuid="c592f7fd-f0f3-4a7c-92a0-b440c62ff6fb" Version="V1">
     <uix:NApplicationCard.Body>
       <ActivityAction x:TypeArguments="x:Object">
         <ActivityAction.Argument>
           <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
         </ActivityAction.Argument>
-        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="746,794.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_49">
+        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="926,918.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_49">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence sap2010:Annotation.AnnotationText="Tells you whether a file is checked In or Out by looking for the red checked out symbol" DisplayName="Check_InOut_status" sap:VirtualizedContainerService.HintSize="704,700" sap2010:WorkflowViewState.IdRef="Sequence_48">
+          <Sequence sap2010:Annotation.AnnotationText="Tells you whether a file is checked In or Out by looking for the red checked out symbol" DisplayName="Check_InOut_status" sap:VirtualizedContainerService.HintSize="884,825.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_48">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="strCheckType" />
               <Variable x:TypeArguments="ui:UiElement" Name="eleParent" />
               <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="lstChildContainers" />
+              <Variable x:TypeArguments="x:Boolean" Name="booChecked2" />
+              <Variable x:TypeArguments="x:Boolean" Name="booChecked1" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -79,7 +82,7 @@
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" Activate="True" DisplayName="Remove edge pop ups" sap:VirtualizedContainerService.HintSize="662,158" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="esc" KeyModifiers="None" SendWindowMessages="True" SpecialKey="True">
+            <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" Activate="True" DisplayName="Remove edge pop ups" sap:VirtualizedContainerService.HintSize="842,158" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="esc" KeyModifiers="None" SendWindowMessages="True" SpecialKey="True">
               <ui:SendHotkey.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4cf3e122-8a8e-4da8-be6a-8959e8abf50c" InformativeScreenshot="d6cf99790156931c4d5ed5504c264c8c" Selector="&lt;html app='msedge.exe' htmlwindowname='{}' title='*' /&gt;" WaitForReady="COMPLETE">
                   <ui:Target.TimeoutMS>
@@ -88,32 +91,35 @@
                 </ui:Target>
               </ui:SendHotkey.Target>
             </ui:SendHotkey>
-            <uix:NCheckState Exists="{x:Null}" DisplayName="Check App State - Look for checked out symbol" sap:VirtualizedContainerService.HintSize="662,376.666666666667" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="c592f7fd-f0f3-4a7c-92a0-b440c62ff6fb" Timeout="3" Version="V1">
-              <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="304,156.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_50">
+            <Parallel sap:VirtualizedContainerService.HintSize="842,152" sap2010:WorkflowViewState.IdRef="Parallel_1">
+              <ui:UiElementExists DisplayName="Element Exists 'I'" Exists="[booChecked1]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                <ui:UiElementExists.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6767fc21-6f7c-4e17-812c-4a29cdeb42a3" InformativeScreenshot="446817c83c000e48a999190deb35d761" Selector="&lt;webctrl aria-role='img' tag='I' aaname='' aria-label='You checked out this item' /&gt;" TimeoutMS="3000">
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:UiElementExists.Target>
+              </ui:UiElementExists>
+              <ui:UiElementExists DisplayName="Element Exists 'I'" Exists="[booChecked2]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                <ui:UiElementExists.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3d49aa6b-1cd7-4399-b12b-d7bc4d0ce223" InformativeScreenshot="824520552b317dee2f3fdaa50cbc10ea" Selector="&lt;webctrl aria-role='img' tag='I' aaname='' aria-label='Checked out by someone' /&gt;" TimeoutMS="3000">
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:UiElementExists.Target>
+              </ui:UiElementExists>
+            </Parallel>
+            <If Condition="[booChecked1=FALSE and booChecked2=False]" sap:VirtualizedContainerService.HintSize="842,310" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="304,156.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_52">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign DisplayName="Set Out_Checking_Status to &quot;out&quot;" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_15">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="x:String">[OUT_Checking_Status]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">out</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                </Sequence>
-              </uix:NCheckState.IfExists>
-              <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="304,156.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_51">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <Assign DisplayName="Set Out_Checking_Status to &quot;in&quot;" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_16">
+                  <Assign DisplayName="Set Out_Checking_Status to &quot;in&quot;" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_17">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[OUT_Checking_Status]</OutArgument>
                     </Assign.To>
@@ -122,17 +128,25 @@
                     </Assign.Value>
                   </Assign>
                 </Sequence>
-              </uix:NCheckState.IfNotExists>
-              <uix:NCheckState.Target>
-                <uix:TargetAnchorable BrowserURL="https://defra.sharepoint.com/teams/Team430/OCR%20Phase%202%20Registrations/Forms/AllItems.aspx?xsdata=MDN8MDF8fDJkZGE5YmE0OWJlZTQ2ZDg4N2VkOTQyMmI5M2E0MGQ1fDc3MGEyNDUwMDIyNzRjNjI5MGM3NGUzODUzN2YxMTAyfDF8MHw2Mzc4MDYwMTUyNTg1MTIwOTJ8R29vZHxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazkwYUdWeUlpd2lWMVFpT2pFeGZRPT0%3D&amp;sdata=VjQvdDFNdVRWM2VQVU5xL1pjTWpUVGQwdThwbm1Md2FPUTB6U21DME03RT0%3D&amp;ovuser=770a2450%2D0227%2D4c62%2D90c7%2D4e38537f1102%2CKai%2ELumber%40defra%2Egov%2Euk&amp;OR=Teams%2DHL&amp;CT=1645213319405&amp;sourceId=&amp;params=%7B%22AppName%22%3A%22Teams%2DDesktop%22%2C%22AppVersion%22%3A%2227%2F22010300411%22%7D&amp;id=%2Fteams%2FTeam430%2FOCR%20Phase%202%20Registrations%2FMaster%20Lists&amp;viewid=8c7bfcc7%2De474%2D4f85%2Dada9%2Dcb707f8f0bc5" DesignTimeRectangle="608, 540, 12, 12" FriendlyName="''" FullSelectorArgument="&lt;webctrl aria-role='img' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='img' tag='I' type='' aaname='' check:text='' /&gt;" Guid="1891ab8a-4653-4574-bec3-62f403b20da0" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAADnSURBVDhPY3j7+uV/SvAgNODZ9av/D9fU/19lYft/iboumAbxQeLoakEYxYCbW7f9X2VmA9aIjkHiIHlk9SAMN+DR2TP/19o7Y9UMwyB5kDpMA169+H+ssRmsaKmW/v8zk6b8P1LXAGajGwJSB1KPYsDL+/f+bwuPhhtwtL7h/6vHj/6faOv4v8HD5/+DE8f/r3fzBsuD1IHUoxjw/OYNuAJ0Q87Pnvv/wckTcHkQDVKPYgCyC9ANef308f9nN6/jdwFyGIAw3Bag+JuXz1FciDUMQJiyWIBiitIBDFOUEsnBFBrw8j8Ax8UxmGDky/8AAAAASUVORK5CYII=" InformativeScreenshot="7a970960f6a477672824a076e54a04ea.png" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='{}' title='CPHW Pesticides - Master Lists - All Documents' /&gt;" SearchSteps="FuzzySelector" WaitForReadyArgument="Complete">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
-                      <uix:Target DesignTimeRectangle="634, 539, 16, 16" FriendlyName="''" FullSelectorArgument="&lt;webctrl aaname='' parentid='row250-2' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='' parentid='row250-2' tag='I' type='' check:text='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAE8SURBVDhP5dNdSwJBFAbg/miIdFUmYU1ptpo3GovFstgPiIi+IbqszMVMwpswjUxt3RYrtI/f8NZZaHGXWd0BoYsuXhbmnHlmmNmZ+ProY5z5W9B87kArXODzvcetU8TAzhNiUYbTk2NPVBhMrSYgLcc80ZFg1zRwuL9r7WwqGEB0kaFeq0LOpLmoBdLK8lra+v4WqLF8XQSLzGFnewt6u+mYbBo6F/UES0UNiZU4mo17e8ydh3oNbCGC0pVmj3HBdusRqaSEu+qt3eiO0A6PDvas9N5eUMifIytnEA5NIxiYFD9DQpSNLHKqgvDsDDZzKio3Zbx2TauelOJYYvPDb3kQpNAuVGUdht5yNFPN13/oAH9ew2X+jDvB90sZBN0N7hBGKOG8ujA4qtcG6dzoFv2EeoeC48y/A/v4BibohVzV3l55AAAAAElFTkSuQmCC" SearchSteps="FuzzySelector" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NCheckState.Target>
-            </uix:NCheckState>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="304,156.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign DisplayName="Set Out_Checking_Status to &quot;out&quot;" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_18">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[OUT_Checking_Status]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">out</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Else>
+            </If>
           </Sequence>
         </Sequence>
       </ActivityAction>
