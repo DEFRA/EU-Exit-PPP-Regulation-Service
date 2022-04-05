@@ -5,7 +5,7 @@
     <x:Property Name="IN_FileName" Type="InArgument(x:String)" />
     <x:Property Name="IN_SharePointTitle" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1356,1201.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1356,1202.66666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="18">
@@ -56,13 +56,13 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Check InOut Status" sap:VirtualizedContainerService.HintSize="960,1136.66666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="Simulate" ScopeGuid="c592f7fd-f0f3-4a7c-92a0-b440c62ff6fb" Version="V1">
+  <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Check InOut Status" sap:VirtualizedContainerService.HintSize="960,1138" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="Simulate" ScopeGuid="c592f7fd-f0f3-4a7c-92a0-b440c62ff6fb" Version="V1" WindowResize="Maximize">
     <uix:NApplicationCard.Body>
       <ActivityAction x:TypeArguments="x:Object">
         <ActivityAction.Argument>
           <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
         </ActivityAction.Argument>
-        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="926,918.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_49">
+        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="926,920" sap2010:WorkflowViewState.IdRef="Sequence_49">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -92,18 +92,18 @@
               </ui:SendHotkey.Target>
             </ui:SendHotkey>
             <Parallel sap:VirtualizedContainerService.HintSize="842,152" sap2010:WorkflowViewState.IdRef="Parallel_1">
-              <ui:UiElementExists DisplayName="Element Exists 'I'" Exists="[booChecked1]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+              <ui:UiElementExists DisplayName="Element Exists - checked out by current user" Exists="[booChecked1]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
                 <ui:UiElementExists.Target>
-                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6767fc21-6f7c-4e17-812c-4a29cdeb42a3" InformativeScreenshot="446817c83c000e48a999190deb35d761" Selector="&lt;webctrl aria-role='img' tag='I' aaname='' aria-label='You checked out this item' /&gt;" TimeoutMS="3000">
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6767fc21-6f7c-4e17-812c-4a29cdeb42a3" InformativeScreenshot="446817c83c000e48a999190deb35d761" Selector="&lt;webctrl aria-role='img' tag='I' aaname='' aria-label='You checked out this item' /&gt;" TimeoutMS="5000">
                     <ui:Target.WaitForReady>
                       <InArgument x:TypeArguments="ui:WaitForReady" />
                     </ui:Target.WaitForReady>
                   </ui:Target>
                 </ui:UiElementExists.Target>
               </ui:UiElementExists>
-              <ui:UiElementExists DisplayName="Element Exists 'I'" Exists="[booChecked2]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+              <ui:UiElementExists DisplayName="Element Exists - Checked out by other user" Exists="[booChecked2]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
                 <ui:UiElementExists.Target>
-                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3d49aa6b-1cd7-4399-b12b-d7bc4d0ce223" InformativeScreenshot="824520552b317dee2f3fdaa50cbc10ea" Selector="&lt;webctrl aria-role='img' tag='I' aaname='' aria-label='Checked out by someone' /&gt;" TimeoutMS="3000">
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3d49aa6b-1cd7-4399-b12b-d7bc4d0ce223" InformativeScreenshot="824520552b317dee2f3fdaa50cbc10ea" Selector="&lt;webctrl aria-role='img' tag='I' aaname='' aria-label='Checked out by someone' /&gt;" TimeoutMS="5000">
                     <ui:Target.WaitForReady>
                       <InArgument x:TypeArguments="ui:WaitForReady" />
                     </ui:Target.WaitForReady>

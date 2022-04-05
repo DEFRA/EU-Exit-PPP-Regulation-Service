@@ -188,13 +188,13 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:SetAsset>
-            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Weekly List" sap:VirtualizedContainerService.HintSize="434,544.666666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="Simulate" ScopeGuid="e7ccfe7e-b86b-49f6-b0f6-84b3265c1141" Version="V1">
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Weekly List" sap:VirtualizedContainerService.HintSize="434,582.666666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="Simulate" ScopeGuid="e7ccfe7e-b86b-49f6-b0f6-84b3265c1141" Version="V1">
               <uix:NApplicationCard.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,326.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,364.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_50">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -214,12 +214,12 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </Assign>
-                    <ui:UiElementExists DisplayName="Last weeks present to upload?" Exists="[booFileExists]" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
+                    <ui:UiElementExists DisplayName="Element Exists - File Name" Exists="[booFileExists]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
                       <ui:UiElementExists.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="21f4f341-2956-4360-837d-4ebd749692ad" Selector="[String.Format(&quot;&lt;html app='msedge.exe' htmlwindowname='{{}}' title='{0}' /&gt;&lt;webctrl aaname='{1}' /&gt;&quot;, IN_Weekly_SharePointTitle, strLastWeek_FileName)]" WaitForReady="COMPLETE">
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:Target.TimeoutMS>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b318b12c-798d-456e-9667-d12481d0eecf" InformativeScreenshot="a5f3fd3c2dc74234a6f3af8060fded51" Selector="[String.Format(&quot;&lt;webctrl aria-role='link' parentid='row*' tag='BUTTON' type='button' aaname='{0}' /&gt;&quot;, strLastWeek_FileName)]" TimeoutMS="10000">
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
                         </ui:Target>
                       </ui:UiElementExists.Target>
                     </ui:UiElementExists>

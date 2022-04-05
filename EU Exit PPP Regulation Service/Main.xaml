@@ -339,7 +339,7 @@
                               <Throw DisplayName="Throw Error" Exception="[exeError]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_6" />
                             </If.Then>
                             <If.Else>
-                              <If Condition="[exeBRE is Nothing]" DisplayName="If BRE is nothing" sap:VirtualizedContainerService.HintSize="484,239.333333333333" sap2010:WorkflowViewState.IdRef="If_14">
+                              <If Condition="[exeBRE isnot Nothing]" DisplayName="If BRE is nothing" sap:VirtualizedContainerService.HintSize="484,239.333333333333" sap2010:WorkflowViewState.IdRef="If_14">
                                 <If.Else>
                                   <ui:MessageBox ChosenButton="{x:Null}" AutoCloseAfter="00:05:00" Caption="Success" DisplayName="Message Box - Success" sap:VirtualizedContainerService.HintSize="334,85.3333333333333" sap2010:WorkflowViewState.IdRef="MessageBox_9" Text="[&quot;The process has completed successfully.&quot;]" />
                                 </If.Else>
@@ -483,7 +483,7 @@
                           <Transition.To>
                             <State x:Name="__ReferenceID3" DisplayName="Process" sap:VirtualizedContainerService.HintSize="135.333333333333,61.3333333333333" sap2010:WorkflowViewState.IdRef="State_4">
                               <State.Entry>
-                                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="577.333333333333,2120" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="577.333333333333,2548" sap2010:WorkflowViewState.IdRef="TryCatch_1">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -491,7 +491,7 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <TryCatch.Try>
-                                    <Sequence sap:VirtualizedContainerService.HintSize="538.666666666667,1858.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                                    <Sequence sap:VirtualizedContainerService.HintSize="538.666666666667,2286.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
                                       <Sequence.Variables>
                                         <Variable x:TypeArguments="sd:DataTable" Name="datAttachmentTable" />
                                         <Variable x:TypeArguments="x:String" Name="strEmailBody" />
@@ -561,7 +561,7 @@
                                         </Assign.Value>
                                       </Assign>
                                       <WriteLine DisplayName="Write Line - Route" sap:VirtualizedContainerService.HintSize="496.666666666667,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Route: &quot; + strRoute]" />
-                                      <Switch x:TypeArguments="x:String" DisplayName="Switch - Send/Archive Email" Expression="[strRoute]" sap:VirtualizedContainerService.HintSize="496.666666666667,294.666666666667" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                                      <Switch x:TypeArguments="x:String" DisplayName="Switch - Send/Archive Email" Expression="[strRoute]" sap:VirtualizedContainerService.HintSize="496.666666666667,722.666666666667" sap2010:WorkflowViewState.IdRef="Switch`1_3">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -708,7 +708,7 @@
                                     </Sequence>
                                   </TryCatch.Try>
                                   <TryCatch.Catches>
-                                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="543.333333333333,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -729,7 +729,7 @@
                                         </Assign>
                                       </ActivityAction>
                                     </Catch>
-                                    <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Catch`1_9">
+                                    <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="543.333333333333,22" sap2010:WorkflowViewState.IdRef="Catch`1_9">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -815,108 +815,44 @@
                                           <If.Then>
                                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Log Case" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="Framework\Log Case.xaml">
                                               <ui:InvokeWorkflowFile.Arguments>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strLogFilePath" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strSender + &quot; &quot; + strDateTimeReceived" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseEndTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="Now" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseStartTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="dateStartTime" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_dateCaseTotalTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="(datetime.now-dateStartTime).tostring(&quot;mm\.ss&quot;)" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">
-                                                  <Literal x:TypeArguments="x:String">System Exception</Literal>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFailureMessage">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;System exception encountered: &quot; + exeError.Message + &quot; at Source: &quot; + exeError.Source" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkpackageName">
-                                                  <Literal x:TypeArguments="x:String">EU Exit PPP Regulation Service</Literal>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strUser">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Environment.UserName.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strNotes">
-                                                  <Literal x:TypeArguments="x:String">Error in process transaction</Literal>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">
-                                                  <Literal x:TypeArguments="x:Boolean" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intPhase2.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_ODS_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intODSPhase2.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Populated_Sites">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intSites.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intRejected.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">
-                                                  <Literal x:TypeArguments="x:String">Error - Incomplete</Literal>
-                                                </InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">[strLogFilePath]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">[strSender + " " + strDateTimeReceived]</InArgument>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseEndTime">[Now]</InArgument>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseStartTime">[dateStartTime]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_dateCaseTotalTime">[(datetime.now-dateStartTime).tostring("mm\.ss")]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">System Exception</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFailureMessage">["System exception encountered: " + exeError.Message + " at Source: " + exeError.Source]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkpackageName">EU Exit PPP Regulation Service</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strUser">[Environment.UserName.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strNotes">Error in process transaction</InArgument>
+                                                <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">False</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Phase2_Forms">[intPhase2.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_ODS_Phase2_Forms">[intODSPhase2.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Populated_Sites">[intSites.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">[intRejected.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">Error - Incomplete</InArgument>
                                               </ui:InvokeWorkflowFile.Arguments>
                                             </ui:InvokeWorkflowFile>
                                           </If.Then>
                                           <If.Else>
                                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File - Log Case" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_18" UnSafe="False" WorkflowFileName="Framework\Log Case.xaml">
                                               <ui:InvokeWorkflowFile.Arguments>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strLogFilePath" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strSender + &quot; &quot; + strDateTimeReceived" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseEndTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="Now" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseStartTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="dateStartTime" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_dateCaseTotalTime">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="(datetime.now-dateStartTime).tostring(&quot;mm\.ss&quot;)" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">
-                                                  <Literal x:TypeArguments="x:String">Business Exception</Literal>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFailureMessage">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Business exception encountered: &quot; + exeBRE.Message + &quot; at Source: &quot; + exeBRE.Source" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkpackageName">
-                                                  <Literal x:TypeArguments="x:String">EU Exit PPP Regulation Service</Literal>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strUser">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Environment.UserName.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strNotes">
-                                                  <Literal x:TypeArguments="x:String">Error in process transaction</Literal>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">
-                                                  <Literal x:TypeArguments="x:Boolean" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intPhase2.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_ODS_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intODSPhase2.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Populated_Sites">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intSites.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intRejected.ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">
-                                                  <Literal x:TypeArguments="x:String">Error - Incomplete</Literal>
-                                                </InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFilePath">[strLogFilePath]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strCaseID">[strSender + " " + strDateTimeReceived]</InArgument>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseEndTime">[Now]</InArgument>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="IN_dateCaseStartTime">[dateStartTime]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_dateCaseTotalTime">[(datetime.now-dateStartTime).tostring("mm\.ss")]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strSuccessful">Business Exception</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strFailureMessage">["Business exception encountered: " + exeBRE.Message + " at Source: " + exeBRE.Source]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strWorkpackageName">EU Exit PPP Regulation Service</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strUser">[Environment.UserName.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_strNotes">Error in process transaction</InArgument>
+                                                <InArgument x:TypeArguments="x:Boolean" x:Key="IN_TypeCSV">False</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Phase2_Forms">[intPhase2.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_ODS_Phase2_Forms">[intODSPhase2.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Populated_Sites">[intSites.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">[intRejected.ToString]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="IN_OutcomeMessage">Error - Incomplete</InArgument>
                                               </ui:InvokeWorkflowFile.Arguments>
                                             </ui:InvokeWorkflowFile>
                                           </If.Else>
@@ -925,7 +861,7 @@
                                     </Sequence>
                                   </Transition.Action>
                                   <Transition.Condition>
-                                    <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="exeError isnot Nothing" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
+                                    <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="exeError isnot Nothing or exeBRE IsNot Nothing" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
                                   </Transition.Condition>
                                 </Transition>
                                 <Transition DisplayName="Report" sap:VirtualizedContainerService.HintSize="451.333333333333,521.333333333333" sap2010:WorkflowViewState.IdRef="Transition_4">
@@ -940,7 +876,7 @@
                                     <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="exeError is nothing" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_2" />
                                   </Transition.Condition>
                                   <Transition.To>
-                                    <State x:Name="__ReferenceID4" DisplayName="Reporting" sap:VirtualizedContainerService.HintSize="134,61.3333333333333" sap2010:WorkflowViewState.IdRef="State_3">
+                                    <State x:Name="__ReferenceID4" DisplayName="Reporting" sap:VirtualizedContainerService.HintSize="543.333333333333,874" sap2010:WorkflowViewState.IdRef="State_3">
                                       <State.Entry>
                                         <Switch x:TypeArguments="x:Boolean" sap2010:Annotation.AnnotationText="reporting/logging&#xA;e.g. csv or orchestrator transaction states" DisplayName="Switch" Expression="[exeError is Nothing]" sap:VirtualizedContainerService.HintSize="496.666666666667,504.666666666667" sap2010:WorkflowViewState.IdRef="Switch`1_2">
                                           <Switch.Default>
@@ -1013,7 +949,7 @@
                                                   <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intODSPhase2.ToString" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Populated_Sites">
-                                                  <Literal x:TypeArguments="x:String">1</Literal>
+                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intSites.ToString" />
                                                 </InArgument>
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_No_of_Rejected_Phase2_Forms">
                                                   <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="intRejected.ToString" />
@@ -1069,9 +1005,9 @@
                             <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="mailTransactionItem is Nothing" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
                           </Transition.Condition>
                           <Transition.To>
-                            <State x:Name="__ReferenceID5" DisplayName="Consolidate List" sap:VirtualizedContainerService.HintSize="1493.33333333333,6142" sap2010:WorkflowViewState.IdRef="State_8">
+                            <State x:Name="__ReferenceID5" DisplayName="Consolidate List" sap:VirtualizedContainerService.HintSize="140.666666666667,63.3333333333333" sap2010:WorkflowViewState.IdRef="State_8">
                               <State.Entry>
-                                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1446.66666666667,5743.33333333333" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+                                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1446.66666666667,5735.33333333333" sap2010:WorkflowViewState.IdRef="TryCatch_6">
                                   <TryCatch.Try>
                                     <Sequence sap:VirtualizedContainerService.HintSize="1408,5474" sap2010:WorkflowViewState.IdRef="Sequence_41">
                                       <sap:WorkflowViewStateService.ViewState>
@@ -1079,91 +1015,9 @@
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Sharepoint - Check for weekly file" sap:VirtualizedContainerService.HintSize="1366,520.666666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" ScopeGuid="ac10b4ea-03fd-4ee5-86e0-d00a60aa3f3d" Version="V1">
-                                        <uix:NApplicationCard.Body>
-                                          <ActivityAction x:TypeArguments="x:Object">
-                                            <ActivityAction.Argument>
-                                              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-                                            </ActivityAction.Argument>
-                                            <Sequence sap:VirtualizedContainerService.HintSize="376,302.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_45">
-                                              <Sequence.Variables>
-                                                <Variable x:TypeArguments="x:String" Name="strFileName" />
-                                              </Sequence.Variables>
-                                              <sap:WorkflowViewStateService.ViewState>
-                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                </scg:Dictionary>
-                                              </sap:WorkflowViewStateService.ViewState>
-                                              <Assign DisplayName="Set File Name" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_32">
-                                                <Assign.To>
-                                                  <OutArgument x:TypeArguments="x:String">[strFileName]</OutArgument>
-                                                </Assign.To>
-                                                <Assign.Value>
-                                                  <InArgument x:TypeArguments="x:String">[dictConfig("SharePoint Weekly File Name").ToString+" "+Today.AddDays(-CInt(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx"]</InArgument>
-                                                </Assign.Value>
-                                              </Assign>
-                                              <ui:UiElementExists DisplayName="Element Exists - File Name" Exists="[booExists]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
-                                                <ui:UiElementExists.Target>
-                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b318b12c-798d-456e-9667-d12481d0eecf" InformativeScreenshot="a5f3fd3c2dc74234a6f3af8060fded51" Selector="[String.Format(&quot;&lt;webctrl aria-role='link' parentid='row*' tag='BUTTON' type='button' aaname='{0}' /&gt;&quot;, strFileName)]" TimeoutMS="10000">
-                                                    <ui:Target.WaitForReady>
-                                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                                    </ui:Target.WaitForReady>
-                                                  </ui:Target>
-                                                </ui:UiElementExists.Target>
-                                              </ui:UiElementExists>
-                                            </Sequence>
-                                          </ActivityAction>
-                                        </uix:NApplicationCard.Body>
-                                        <uix:NApplicationCard.TargetApp>
-                                          <uix:TargetApp Area="-1928, -8, 1936, 1056" BrowserType="Edge" IconBase64="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" InformativeScreenshot="8975fd089269ce85b1547561ad5b624b.png" Selector="&lt;html app='msedge.exe' htmlwindowname='{}' title='*' /&gt;" Url="[dictConfig(&quot;SharePoint Weekly URL&quot;).tostring]" />
-                                        </uix:NApplicationCard.TargetApp>
-                                      </uix:NApplicationCard>
-                                      <If Condition="[booExists=True]" DisplayName="If form exists:" sap:VirtualizedContainerService.HintSize="1366,634.666666666667" sap2010:WorkflowViewState.IdRef="If_15">
-                                        <If.Else>
-                                          <Sequence sap:VirtualizedContainerService.HintSize="426,480.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_46">
-                                            <sap:WorkflowViewStateService.ViewState>
-                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                              </scg:Dictionary>
-                                            </sap:WorkflowViewStateService.ViewState>
-                                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Check In OR Out - Amended workflow" sap:VirtualizedContainerService.HintSize="384,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_45" UnSafe="False" WorkflowFileName="Framework\Check In OR Out - Amended.xaml">
-                                              <ui:InvokeWorkflowFile.Arguments>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="dictConfig(&quot;SharePoint Weekly File Name&quot;).ToString+&quot; &quot;+Today.AddDays(-CInt(Today.DayOfWeek-1)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="dictConfig(&quot;SharePoint Weekly URL&quot;).tostring" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_CheckInOrOut">
-                                                  <Literal x:TypeArguments="x:String">in</Literal>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="dictConfig(&quot;SharePoint Weekly Title&quot;).ToString" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_Check_In_Comment">
-                                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Updated by &quot; + environment.UserName" />
-                                                </InArgument>
-                                              </ui:InvokeWorkflowFile.Arguments>
-                                            </ui:InvokeWorkflowFile>
-                                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddNewWeeklyList workflow" sap:VirtualizedContainerService.HintSize="384,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_44" UnSafe="False" WorkflowFileName="Framework\AddNewWeeklyList.xaml">
-                                              <ui:InvokeWorkflowFile.Arguments>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_Weekly_URL">[dictConfig("SharePoint Weekly URL").tostring]</InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="IN_FilePath">[strWorkingFolder+"\"+dictConfig("SharePoint Weekly File Name").ToString+" "+Today.AddDays(-CInt(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx"]</InArgument>
-                                              </ui:InvokeWorkflowFile.Arguments>
-                                            </ui:InvokeWorkflowFile>
-                                            <ui:DeleteFileX DisplayName="Delete File - Local Weekly" sap:VirtualizedContainerService.HintSize="384,80.6666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_5" Path="[strWorkingFolder+&quot;\&quot;+dictConfig(&quot;SharePoint Weekly File Name&quot;).ToString+&quot; &quot;+Today.AddDays(-CInt(Today.DayOfWeek-1)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;]">
-                                              <sap:WorkflowViewStateService.ViewState>
-                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                </scg:Dictionary>
-                                              </sap:WorkflowViewStateService.ViewState>
-                                            </ui:DeleteFileX>
-                                          </Sequence>
-                                        </If.Else>
-                                      </If>
-                                      <If Condition="[booDataToRecord=True]" DisplayName="If there is data to record:" sap:VirtualizedContainerService.HintSize="1366,4146.66666666667" sap2010:WorkflowViewState.IdRef="If_12">
+                                      <If Condition="[booDataToRecord=True]" DisplayName="If there is data to record:" sap:VirtualizedContainerService.HintSize="1366,5382" sap2010:WorkflowViewState.IdRef="If_12">
                                         <If.Then>
-                                          <Sequence sap:VirtualizedContainerService.HintSize="944,3992.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                                          <Sequence sap:VirtualizedContainerService.HintSize="944,5228" sap2010:WorkflowViewState.IdRef="Sequence_39">
                                             <Sequence.Variables>
                                               <Variable x:TypeArguments="x:String" Name="strWeeklyInUse" />
                                               <Variable x:TypeArguments="x:String" Name="strCheckingStatus" />
@@ -1179,6 +1033,78 @@
                                                 <InArgument x:TypeArguments="x:String" x:Key="IN_strFormBody">Please check the Local Consolidated List stored on your desktop prior to the upload to the Consolidated Weekly list on Sharepoint. If all is correct please press continue.</InArgument>
                                               </ui:InvokeWorkflowFile.Arguments>
                                             </ui:InvokeWorkflowFile>
+                                            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Sharepoint - Check for weekly file" sap:VirtualizedContainerService.HintSize="902,520.666666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="Simulate" ScopeGuid="ac10b4ea-03fd-4ee5-86e0-d00a60aa3f3d" Version="V1" WindowResize="Maximize">
+                                              <uix:NApplicationCard.Body>
+                                                <ActivityAction x:TypeArguments="x:Object">
+                                                  <ActivityAction.Argument>
+                                                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                                                  </ActivityAction.Argument>
+                                                  <Sequence sap:VirtualizedContainerService.HintSize="376,302.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                                                    <Sequence.Variables>
+                                                      <Variable x:TypeArguments="x:String" Name="strFileName" />
+                                                    </Sequence.Variables>
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                    <Assign DisplayName="Set File Name" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_33">
+                                                      <Assign.To>
+                                                        <OutArgument x:TypeArguments="x:String">[strFileName]</OutArgument>
+                                                      </Assign.To>
+                                                      <Assign.Value>
+                                                        <InArgument x:TypeArguments="x:String">[dictConfig("SharePoint Weekly File Name").ToString+" "+Today.AddDays(-CInt(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx"]</InArgument>
+                                                      </Assign.Value>
+                                                    </Assign>
+                                                    <ui:UiElementExists DisplayName="Element Exists - File Name" Exists="[booExists]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                                                      <ui:UiElementExists.Target>
+                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b318b12c-798d-456e-9667-d12481d0eecf" InformativeScreenshot="a5f3fd3c2dc74234a6f3af8060fded51" Selector="[String.Format(&quot;&lt;webctrl aria-role='link' parentid='row*' tag='BUTTON' type='button' aaname='{0}' /&gt;&quot;, strFileName)]" TimeoutMS="10000">
+                                                          <ui:Target.WaitForReady>
+                                                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                                                          </ui:Target.WaitForReady>
+                                                        </ui:Target>
+                                                      </ui:UiElementExists.Target>
+                                                    </ui:UiElementExists>
+                                                  </Sequence>
+                                                </ActivityAction>
+                                              </uix:NApplicationCard.Body>
+                                              <uix:NApplicationCard.TargetApp>
+                                                <uix:TargetApp Area="-1928, -8, 1936, 1056" BrowserType="Edge" IconBase64="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" InformativeScreenshot="8975fd089269ce85b1547561ad5b624b.png" Selector="&lt;html app='msedge.exe' htmlwindowname='{}' title='*' /&gt;" Url="[dictConfig(&quot;SharePoint Weekly URL&quot;).tostring]" />
+                                              </uix:NApplicationCard.TargetApp>
+                                            </uix:NApplicationCard>
+                                            <If Condition="[booExists=True]" DisplayName="If form exists:" sap:VirtualizedContainerService.HintSize="902,634.666666666667" sap2010:WorkflowViewState.IdRef="If_16">
+                                              <If.Else>
+                                                <Sequence sap:VirtualizedContainerService.HintSize="426,480.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddNewWeeklyList workflow" sap:VirtualizedContainerService.HintSize="384,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_46" UnSafe="False" WorkflowFileName="Framework\AddNewWeeklyList.xaml">
+                                                    <ui:InvokeWorkflowFile.Arguments>
+                                                      <InArgument x:TypeArguments="x:String" x:Key="IN_Weekly_URL">[dictConfig("SharePoint Weekly URL").tostring]</InArgument>
+                                                      <InArgument x:TypeArguments="x:String" x:Key="IN_FilePath">[strWorkingFolder+"\"+dictConfig("SharePoint Weekly File Name").ToString+" "+Today.AddDays(-CInt(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx"]</InArgument>
+                                                    </ui:InvokeWorkflowFile.Arguments>
+                                                  </ui:InvokeWorkflowFile>
+                                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Check In OR Out - Amended workflow" sap:VirtualizedContainerService.HintSize="384,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_47" UnSafe="False" WorkflowFileName="Framework\Check In OR Out - Amended.xaml">
+                                                    <ui:InvokeWorkflowFile.Arguments>
+                                                      <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">[dictConfig("SharePoint Weekly File Name").ToString+" "+Today.AddDays(-CInt(Today.DayOfWeek-1)).ToString("dd.MM.yyyy")+".xlsx"]</InArgument>
+                                                      <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">[dictConfig("SharePoint Weekly URL").tostring]</InArgument>
+                                                      <InArgument x:TypeArguments="x:String" x:Key="IN_CheckInOrOut">in</InArgument>
+                                                      <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">[dictConfig("SharePoint Weekly Title").ToString]</InArgument>
+                                                      <InArgument x:TypeArguments="x:String" x:Key="IN_Check_In_Comment">["Updated by " + environment.UserName]</InArgument>
+                                                    </ui:InvokeWorkflowFile.Arguments>
+                                                  </ui:InvokeWorkflowFile>
+                                                  <ui:DeleteFileX DisplayName="Delete File - Local Weekly" sap:VirtualizedContainerService.HintSize="384,80.6666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_6" Path="[strWorkingFolder+&quot;\&quot;+dictConfig(&quot;SharePoint Weekly File Name&quot;).ToString+&quot; &quot;+Today.AddDays(-CInt(Today.DayOfWeek-1)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;]">
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                  </ui:DeleteFileX>
+                                                </Sequence>
+                                              </If.Else>
+                                            </If>
                                             <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Weekly in Use" DisplayName="Get Asset - Weekly In Use" FolderPath="[dictConfig(&quot;Orchestrator Folder Path&quot;).ToString]" sap:VirtualizedContainerService.HintSize="902,140.666666666667" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
                                               <ui:GetRobotAsset.Value>
                                                 <OutArgument x:TypeArguments="x:String">[strWeeklyInUse]</OutArgument>
@@ -1202,7 +1128,7 @@
                                                   </sap:WorkflowViewStateService.ViewState>
                                                   <If Condition="[strCheckingStatus=&quot;out&quot; and (not strWeeklyInUse.Contains(&quot;updating&quot;))]" DisplayName="If checked out but asset not set:" sap:VirtualizedContainerService.HintSize="714,239.333333333333" sap2010:WorkflowViewState.IdRef="If_13">
                                                     <If.Then>
-                                                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box - Manually checked out" sap:VirtualizedContainerService.HintSize="334,85.3333333333333" sap2010:WorkflowViewState.IdRef="MessageBox_8" Text="[&quot;The weekly consolidated list has been manually checked out outside of the robotic process. Ensure that the file is checked back in and then Click Ok to continue.&quot;]" />
+                                                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box - Manually checked out" sap:VirtualizedContainerService.HintSize="334,85.3333333333333" sap2010:WorkflowViewState.IdRef="MessageBox_8" Text="[&quot;The weekly consolidated list is checked out. Ensure that the file is checked back in and then click Ok to continue.&quot;]" />
                                                     </If.Then>
                                                     <If.Else>
                                                       <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box - Checked out" sap:VirtualizedContainerService.HintSize="334,85.3333333333333" sap2010:WorkflowViewState.IdRef="MessageBox_5" Text="[&quot;The weekly consolidated list is currently checked out by &quot;+strWeeklyInUse.tolower.replace(&quot; updating&quot;,&quot;&quot;)+&quot;. The robot will proceed once the sheet has been checked in.&quot;]" />
@@ -1211,7 +1137,7 @@
                                                 </Sequence>
                                               </If.Then>
                                             </If>
-                                            <ui:InterruptibleWhile Condition="[strWeeklyInUse.Contains(&quot;Updating&quot;)]" DisplayName="While the file is in use" sap:VirtualizedContainerService.HintSize="902,464" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_2">
+                                            <ui:InterruptibleWhile DisplayName="While the file is in use" sap:VirtualizedContainerService.HintSize="902,464" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_2">
                                               <ui:InterruptibleWhile.Body>
                                                 <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,294.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_35">
                                                   <sap:WorkflowViewStateService.ViewState>
@@ -1227,6 +1153,9 @@
                                                   </ui:GetRobotAsset>
                                                 </Sequence>
                                               </ui:InterruptibleWhile.Body>
+                                              <ui:InterruptibleWhile.Condition>
+                                                <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="strWeeklyInUse.Contains(&quot;Updating&quot;)" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_2" />
+                                              </ui:InterruptibleWhile.Condition>
                                             </ui:InterruptibleWhile>
                                             <TryCatch DisplayName="Try Catch - Update Weekly List" sap:VirtualizedContainerService.HintSize="902,2026.66666666667" sap2010:WorkflowViewState.IdRef="TryCatch_5">
                                               <TryCatch.Try>
@@ -1355,7 +1284,7 @@
                                                     <ActivityAction.Argument>
                                                       <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                                     </ActivityAction.Argument>
-                                                    <Sequence DisplayName="Exception" sap:VirtualizedContainerService.HintSize="376,535.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                                                    <Sequence DisplayName="Exception" sap:VirtualizedContainerService.HintSize="376,538" sap2010:WorkflowViewState.IdRef="Sequence_38">
                                                       <sap:WorkflowViewStateService.ViewState>
                                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1542,7 +1471,9 @@
                                       </ui:InvokeWorkflowFile>
                                     </Sequence>
                                   </Transition.Action>
-                                  <Transition.Condition>[exeError is nothing and exeBRE is Nothing]</Transition.Condition>
+                                  <Transition.Condition>
+                                    <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="exeError is nothing and exeBRE is Nothing" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_3" />
+                                  </Transition.Condition>
                                 </Transition>
                                 <Transition DisplayName="Error" sap:VirtualizedContainerService.HintSize="819.333333333333,710" sap2010:WorkflowViewState.IdRef="Transition_26">
                                   <sap:WorkflowViewStateService.ViewState>
@@ -1751,11 +1682,7 @@
       <Variable x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" Name="dictConfig" />
       <Variable x:TypeArguments="ui:BusinessRuleException" Name="exeBRE" />
       <Variable x:TypeArguments="snm:MailMessage" Name="mailTransactionItem" />
-      <Variable x:TypeArguments="x:Int32" Name="intTransactionNumber">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Int32" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="intTransactionNumber" />
       <Variable x:TypeArguments="x:Boolean" Name="booShouldStop" />
       <Variable x:TypeArguments="x:String" Name="strLogFilePath" />
       <Variable x:TypeArguments="x:String" Name="strSender" />
