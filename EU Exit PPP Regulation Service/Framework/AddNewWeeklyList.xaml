@@ -1,0 +1,374 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="AddNewWeeklyList" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:us="clr-namespace:UiPathTeam.SharePoint;assembly=UiPathTeam.SharePoint" xmlns:usa="clr-namespace:UiPathTeam.SharePoint.Activities;assembly=UiPathTeam.SharePoint.Activities" xmlns:usal="clr-namespace:UiPathTeam.SharePoint.Activities.Libraries;assembly=UiPathTeam.SharePoint.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="IN_dictConfig" Type="InArgument(scg:Dictionary(x:String, ui:GenericValue))" />
+    <x:Property Name="IN_FilePath" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>1389.33333333333,1238.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="32">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>Microsoft.SharePoint.Client</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="32">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>OfficeDevPnP.Core</AssemblyReference>
+      <AssemblyReference>UiPathTeam.SharePoint</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint.Client.Runtime</AssemblyReference>
+      <AssemblyReference>Microsoft.SharePoint.Client</AssemblyReference>
+      <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Add new weekly list" sap:VirtualizedContainerService.HintSize="526,1174" sap2010:WorkflowViewState.IdRef="Sequence_55">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="datHeaders" />
+      <Variable x:TypeArguments="x:Boolean" Name="booExists" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:BuildDataTable DataTable="[datHeaders]" DisplayName="Build Data Table - Headers" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Record_x0020_Number&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Building_x0020_and_x0020_street_x0020_or_x0020_farm_x0020_name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Town_x0020_or_x0020_city&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;County&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Country&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Postcode&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Telephone_x0020_Number&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Contact_x0020_Email_x0020_Address&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_store_x0020_them&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_use_x0020_or_x0020_apply_x0020_them&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_are_x0020_a_x0020_business_x0020_or_x0020_organisation_x0020_in_x0020_the_x0020_agriculture_x002C__x0020_horticulture_x002C__x0020_amenity_x0020_or_x0020_forestry_x0020_sector_x0020_and_x0020_have_x0020_professional_x0020_PPP_x0027_s_x0020_applied_x0020_by_x0020_a_x0020_third_x0020_party&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Quantity&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_agriculture_x0020__x002F__x0020_horticulture_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_amenities_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_forestry_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Other&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Sender_x0020_Email&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Registration_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Update_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Business_x0020_Closed_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Date_x0020_timestamp_x0020_processed&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;User_x0020_who_x0020_processed&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;Record_x0020_Number&gt;Record Number&lt;/Record_x0020_Number&gt;&#xA;    &lt;Name&gt;Name&lt;/Name&gt;&#xA;    &lt;Building_x0020_and_x0020_street_x0020_or_x0020_farm_x0020_name&gt;Building and street, or farm name&lt;/Building_x0020_and_x0020_street_x0020_or_x0020_farm_x0020_name&gt;&#xA;    &lt;Town_x0020_or_x0020_city&gt;Town or city&lt;/Town_x0020_or_x0020_city&gt;&#xA;    &lt;County&gt;County&lt;/County&gt;&#xA;    &lt;Country&gt;Country&lt;/Country&gt;&#xA;    &lt;Postcode&gt;Postcode&lt;/Postcode&gt;&#xA;    &lt;Telephone_x0020_Number&gt;Telephone Number&lt;/Telephone_x0020_Number&gt;&#xA;    &lt;Contact_x0020_Email_x0020_Address&gt;Contact Email Address&lt;/Contact_x0020_Email_x0020_Address&gt;&#xA;    &lt;We_x0020_store_x0020_them&gt;We store them&lt;/We_x0020_store_x0020_them&gt;&#xA;    &lt;We_x0020_use_x0020_or_x0020_apply_x0020_them&gt;We use them, or apply them&lt;/We_x0020_use_x0020_or_x0020_apply_x0020_them&gt;&#xA;    &lt;We_x0020_are_x0020_a_x0020_business_x0020_or_x0020_organisation_x0020_in_x0020_the_x0020_agriculture_x002C__x0020_horticulture_x002C__x0020_amenity_x0020_or_x0020_forestry_x0020_sector_x0020_and_x0020_have_x0020_professional_x0020_PPP_x0027_s_x0020_applied_x0020_by_x0020_a_x0020_third_x0020_party&gt;We are a business or organisation in the agriculture, horticulture, amenity or forestry sector and have professional PPPs applied by a third party&lt;/We_x0020_are_x0020_a_x0020_business_x0020_or_x0020_organisation_x0020_in_x0020_the_x0020_agriculture_x002C__x0020_horticulture_x002C__x0020_amenity_x0020_or_x0020_forestry_x0020_sector_x0020_and_x0020_have_x0020_professional_x0020_PPP_x0027_s_x0020_applied_x0020_by_x0020_a_x0020_third_x0020_party&gt;&#xA;    &lt;Quantity&gt;Quantity&lt;/Quantity&gt;&#xA;    &lt;We_x0020_work_x0020_in_x0020_the_x0020_agriculture_x0020__x002F__x0020_horticulture_x0020_sector&gt;We work in the agriculture / horticulture sector&lt;/We_x0020_work_x0020_in_x0020_the_x0020_agriculture_x0020__x002F__x0020_horticulture_x0020_sector&gt;&#xA;    &lt;We_x0020_work_x0020_in_x0020_the_x0020_amenities_x0020_sector&gt;We work in the amenities sector&lt;/We_x0020_work_x0020_in_x0020_the_x0020_amenities_x0020_sector&gt;&#xA;    &lt;We_x0020_work_x0020_in_x0020_the_x0020_forestry_x0020_sector&gt;We work in the forestry sector&lt;/We_x0020_work_x0020_in_x0020_the_x0020_forestry_x0020_sector&gt;&#xA;    &lt;Other&gt;Other&lt;/Other&gt;&#xA;    &lt;Sender_x0020_Email&gt;Sender Email&lt;/Sender_x0020_Email&gt;&#xA;    &lt;Registration_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;Registration Timestamp (date and time received)&lt;/Registration_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;&#xA;    &lt;Update_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;Update Timestamp (date and time received)&lt;/Update_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;&#xA;    &lt;Business_x0020_Closed_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;Site Closed (date and time received)&lt;/Business_x0020_Closed_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;&#xA;    &lt;Date_x0020_timestamp_x0020_processed&gt;Date timestamp processed&lt;/Date_x0020_timestamp_x0020_processed&gt;&#xA;    &lt;User_x0020_who_x0020_processed&gt;User who processed&lt;/User_x0020_who_x0020_processed&gt;&#xA;  &lt;/TableName&gt;&#xA;&lt;/NewDataSet&gt;" />
+    <ui:FileExistsX DisplayName="File Exists - Consolidated List" Exists="[booExists]" sap:VirtualizedContainerService.HintSize="484,135.333333333333" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[IN_FilePath]" />
+    <If Condition="[booExists=False]" DisplayName="If file does not exist:" sap:VirtualizedContainerService.HintSize="484,268.666666666667" sap2010:WorkflowViewState.IdRef="If_6">
+      <If.Then>
+        <ui:WriteRange AddHeaders="False" DataTable="[datHeaders]" DisplayName="Write Range - Add titles" sap:VirtualizedContainerService.HintSize="334,114.666666666667" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="Sheet1" StartingCell="A1" WorkbookPath="[IN_FilePath]" />
+      </If.Then>
+    </If>
+    <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" UserName="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope - Upload new weekly file" sap:VirtualizedContainerService.HintSize="484,344.666666666667" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_1" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SharePointInstanceType="WebLogin" URL="[IN_dictConfig(&quot;Sharepoint URL&quot;).ToString]">
+      <usa:SharepointApplicationScope.Body>
+        <ActivityAction x:TypeArguments="us:SharePointContextInfo">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="312.666666666667,200" sap2010:WorkflowViewState.IdRef="Sequence_58">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="s:String[]" Name="strNames" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <usal:UploadFile AttachmentsAction="{x:Null}" PropertiesToAdd="{x:Null}" RelativeUrlHintText="{x:Null}" AllowOperationsOnASPXFiles="False" AllowOverwrite="True" CheckInFileAfterCreation="True" CheckOutFileBeforeOverwrite="False" ChooseFile="True" DisplayName="Upload weekly file" sap:VirtualizedContainerService.HintSize="270.666666666667,108" sap2010:WorkflowViewState.IdRef="UploadFile_1" LocalPath="[IN_FilePath]" LocalPathHintText="The current local path of the file" RelativeUrl="[IN_dictConfig(&quot;Sharepoint Weekly File URL&quot;).tostring+Today.AddDays(-CInt(Today.DayOfWeek-1)).ToString(&quot;dd.MM.yyyy&quot;)+&quot;.xlsx&quot;]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+          </Sequence>
+        </ActivityAction>
+      </usa:SharepointApplicationScope.Body>
+    </usa:SharepointApplicationScope>
+    <ui:CommentOut DisplayName="Comment Out - GUI" sap:VirtualizedContainerService.HintSize="484,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="876.666666666667,2458" sap2010:WorkflowViewState.IdRef="Sequence_59">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:BlockUserInput TimeoutMS="{x:Null}" BlockType="All" DisplayName="Block User Input" sap:VirtualizedContainerService.HintSize="834.666666666667,2366" sap2010:WorkflowViewState.IdRef="BlockUserInput_1" KeyModifiers="Alt" SpecialKey="True">
+            <ui:BlockUserInput.Body>
+              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="798,2238" sap2010:WorkflowViewState.IdRef="Sequence_57">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Sharepoint Upload File" sap:VirtualizedContainerService.HintSize="756,2146" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" InteractionMode="Simulate" ScopeGuid="ac10b4ea-03fd-4ee5-86e0-d00a60aa3f3d" Version="V1" WindowResize="Maximize">
+                  <uix:NApplicationCard.Body>
+                    <ActivityAction x:TypeArguments="x:Object">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="722,1928" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <TryCatch DisplayName="Try Catch - Upload" sap:VirtualizedContainerService.HintSize="680,344" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                          <TryCatch.Try>
+                            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Upload'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="False">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition Position="Center">
+                                  <ui:CursorPosition.OffsetX>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetX>
+                                  <ui:CursorPosition.OffsetY>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetY>
+                                </ui:CursorPosition>
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1a5567cd-bad8-4b5f-88cc-7fe6122fce4a" InformativeScreenshot="aac4534c769fc378ee75d22140f25f11" Selector="&lt;html app='msedge.exe' htmlwindowname='{}' title='*' /&gt;&lt;webctrl aria-role='menuitem' name='Upload' tag='BUTTON' type='button' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:Click.Target>
+                            </ui:Click>
+                          </TryCatch.Try>
+                          <TryCatch.Catches>
+                            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.666666666667,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ActivityAction x:TypeArguments="s:Exception">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                </ActivityAction.Argument>
+                                <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Upload" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                                  <ui:Click.CursorPosition>
+                                    <ui:CursorPosition Position="Center">
+                                      <ui:CursorPosition.OffsetX>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetX>
+                                      <ui:CursorPosition.OffsetY>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetY>
+                                    </ui:CursorPosition>
+                                  </ui:Click.CursorPosition>
+                                  <ui:Click.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="548945d4-4818-4e3f-b073-be5b5ffa068e" InformativeScreenshot="61a18fc0d3c83f8758d4f0d2255d8488" Selector="&lt;html app='msedge.exe' htmlwindowname='{}' title='*' /&gt;&lt;webctrl aaname='' parentid='appRoot' parentname='Upload' tag='I' title='*' /&gt;">
+                                      <ui:Target.TimeoutMS>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:Target.TimeoutMS>
+                                      <ui:Target.WaitForReady>
+                                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                                      </ui:Target.WaitForReady>
+                                    </ui:Target>
+                                  </ui:Click.Target>
+                                </ui:Click>
+                              </ActivityAction>
+                            </Catch>
+                          </TryCatch.Catches>
+                        </TryCatch>
+                        <TryCatch DisplayName="Try Catch - Files" sap:VirtualizedContainerService.HintSize="680,344" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                          <TryCatch.Try>
+                            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Files'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="False">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition Position="Center">
+                                  <ui:CursorPosition.OffsetX>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetX>
+                                  <ui:CursorPosition.OffsetY>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetY>
+                                </ui:CursorPosition>
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="835a8c16-de75-4a63-9161-456b935b6e00" InformativeScreenshot="63cd3ddbc8042ef5772e1c8cb2c48d93" Selector="&lt;html app='msedge.exe' htmlwindowname='{}' title='*' /&gt;&lt;webctrl aria-role='menuitem' name='Files' tag='BUTTON' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:Click.Target>
+                            </ui:Click>
+                          </TryCatch.Try>
+                          <TryCatch.Catches>
+                            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.666666666667,22" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ActivityAction x:TypeArguments="s:Exception">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                </ActivityAction.Argument>
+                                <Sequence sap:VirtualizedContainerService.HintSize="376,506.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_56">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Send Hotkey - Clear" sap:VirtualizedContainerService.HintSize="334,120" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="esc" KeyModifiers="None">
+                                    <ui:SendHotkey.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="1361d778-bd58-4902-b57e-46864c0ac2d2">
+                                        <ui:Target.TimeoutMS>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:Target.TimeoutMS>
+                                        <ui:Target.WaitForReady>
+                                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                                        </ui:Target.WaitForReady>
+                                      </ui:Target>
+                                    </ui:SendHotkey.Target>
+                                  </ui:SendHotkey>
+                                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Upload'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="False">
+                                    <ui:Click.CursorPosition>
+                                      <ui:CursorPosition Position="Center">
+                                        <ui:CursorPosition.OffsetX>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:CursorPosition.OffsetX>
+                                        <ui:CursorPosition.OffsetY>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:CursorPosition.OffsetY>
+                                      </ui:CursorPosition>
+                                    </ui:Click.CursorPosition>
+                                    <ui:Click.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1a5567cd-bad8-4b5f-88cc-7fe6122fce4a" InformativeScreenshot="aac4534c769fc378ee75d22140f25f11" Selector="&lt;html app='msedge.exe' htmlwindowname='{}' title='*' /&gt;&lt;webctrl aria-role='menuitem' name='Upload' tag='BUTTON' type='button' /&gt;">
+                                        <ui:Target.TimeoutMS>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:Target.TimeoutMS>
+                                        <ui:Target.WaitForReady>
+                                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                                        </ui:Target.WaitForReady>
+                                      </ui:Target>
+                                    </ui:Click.Target>
+                                  </ui:Click>
+                                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Files'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_9" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="False">
+                                    <ui:Click.CursorPosition>
+                                      <ui:CursorPosition Position="Center">
+                                        <ui:CursorPosition.OffsetX>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:CursorPosition.OffsetX>
+                                        <ui:CursorPosition.OffsetY>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:CursorPosition.OffsetY>
+                                      </ui:CursorPosition>
+                                    </ui:Click.CursorPosition>
+                                    <ui:Click.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="835a8c16-de75-4a63-9161-456b935b6e00" InformativeScreenshot="63cd3ddbc8042ef5772e1c8cb2c48d93" Selector="&lt;html app='msedge.exe' htmlwindowname='{}' title='*' /&gt;&lt;webctrl aria-role='menuitem' name='Files' tag='BUTTON' /&gt;">
+                                        <ui:Target.TimeoutMS>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:Target.TimeoutMS>
+                                        <ui:Target.WaitForReady>
+                                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                                        </ui:Target.WaitForReady>
+                                      </ui:Target>
+                                    </ui:Click.Target>
+                                  </ui:Click>
+                                </Sequence>
+                              </ActivityAction>
+                            </Catch>
+                          </TryCatch.Catches>
+                        </TryCatch>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type In File Name" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="680,220" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="HardwareEvents" ScopeIdentifier="ac10b4ea-03fd-4ee5-86e0-d00a60aa3f3d" Text="[IN_FilePath]" Version="V1">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable DesignTimeRectangle="201, 470, 514, 15" ElementType="InputBox" FriendlyName="'Edit'" FullSelectorArgument="&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;" Guid="0bd9de71-ef49-439f-aa37-241548b92302" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAgYAAAATCAYAAADru8WhAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAABiSURBVHhe7dYxEQAwCAAx/JumC/cmmqjILADAEQMAIMVgxhEA4HdiAABEDACAiAEAEDEAACIGAEDEAACIGAAAEQMAIGIAAEQMAICIAQAQMQAAIgYAQMQAAIgNAAARAwDg7D5uVApdcH5/QQAAAABJRU5ErkJggg==" InformativeScreenshot="742d5c515de125f2e27274a85812fb5b.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='#32770' title='Open' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target DesignTimeRectangle="138, 469, 54, 15" ElementType="Text" FriendlyName="'File &amp;name'" FullSelectorArgument="&lt;wnd ctrlid='1090' title='File &amp;amp;name:' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1090' title='File &amp;amp;name:' check:text='File &amp;amp;name:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADoAAAATCAYAAADBGB7WAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAEASURBVFhH7VPRFcMgCHQq52EbhnEXZ3EDKokmaIkmTT8a68e9hwaOuwgmhED/gGl0NEyjo0EYdQTGkBGw6Cl4JGssoc85OX4WKqM9E9Poz+OEUXlf5SxjnUcdyBV1jJSPUK5D+u5gXxMDrqxxOze4QB6tyqFqcLGfRfI5J6K5o9zg2KiMIyJ5IUByZhMsoPVDNt5Yk4UuNcJcwXGggXPaRkWRei/i4k8mbK+i1SrnZGKF0qPHcUrDiptGtdeR6InM9Z7QKj0ucbRxY0c5rvblDTWnOMvxWgRrPXpnjhUNXx1d/laPzqXR5VdMdRYIPnlRPmsa2kbHxjQ6GqbRsRDoBaFqBwMxkChkAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NClick ClickType="Single" DisplayName="Click 'Open'" sap:VirtualizedContainerService.HintSize="680,158" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ac10b4ea-03fd-4ee5-86e0-d00a60aa3f3d" Version="V1">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable DesignTimeRectangle="747, 494, 88, 26" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Open' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Open' check:text='unchecked' /&gt;" Guid="3fed51dc-a0d6-45e2-a811-b77c2b3308ef" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFwAAAAeCAYAAAChf3k/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAEzSURBVGhD7ZbBEYQgDEXpiW6oZG+0QitUsWc7sIOsKChB3HFGN8LOP7xDMHB4gT+qcRwJyAHhwkC4MEy4er3BD2COWVFpBtdhjlkRG4ZhADcA4cJAuDAQLgyEC9OucGdIKbWira/3dUabwmfZmqxPa56s/g/pDQpf5BpXrHtLWhly+VqHtCf8UGwYRLr1jkx4AS70ViJnPiPFUTor7rFbVD3xYtoUri353bf85gd5k7TUNwsuhpHiaIqnRWzcY9y6vg1DjjaFn73ha8YP5EwcBrvdkVlyuWd/hgTtCT+V4aWsbM/hwCD8mN1zD3LyzC3q3TBq+Qzh3yn+w/mNX2QZo+vfy1hBpFzlGVl3AOHCQLgwnQrvFwgXBsKFOS0c3AtzzIpKM7gOc5wX4PdAuDAQLspIHzXPr3L4gVkTAAAAAElFTkSuQmCC" InformativeScreenshot="60a9fa4ce3ec71acf51b370aaa5d77f8.png" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='#32770' title='Open' /&gt;" SearchSteps="Selector, FuzzySelector, Image" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <uix:NCheckState Exists="{x:Null}" DisplayName="Check App State 'Notify your team'" sap:VirtualizedContainerService.HintSize="680,409.333333333333" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="ac10b4ea-03fd-4ee5-86e0-d00a60aa3f3d" Timeout="60" Version="V1">
+                          <uix:NCheckState.IfExists>
+                            <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="376,189.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_52">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;New weekly upload complete&quot;]" />
+                            </Sequence>
+                          </uix:NCheckState.IfExists>
+                          <uix:NCheckState.IfNotExists>
+                            <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="250,116.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Throw Exception="[new exception(&quot;Error uploading file&quot;)]" sap:VirtualizedContainerService.HintSize="208,22" sap2010:WorkflowViewState.IdRef="Throw_5" />
+                            </Sequence>
+                          </uix:NCheckState.IfNotExists>
+                          <uix:NCheckState.Target>
+                            <uix:TargetAnchorable BrowserURL="https://defra.sharepoint.com/teams/Team430/OCR%20Phase%202%20Registrations/Forms/AllItems.aspx?xsdata=MDN8MDF8fDJkZGE5YmE0OWJlZTQ2ZDg4N2VkOTQyMmI5M2E0MGQ1fDc3MGEyNDUwMDIyNzRjNjI5MGM3NGUzODUzN2YxMTAyfDF8MHw2Mzc4MDYwMTUyNTg1MTIwOTJ8R29vZHxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazkwYUdWeUlpd2lWMVFpT2pFeGZRPT0%3D&amp;sdata=VjQvdDFNdVRWM2VQVU5xL1pjTWpUVGQwdThwbm1Md2FPUTB6U21DME03RT0%3D&amp;ovuser=770a2450%2D0227%2D4c62%2D90c7%2D4e38537f1102%2CKai%2ELumber%40defra%2Egov%2Euk&amp;OR=Teams%2DHL&amp;CT=1645213319405&amp;sourceId=&amp;params=%7B%22AppName%22%3A%22Teams%2DDesktop%22%2C%22AppVersion%22%3A%2227%2F22010300411%22%7D&amp;id=%2Fteams%2FTeam430%2FOCR%20Phase%202%20Registrations%2FMaster%20Lists&amp;viewid=8c7bfcc7%2De474%2D4f85%2Dada9%2Dcb707f8f0bc5" DesignTimeRectangle="1600, 371, 105, 20" ElementType="Button" FriendlyName="'Notify your team'" FullSelectorArgument="&lt;webctrl aaname='Notify your team' tag='BUTTON' type='button' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Notify your team' tag='BUTTON' type='button' check:text='Notify your team' /&gt;" Guid="d0aedf78-c751-4a05-b6f6-c6079f9f0d88" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAG0AAAAYCAYAAADwF3MkAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAKcSURBVGhD7Za/T1VBEIX9W6htocXKxsROKbG0tbGw1NbEkhoKQiigICEWVkYaMMbYGSsLqEhIqOyWfI934Dh3748XeOEu7Jds7t7d2ZnZOXf3vUepUhxVtAKpohVIFa1AqmgFUkUrkCpagfwn2taf/bSw8TS9P1ybjlzz6su77PhQvh5/T4vbLydPgU/i8awMpyEahX2yu5r+np9MRy+ZVTRsu8Qg1rO91+ns3/l0pBxu+gHflIZoFPLF5zeNgt+2aH3zY2aUov06/Z2Wtlcm7yImyknEhuuNRl+nE1uN0/DDHCeY6zHOfzhaa5zu3HUKuYIxRoOuvDwH4SeeRv/twcf0ePN54ybQvHxjI1/4yY0D+WqOprrK36ef61c5sw+PE31BVjQW0Y9CqFgqjBePvm+SdxUSYsF8XklqMxDXC88R3G9fXjEHcH/Kw/3n8FpArFX0yUcgf54Pjb7WKn8XilixDq2igSfn/WgHsSDYerC++VzxGIvEOV/Xl1fMAYbGdbwWEN/xw0+MxxGMkQO55OLhq60uolM0AuiK8sRiwSEmEG1mEZXGpj1Rx9fybIsJntc8RNMav/7U5Ienj+tk5eLhV77B8xOdogEOGKOIcpazo+9fF7ZtokCcBxVDrQ184OvbyY9JHviGvrzmIRrw3rYm5qTc5yqaHPOFyBkBu3479D6raMwt76xebaoL1mLrOfTlpb1oXvZxvk0AEUXDXqcngp3vk/e5nzSgmPw4ujNtWEc+rvN5/PLeJ5o2Ecdz4DP3z6ovL+2FOez45yYbxfci5pAPj89+FNPjxnw49bd60u6aoUWD3GYeCqMSjS9siBD6eoeIex8ZhWi6bhACQbrg6uSa8SvkoTGqk1YZRhWtQKpoBVJFK46ULgDZeYRHD4U9NQAAAABJRU5ErkJggg==" InformativeScreenshot="131b4062adaa44d0438010eff66c1185.png" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='{}' title='CPHW Pesticides - Master Lists - All Documents' /&gt;" SearchSteps="FuzzySelector" />
+                          </uix:NCheckState.Target>
+                        </uix:NCheckState>
+                        <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" Activate="True" DisplayName="Remove edge pop ups" sap:VirtualizedContainerService.HintSize="680,158" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="esc" KeyModifiers="None" SendWindowMessages="True" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4cf3e122-8a8e-4da8-be6a-8959e8abf50c" InformativeScreenshot="d6cf99790156931c4d5ed5504c264c8c" Selector="&lt;html app='msedge.exe' htmlwindowname='{}' title='*' /&gt;" WaitForReady="COMPLETE">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                            </ui:Target>
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                      </Sequence>
+                    </ActivityAction>
+                  </uix:NApplicationCard.Body>
+                  <uix:NApplicationCard.TargetApp>
+                    <uix:TargetApp Area="-1928, -8, 1936, 1056" BrowserType="Edge" IconBase64="iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAA9sSURBVGhDvdp3VJRnvgdwEgu9STG7d+/x7jk3e06iKIo0xRIr0nsVEXsXpUgVBGkqTexiLBujq7uaeIyKBniHmYGhDDPAMLTBgkRsuWw2uWaz7uV7f+/7zggqiEbjc8738Jfw/TzP733fKWq9izWJuR85kbnHUHqtBHeeThDcwgTBTYqK0oEJFW2wErbAStRMaeqdVClXWVdJL06R1Dipf8X7XzZMb+QU5pHKmrnfZ830YCLTDSumC1aC2+rynRhP5cdXtBOgBROESrY8pREEAAEwWVKDqTVVT21rhTIHadn7wUxlfoik8r02zP+AAJjMPAALmESAiRyg6wVAG4UFNFN4gJWogQdU1bEA2NaK4FhfBif5td5ZjZcj1X/q3S575n+d7Jgfe2yZf2Aq0wsb5nsO8Kw8FZ8ouENhx6eTQuU5QCsfoWIAQE6nUM8BplRL4CBlKCygBLObLmGO4kLPgpaz7+5EqHwxle9jy9syPxDg7wTgT8BacI/CAvjyVpq5F9DoCGj3BSygmQsPaKDIMFFcT6dQQ4BKOoEKDjCz4TIHWKA8i0WtX/S5tp8oVlf49cuBeSIjAAhA5dndZ8vzuz9FQONDgElqgBXtfD+ALd9CxZVc+U8rFHQKTYRgAfUEkKoBEtjXlcFR+i1myK+wu4+FLWfh1vE55Ri8bh5Sqau8+XJgflbZM0/QD2B3v5dCAMFDyn0CfEeAuwS4yQH40aFdp/KfCtjimigojVwm0AmwCOuqaroGRLCrFXAAJxkL+Bvm0wm4th+Hh+oIfG7tRUBX3o8h3Znj1LVebzky/1Q5Mj9TeQ2AHZ+/c+VtuPIPngHY0ZnI7T6785q51xRvGpDnARPFtZgioRGq0QCuqgFn4NKmARQhsGsPQrqznqirDb8cmV9kbHk6ATXgp0EA9zGZyltzF69m9tv40aG7Dr/jbOmGZ8X7w4/R5CoJplYLYccBrtMI0TXQ+Dea/xNwaz8KT9UB+N/ORVBXNsK+S8XS+/HDj9M05pdiCngAW57NjwT4gQDs+Dx+BpjCzf9tTKyg8angH1jsPZ+/aDXlNXkRIMUkcTVsJCyglAAldAKXMU9xBguVJ9WA/fC7lYfgriwCpCDiQTxWPtpyUV315TWN+ZcTpW8a808O4EjlHai8Pe2+He0+BxCwAHZ82LvP3QEAOgHunk8XKxe+6FDhroFKCZ1CJQeYJv2G230ecIIr73trD5VPp2Qg7F4ylj+IxqpHm/rWfr928FvsdOZpD7v7zwN+UgN6MeHSXfz3KQX+WFyPPx6jfC6lnzX4+C9yfHKtdQCg6ZWA8XQnYuffurKSToBuoXXXaPcvYVbDXzGnkW6hLcVwb98H7848GqFsAuxA+L1tWPlwI9Y+Xon13y/rUlfuX1Q+cjrzLyqvATzhMv58N36fVQ6TTX+G0XrK5rMw2XoOpjEX+ESdh+nWMzDddArmW07iP4tu4OOv6gctrskEIXsR1xGgigAM7Guucycwo/4C5jWdohM4Dre2g/DtzEHQnTQsvhuP8O+isOrheg6w9vFyQoQ//8QmQC8FGsSkrx7DNPoCDNZ/CcPICzCKvgTj2G9gEl8Ck8TrME2+gTHbv4UZlxuUEpgnXYVZ/Ncw23oalvGn8fE3spfKjxfK6S5UT4BaTK4UwlZSCoeaK1T+K8yWn8P8puNYpDwE97ZCeKt2wf9mOkK6EjnAivvrsOrBCqx5GEGAxT3q6lpaTsy/I53U5R1Kf8Yf8qTQX38O+lu+hkHUNzDcVgKjhFIYJwtgkiqCaVolTHdWYQzFLFMC80z6mVEJ851CWKSXw2LHt7BIugxzgvxH3hV8wjw/TuzuW4lquBGyldzgADOl5/GZ/EsOsFBxlAAFdAKZCLiZjMV3orHkbiSW3VuH1Q+WY82DJVj3KBQbHvvz1wIBVBQ4lv6CMcnl0Nt8CfpRV2AQex0GCQwMk8UwTpXAOL0OJpn1MM2WY0xOI8bsaoTZ7kaYUyz2yOlnPSx21cIiuwqWGUJYppfCIuFrfJR24RmCm39RNazFYkypLCNACQEuY4b0LD6TncT8hsNwVhyAqzIP3u07EdCZgJDbUQjv3oRl3Suw4rsIrLkfgnUPgwgQwN+RqHwfW96Mdld361XoRl+HXlw5DJLEMEipgWGaFEYZjTDOaoLxrmaY7m7BmNxWjMlrg1k+m1aYUywKlLDIb4ZFXgMs99TDMkcCy8wKWGy/io8yLnGICUIpASSYJBLRCDGYWnWdABcxs/5LzJEdxYKG/XBpzoe7MgterSkIuhmL0FubsaRrwzPAqnuhWN0TiA2PfHq0ZjD/FzmDdt+CdlYn6gZ0Y0qhFy+EXrIE+qlSGKQ3wjBTAaPsFirfBuPdbTDJbYdpXgfG5FMKVDArVMG8sAMWe1WUdkobLAuVsMxvwNg9dRibLYZlagn+sPcGvbGpovJCTBaXwUZcAnvJV7CvJkDdSQIcwQJ5AZwbcuHenAHv1iT4d8QguHMjwm6txNKulVjevYQAwRxgTY93n9bs0l9kn555CO3ocujECqATJ4Zucg30UmXQT2+CQYYShlmtMMxpg9GudgJ0wHhPB0zyVDDN7yQAGxbRCfO9nbAo6sTYovafLIvaj43d1751bEFT9Nhc2SnL7Mp/WKRcw58uVMJaJMAU8TUCXIGD5Dwcq8+pAYcIkA9neQ48mlPg3RILv7ZYBKk2IUS1CmE3IxB+OwwruoOw+p4fxQta06896TNMkUI7VgTtuEroJNVCN0UOvbQm6O9UQj+zFQZZbQTogOGuDhhxABWMc1XPEKYsggBmee0YF3v5PjeXgyzLnKovPsq8CmthCaaILmOq+CLsKv+C6dUnMLP2MObUFWCuNA+L5GnwUGyHtzIa/q0bEdS+CqGq5QQIJ0AoIm4HEMIXK7s9oGV19hFGb6ui8tXQSayDznY5dHc0QTddCb2MFuhntEI/qx0G2e2vRBhvK4O5X36ZuuuQyzKj4swnl8phI7oEW/E5OFR+Aafq45hVe4AAuZhfnw1nWRpc5EnwbIqCj3IL/FtWI7h9KRargrDkZgCW3vLFstteWHGXAOOOdGN0XA1GJ9RBO0kO7ZQm6OxQEqAFuhlt0Mvko0EY5BDkBYTRhq+hPy/1J3XHYdef/nylz0b4V9iLT1COE+AwZtbsx+zaQiyQptEJbIerPAYeTdHwVa6jrEZQGwsIRlhnEAH8COCJFXfcoGVGRUYl1GN0ogyjtzcSQAltAuikt0J3J4VFqCGDIQxjyqA/PxX6rru+VPcbdtmcLrlpKzwFO9FJOBBgWhUBqvMxpyYdc2tS4VwfC1dZJDwa1sOrcTV8mpYRIAyh7UEIU/khvNMHy265YfltF2gZZ7cRQIZRSY0EUGB0SjO0U1ugndbaj9g5BCKxmspvh75LNgzc8+PU/YZd9uevnbYV0u6LiuEoPoDp4lzMqsrEHEkK5lYnYn5NLBZJN8NNtg5eDRHwblwK/+ZQBLUEILTNB2Ht7ghXuSKi07lXa2RCA0ZS+VFJTRi1vZkASoxmATv6ETqDIejupOexi3Y+hy0PA699Mep+w66pgmNOdhUH4VBRCEdREQeYIU7HZ1VJBIgjQDQW1W2Em3QlPGXhBAhHQHMggpq9EdLqzQM6XLFU5XxRa0SiggBNGJms4ACjUlo4wLCItfS0ds6EgQdXHoY+h6LU/YZddoJ9xfaCAh5QsRvTRdkcYLY4DnMl27Cwej1calcTYDkBlsBbHgTfxiAEKjwRrPREaIsrwtpc+pa0zRtHgCZwiORmipIQlKEQ3EjxCF2XLH7nvffBwOcQDP2KBep+wy7b8r299kweAXIJkAMn4Q7MFCVhtigGc6uiMF+yAYtqlsFdGg73uhB4yYLhI/eGr9wTAY1uCFY4Y3HLQob7ZR8mKp6OSFJgRJKSA3AZDhFNT2p27j2LYODLlj8KQ//PX+s9q215YZZdeSG9x6DygjRMF2yHU0UKZgrjMUu4FXMqI7FAsgbO1RFwrQ2DBwE86/zhI/OEX4MHBwhSuPT/rQ8Tmns/TGwmAJuXEc8gGgRFN/w09NnR8TmoLn8MhgGfs4hXfhhlU5o/zrZsT59dWTbsyzPo/UYKARLhJIij8lEcYK54DRZULceCynAskoTArcaPAL7wqvOET707/OQuTwIaFvZ/QvFBQjNDCAxEjBgGoeeRB32aewPfw3x5fyrPA175pntqae44u7KMpxQ4lO+AY3kSvYSPJ0AMld+Mz4RrMFfIll+KhZWhWFQVCPdaP3jUesNbSgCpe49PvcvzH698EN8cSQi8CUKPLl59ze4HqHc/4DgP8T/2ys82qXygfdmOp47liZhWHofp5TEEiMasinUEWEWACMwTRWChOIQA/nCr9oZnrWefV5370G/mCdE3EMFDXkTwEO1Eep3kkgN9ze6zxZ8HPKUM+yGUQ1lC1rTyWNX08i1PZjAbMUuwFp9VrMScimWYL1qMBeLgvoXiwB5XiVexe43nq3/fB/EKFSHwMoLyAmJ0dBX0XHdD3+8IX5gDqMMD2Dwx8it+s0/S3mrFKwIJgSERmoubRdAzQ8+FBbDjQ4UDBwWAAIQ4+l4RvTyCMgxCbxE9A/yL+dJDAyhH+4x8j2Sp/8JvvOIUkYTgAcMgdP0OwoAdoeEBIACbXiOfw2/1eb+pa66TqeueYb78iFP0UIZF6Cy7AH3vA1T6lSM0EAACUA71GnsfLKa89miZuOVlUVQEAAFg6rL7FScap3Ci9A2HGBldS8+CAr6wpvzrAUDl+Xgd6DX22i8z9trHGHvuizT2LIo08dhLKbxo4l7ImLgX9Jq45fdRebBRA/oIMMxJximyWMCLCA4yAKHrvReGVIwvr4a8GYCyn7IPBKAUgQCUQhCAUkDF87nyAwCv+Y1NnEL2EkJzh1IjRm0W0CvRQipOhd8PQKZu95orTqEaEqGG6AZSYe6BxgLY8r8Z4Fd+zTQA0X+H6keMiK2nF3V0LVBRvvxvAvj135Fxa8A4DYYYGV1DL+zoeuAQfPl3CHjDsRlq8Rc2d3caFBHFIor4i5p9wL09oI8A7/gByN9iuefEUAi9ADoF7lWquvyvA/QQ4K0eeq9e7BM7TtE71FNbeyW9V/bez5Xly1NxNsMDegnw2/w3g0FXnCKQEPQqVtH3ImJEfCO015dCL+wMjGhnjagwFzodY3qCG6uBhsEnYOxe0EmA91h8kEWASApDiF5CPNU8KzQvPUbH1kE7RgLdSAFMt5T9+3dRpT/8V+y3IvU/f4ulpfX/NiSyh5D7XicAAAAASUVORK5CYII=" InformativeScreenshot="8975fd089269ce85b1547561ad5b624b.png" Selector="&lt;html app='msedge.exe' htmlwindowname='{}' title='*' /&gt;" Url="[IN_Weekly_URL]" />
+                  </uix:NApplicationCard.TargetApp>
+                </uix:NApplicationCard>
+              </Sequence>
+            </ui:BlockUserInput.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:BlockUserInput>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:Delete ContinueOnError="{x:Null}" DisplayName="Delete Local Copy" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[IN_FilePath]" />
+  </Sequence>
+</Activity>

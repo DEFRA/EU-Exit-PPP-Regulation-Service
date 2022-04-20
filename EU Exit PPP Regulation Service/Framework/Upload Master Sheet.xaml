@@ -12,6 +12,8 @@
     <x:Property sap2010:Annotation.AnnotationText="base file name of weekly sheets without the date and extension" Name="IN_FileName" Type="InArgument(x:String)" />
     <x:Property Name="IN_PPP_Robot_Link" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="need array of the folders to click from the root in order to move. look at curret filled in example to replacte for live" Name="IN_Archive_Pathway" Type="InArgument(x:String)" />
+    <x:Property Name="IN_strWorkingFolder" Type="InArgument(x:String)" />
+    <x:Property Name="IN_dictConfig" Type="InArgument(scg:Dictionary(x:String, ui:GenericValue))" />
   </x:Members>
   <this:Flowchart.IN_Archive_Pathway>
     <InArgument x:TypeArguments="x:String">
@@ -21,7 +23,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1386,857.333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1447.33333333333,857.333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Flowchart_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="26">
@@ -54,7 +56,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="33">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="66">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -88,6 +90,8 @@
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
       <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
+      <AssemblyReference>UiPathTeam.SharePoint</AssemblyReference>
+      <AssemblyReference>OfficeDevPnP.Core</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Flowchart" sap:VirtualizedContainerService.HintSize="1100.66666666667,792.666666666667" sap2010:WorkflowViewState.IdRef="Flowchart_1">
@@ -125,20 +129,40 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <FlowDecision.True>
-        <FlowStep x:Name="__ReferenceID5">
+        <FlowStep x:Name="__ReferenceID9">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <av:Point x:Key="ShapeLocation">29.666666666667,277.166666666667</av:Point>
-              <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
+              <av:Point x:Key="ShapeLocation">29.666666666667,268.833333333334</av:Point>
+              <av:Size x:Key="ShapeSize">200,69.3333333333333</av:Size>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message - Already Processing" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Another user is already updating the master consolidated sheet. proceeding to main process.&quot;]">
+          <Sequence DisplayName="Log and continue" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_51">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-          </ui:LogMessage>
+            <If Condition="[strPPP_Robot_Link.Contains(&quot;updating&quot;)]" sap:VirtualizedContainerService.HintSize="714,248.666666666667" sap2010:WorkflowViewState.IdRef="If_4">
+              <If.Then>
+                <ui:LogMessage DisplayName="Log Message - Already Processing" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Another user is already updating the master consolidated sheet. Proceeding to main process.&quot;]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:LogMessage>
+              </If.Then>
+              <If.Else>
+                <ui:LogMessage DisplayName="Log Message - Up to date" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;The master consolidated sheet has already been updated. Proceeding to main process&quot;]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:LogMessage>
+              </If.Else>
+            </If>
+          </Sequence>
         </FlowStep>
       </FlowDecision.True>
       <FlowDecision.False>
@@ -167,13 +191,13 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:SetAsset>
-            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Weekly List" sap:VirtualizedContainerService.HintSize="434,544.666666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="Simulate" ScopeGuid="e7ccfe7e-b86b-49f6-b0f6-84b3265c1141" Version="V1">
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Weekly List" sap:VirtualizedContainerService.HintSize="434,582.666666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="Simulate" ScopeGuid="e7ccfe7e-b86b-49f6-b0f6-84b3265c1141" Version="V1">
               <uix:NApplicationCard.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,326.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,364.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_50">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -193,12 +217,12 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </Assign>
-                    <ui:UiElementExists DisplayName="Last weeks present to upload?" Exists="[booFileExists]" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
+                    <ui:UiElementExists DisplayName="Element Exists - File Name" Exists="[booFileExists]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
                       <ui:UiElementExists.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="21f4f341-2956-4360-837d-4ebd749692ad" Selector="[String.Format(&quot;&lt;html app='msedge.exe' htmlwindowname='{{}}' title='{0}' /&gt;&lt;webctrl aaname='{1}' /&gt;&quot;, IN_Weekly_SharePointTitle, strLastWeek_FileName)]" WaitForReady="COMPLETE">
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:Target.TimeoutMS>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b318b12c-798d-456e-9667-d12481d0eecf" InformativeScreenshot="a5f3fd3c2dc74234a6f3af8060fded51" Selector="[String.Format(&quot;&lt;webctrl aria-role='link' parentid='row*' tag='BUTTON' type='button' aaname='{0}' /&gt;&quot;, strLastWeek_FileName)]" TimeoutMS="10000">
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
                         </ui:Target>
                       </ui:UiElementExists.Target>
                     </ui:UiElementExists>
@@ -239,6 +263,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box - Upload Warning" sap:VirtualizedContainerService.HintSize="530,85.3333333333333" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Weekly load into the Consolidated Master List on Sharepoint.&quot;+environment.newline+environment.NewLine+&quot;Click OK to continue.&quot;]" />
                     <Assign DisplayName="Set file path for last weeks's sheet" sap:VirtualizedContainerService.HintSize="530,62" sap2010:WorkflowViewState.IdRef="Assign_11">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[strFULL_FilePath_LastWeek]</OutArgument>
@@ -263,7 +288,7 @@
                         </ui:DeleteFileX>
                       </If.Else>
                     </If>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CheckInOutStatusAmended workflow" sap:VirtualizedContainerService.HintSize="530,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Framework\Get File - Amended.xaml">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Get File - Amended" sap:VirtualizedContainerService.HintSize="530,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Framework\Get File - Amended.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">[strLastWeek_FileName]</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="IN_SharePointURL">[IN_Weekly_URL]</InArgument>
@@ -291,7 +316,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <FlowDecision.True>
-                        <FlowStep x:Name="__ReferenceID6">
+                        <FlowStep x:Name="__ReferenceID5">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <av:Point x:Key="ShapeLocation">32.3333333333334,524.833333333333</av:Point>
@@ -299,7 +324,11 @@
                               <av:PointCollection x:Key="ConnectorLocation">132.333333333333,594.166666666667 132.333333333333,644.166666666667</av:PointCollection>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Sequence DisplayName="Upload to Master &amp; Archive Weekly" sap:VirtualizedContainerService.HintSize="572,2419.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                          <Sequence DisplayName="Upload to Master &amp; Archive Weekly" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                            <Sequence.Variables>
+                              <Variable x:TypeArguments="sd:DataTable" Name="datHeaders" />
+                              <Variable x:TypeArguments="x:Boolean" Name="booExists" />
+                            </Sequence.Variables>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -320,7 +349,7 @@
                             </Assign>
                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Check In OR Out - Amended workflow" sap:VirtualizedContainerService.HintSize="530,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Framework\Check In OR Out - Amended.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">[IN_FileName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">[IN_MasterSheet_FileName]</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">[IN_Master_URL]</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="IN_CheckInOrOut">out</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">[IN_MasterSheet_SharePointTitle]</InArgument>
@@ -347,10 +376,10 @@
                                 <InArgument x:TypeArguments="x:Int32" x:Key="IN_FileDownloadWait_Seconds">180</InArgument>
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
-                            <ui:RetryScope sap2010:Annotation.AnnotationText="bizarre excel error occurs someimes - This segment tries to kill and retry excel merge" DisplayName="Consolidate Excel - Weekly to Master" sap:VirtualizedContainerService.HintSize="530,734" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="2" RetryInterval="00:00:00">
+                            <ui:RetryScope sap2010:Annotation.AnnotationText="bizarre excel error occurs someimes - This segment tries to kill and retry excel merge" DisplayName="Consolidate Excel - Weekly to Master" sap:VirtualizedContainerService.HintSize="530,653.333333333333" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="2" RetryInterval="00:00:00">
                               <ui:RetryScope.ActivityBody>
                                 <ActivityAction>
-                                  <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="476,556.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                  <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="476,476" sap2010:WorkflowViewState.IdRef="Sequence_22">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -383,21 +412,7 @@
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
                                     </ui:ExcelApplicationScope>
-                                    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Update Master Sheet" sap:VirtualizedContainerService.HintSize="434,195.333333333333" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_6" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[string.Format(&quot;C:\Users\{0}\Downloads\{1}&quot;,Environment.UserName,IN_MasterSheet_FileName)]">
-                                      <ui:ExcelApplicationScope.Body>
-                                        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                                          <ActivityAction.Argument>
-                                            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                                          </ActivityAction.Argument>
-                                          <ui:ExcelAppendRange DataTable="[dtaWeeklySheet]" DisplayName="Append Range - Weekly to Master" sap:VirtualizedContainerService.HintSize="334,86.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_3" SheetName="Sheet1" />
-                                        </ActivityAction>
-                                      </ui:ExcelApplicationScope.Body>
-                                      <sap:WorkflowViewStateService.ViewState>
-                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                        </scg:Dictionary>
-                                      </sap:WorkflowViewStateService.ViewState>
-                                    </ui:ExcelApplicationScope>
+                                    <ui:AppendRange DataTable="[dtaWeeklySheet]" DisplayName="Append Range - Weekly to Master" sap:VirtualizedContainerService.HintSize="434,114.666666666667" sap2010:WorkflowViewState.IdRef="AppendRange_1" SheetName="Sheet1" WorkbookPath="[string.Format(&quot;C:\Users\{0}\Downloads\{1}&quot;,Environment.UserName,IN_MasterSheet_FileName)]" />
                                   </Sequence>
                                 </ActivityAction>
                               </ui:RetryScope.ActivityBody>
@@ -408,6 +423,7 @@
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </ui:RetryScope>
@@ -427,22 +443,12 @@
                                 <InArgument x:TypeArguments="x:String" x:Key="IN_Check_In_Comment">[IN_CheckIn_Comment]</InArgument>
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
-                            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="530,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[strLastWeek_FileName]" />
-                            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="530,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[IN_Archive_Pathway]" />
                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Move File - Amended workflow" sap:VirtualizedContainerService.HintSize="530,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Framework\Move File - Amended.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">
-                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_Weekly_URL" />
-                                </InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">
-                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strLastWeek_FileName" />
-                                </InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_Destination">
-                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_Archive_Pathway" />
-                                </InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">
-                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_Weekly_SharePointTitle" />
-                                </InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_Sharepoint_URL">[IN_Weekly_URL]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_FileName">[strLastWeek_FileName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_Destination">[IN_Archive_Pathway]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_SharepointTitle">[IN_Weekly_SharePointTitle]</InArgument>
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
                             <ui:DeleteFileX DisplayName="Delete File - Local master" sap:VirtualizedContainerService.HintSize="530,80.6666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_7" Path="[strFULL_FilePath_Master]">
@@ -461,7 +467,7 @@
                             </ui:DeleteFileX>
                           </Sequence>
                           <FlowStep.Next>
-                            <FlowStep x:Name="__ReferenceID7">
+                            <FlowStep x:Name="__ReferenceID6">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <av:Point x:Key="ShapeLocation">32.3333333333334,644.166666666667</av:Point>
@@ -474,27 +480,31 @@
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:SetAsset TimeoutMS="{x:Null}" AssetName="[IN_PPP_Robot_Link]" DisplayName="Set Asset - Current Monday" FolderPath="[IN_Orchestrator_Folder_Path]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="SetAsset_9" Value="[Today.AddDays(1-cint(Today.DayOfWeek)).ToString(&quot;dd/MM/yyyy&quot;)]">
+                                <ui:SetAsset TimeoutMS="{x:Null}" AssetName="[IN_PPP_Robot_Link]" DisplayName="Set Asset - Current Monday" FolderPath="[IN_Orchestrator_Folder_Path]" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="SetAsset_9" Value="[Today.AddDays(1-cint(Today.DayOfWeek)).ToString(&quot;dd/MM/yyyy&quot;)]">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                 </ui:SetAsset>
-                                <ui:LogMessage DisplayName="Log Message - Sheets Consolidated" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Sheets Consolidated&quot;]" />
-                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Framework\Pausepoint 1.xaml">
-                                  <ui:InvokeWorkflowFile.Arguments>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_strFormTitle">Pausepoint 1</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_strFormBody">Please check that the weekly data has been added to the consolidated list. Click continue if no errors were found.</InArgument>
-                                  </ui:InvokeWorkflowFile.Arguments>
-                                </ui:InvokeWorkflowFile>
+                                <ui:LogMessage DisplayName="Log Message - Sheets Consolidated" sap:VirtualizedContainerService.HintSize="484,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Sheets Consolidated&quot;]" />
+                                <If Condition="[IN_dictConfig(&quot;Pausepoint 1&quot;).tostring.tolower=&quot;true&quot;]" DisplayName="If PP1 is enabled:" sap:VirtualizedContainerService.HintSize="484,268" sap2010:WorkflowViewState.IdRef="If_5">
+                                  <If.Then>
+                                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Framework\Pausepoint 1.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_strFormTitle">Pausepoint 1</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_strFormBody">Please check that the weekly data has been added to the consolidated list. Click continue if no errors were found.</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                  </If.Then>
+                                </If>
                               </Sequence>
                             </FlowStep>
                           </FlowStep.Next>
                         </FlowStep>
                       </FlowDecision.True>
                       <FlowDecision.False>
-                        <FlowStep x:Name="__ReferenceID9">
+                        <FlowStep x:Name="__ReferenceID8">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <av:Point x:Key="ShapeLocation">582.333333333333,524.833333333333</av:Point>
@@ -529,7 +539,7 @@
                 </FlowStep>
               </FlowDecision.True>
               <FlowDecision.False>
-                <FlowStep x:Name="__ReferenceID8">
+                <FlowStep x:Name="__ReferenceID7">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <av:Point x:Key="ShapeLocation">833.333333333333,396.166666666667</av:Point>

@@ -1,19 +1,18 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="GetTransactionData" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="GetTransactionData" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="Transaction ID used for information and logging purposes. Ideally, the ID should be unique for each transaction. " Name="out_TransactionID" Type="OutArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_dictConfig" Type="InArgument(scg:Dictionary(x:String, ui:GenericValue))" />
-    <x:Property sap2010:Annotation.AnnotationText="Sequential counter of transaction items." Name="in_intTransactionNumber" Type="InArgument(x:Int32)" />
     <x:Property Name="out_mailTransactionItem" Type="OutArgument(snm:MailMessage)" />
     <x:Property Name="inout_intTransactionData" Type="InOutArgument(x:Int32)" />
     <x:Property Name="OUT_strSender" Type="OutArgument(x:String)" />
+    <x:Property Name="OUT_strDateTimeReceived" Type="OutArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1386,1630</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>930,3404.66666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetTransactionData_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="22">
+    <scg:List x:TypeArguments="x:String" Capacity="24">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -36,10 +35,12 @@
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
       <x:String>Microsoft.Activities</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="28">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="58">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -68,11 +69,19 @@
       <AssemblyReference>UiPath.MicrosoftOffice365.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Get Transaction Data" sap:VirtualizedContainerService.HintSize="526,1565.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Get Transaction Data" sap:VirtualizedContainerService.HintSize="940,3340" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="mailExtractedEmails" />
+      <Variable x:TypeArguments="x:Int32" Name="intAssetLimit" />
+      <Variable x:TypeArguments="x:Boolean" Name="booDismissed" />
+      <Variable x:TypeArguments="x:String" Name="strSelectedOption" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -80,145 +89,216 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetOutlookMailMessages Filter="{x:Null}" TimeoutMS="{x:Null}" Account="[in_dictConfig(&quot;Email Account&quot;).ToString]" DisplayName="Get Outlook Mail Messages - TransactionItems" GetAttachements="False" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="[in_dictConfig(&quot;Email Inbox Folder&quot;).ToString+&quot;\&quot;+in_dictConfig(&quot;User Email Subfolder&quot;).ToString]" MarkAsRead="False" Messages="[mailExtractedEmails]" OnlyUnreadMessages="False" Top="1" />
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="484,194" sap2010:WorkflowViewState.IdRef="TryCatch_1">
-      <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="304,151.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_4">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Assign Transaction Item" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_6">
-            <Assign.To>
-              <OutArgument x:TypeArguments="snm:MailMessage">[out_mailTransactionItem]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="snm:MailMessage">[mailExtractedEmails(0)]</InArgument>
-            </Assign.Value>
-          </Assign>
-        </Sequence>
-      </TryCatch.Try>
-      <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ActivityAction x:TypeArguments="s:Exception">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-            </ActivityAction.Argument>
-            <ufa:FormActivity CreateFormActivityFileName="{x:Null}" CreateFormActivityFilePath="{x:Null}" Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" FormFieldsOutputData="{x:Null}" FormHeight="{x:Null}" FormWidth="{x:Null}" IconPath="{x:Null}" LocalCSSFilePath="{x:Null}" SelectedButton="{x:Null}" TimeoutInSeconds="{x:Null}" WindowPositionLeft="{x:Null}" WindowPositionTop="{x:Null}" CreateFormId="712e651c-e3df-485f-8d57-dc3c2a656f1c" DisableMaximizeButton="False" DisableMinimizeButton="False" DisableSanitize="False" DisplayName="Create Form - Add emails" FormSchema="%[{&quot;label&quot;:&quot;FormBody&quot;,&quot;hideLabel&quot;:true,&quot;disabled&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;FormBody&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true},{&quot;label&quot;:&quot;Continue&quot;,&quot;theme&quot;:&quot;success&quot;,&quot;block&quot;:true,&quot;disableOnInvalid&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;submit&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;type&quot;:&quot;button&quot;,&quot;input&quot;:true,&quot;alwaysEnabled&quot;:true}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;100120&quot;,&quot;Name&quot;:&quot;Default&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/uipath.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/uipath.png&quot;,&quot;OverrideCssUrl&quot;:&quot;../../assets/css/themes/uipath.custom.css&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormTitle="No Further Emails" GenerateInputFields="True" sap:VirtualizedContainerService.HintSize="204,142.666666666667" sap2010:WorkflowViewState.IdRef="FormActivity_1" IsReadOnly="False" MaxColumnsForSchemaGeneration="6" RunDoBlockFirst="False" RunInIsolatedMode="False" StartAsMinimized="False">
-              <ufa:FormActivity.Body>
-                <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)" />
-              </ufa:FormActivity.Body>
-              <ufa:FormActivity.DelayBody>
-                <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
-                  <Delay Duration="00:00:00.2500000" sap2010:WorkflowViewState.IdRef="Delay_1" />
-                </ActivityAction>
-              </ufa:FormActivity.DelayBody>
-              <ufa:FormActivity.FormFieldsCollection>
-                <InArgument x:TypeArguments="x:String" x:Key="FormBody">There are no further emails to process. Please add more if you want to continue with the process. If no further emails are added the process will end once continue is clicked.</InArgument>
-              </ufa:FormActivity.FormFieldsCollection>
-            </ufa:FormActivity>
-          </ActivityAction>
-        </Catch>
-      </TryCatch.Catches>
-    </TryCatch>
-    <ui:GetOutlookMailMessages Filter="{x:Null}" TimeoutMS="{x:Null}" Account="[in_dictConfig(&quot;Email Account&quot;).ToString]" DisplayName="Get Outlook Mail Messages - TransactionItems" GetAttachements="False" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_2" MailFolder="[in_dictConfig(&quot;Email Inbox Folder&quot;).ToString+&quot;\&quot;+in_dictConfig(&quot;User Email Subfolder&quot;).ToString]" MarkAsRead="False" Messages="[mailExtractedEmails]" OnlyUnreadMessages="False" Top="1" />
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="484,392" sap2010:WorkflowViewState.IdRef="TryCatch_2">
-      <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="304,154" sap2010:WorkflowViewState.IdRef="Sequence_6">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Assign Transaction Item" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_10">
-            <Assign.To>
-              <OutArgument x:TypeArguments="snm:MailMessage">[out_mailTransactionItem]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="snm:MailMessage">[mailExtractedEmails(0)]</InArgument>
-            </Assign.Value>
-          </Assign>
-        </Sequence>
-      </TryCatch.Try>
-      <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.666666666667,22" sap2010:WorkflowViewState.IdRef="Catch`1_2">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ActivityAction x:TypeArguments="s:Exception">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-            </ActivityAction.Argument>
-            <Sequence sap:VirtualizedContainerService.HintSize="376,286" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="Batch Limit" DisplayName="Get Asset" FolderPath="[in_dictConfig(&quot;Orchestrator Folder Path&quot;).ToString]" sap:VirtualizedContainerService.HintSize="898,140.666666666667" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:Int32">[intAssetLimit]</OutArgument>
+      </ui:GetRobotAsset.Value>
+    </ui:GetRobotAsset>
+    <Sequence sap:VirtualizedContainerService.HintSize="898,3036.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_24">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:GetOutlookMailMessages Filter="{x:Null}" TimeoutMS="{x:Null}" Account="[in_dictConfig(&quot;Email Account&quot;).ToString]" DisplayName="Get Outlook Mail Messages - TransactionItems" GetAttachements="False" sap:VirtualizedContainerService.HintSize="856,22" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_5" MailFolder="[in_dictConfig(&quot;Email Inbox Folder&quot;).ToString+&quot;\&quot;+in_dictConfig(&quot;User Email Subfolder&quot;).ToString]" MarkAsRead="False" Messages="[mailExtractedEmails]" OnlyUnreadMessages="False" Top="1" />
+      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="856,392" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+        <TryCatch.Try>
+          <Sequence sap:VirtualizedContainerService.HintSize="304,154" sap2010:WorkflowViewState.IdRef="Sequence_17">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign Transaction Item" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_21">
+              <Assign.To>
+                <OutArgument x:TypeArguments="snm:MailMessage">[out_mailTransactionItem]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="snm:MailMessage">[mailExtractedEmails(0)]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </TryCatch.Try>
+        <TryCatch.Catches>
+          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.666666666667,22" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ActivityAction x:TypeArguments="s:Exception">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </ActivityAction.Argument>
+              <ui:MessageBox ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" Caption="No Further Emails" DisplayName="Message Box - Add emails" sap:VirtualizedContainerService.HintSize="334,85.3333333333333" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;There are no further emails to process. Please add more if you want to continue. If no further emails are added the session will end once Ok is clicked.&quot;]" />
+            </ActivityAction>
+          </Catch>
+        </TryCatch.Catches>
+      </TryCatch>
+      <ui:GetOutlookMailMessages Filter="{x:Null}" TimeoutMS="{x:Null}" Account="[in_dictConfig(&quot;Email Account&quot;).ToString]" DisplayName="Get Outlook Mail Messages - TransactionItems" GetAttachements="False" sap:VirtualizedContainerService.HintSize="856,22" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_6" MailFolder="[in_dictConfig(&quot;Email Inbox Folder&quot;).ToString+&quot;\&quot;+in_dictConfig(&quot;User Email Subfolder&quot;).ToString]" MarkAsRead="False" Messages="[mailExtractedEmails]" OnlyUnreadMessages="False" Top="100" />
+      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="856,494" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+        <TryCatch.Try>
+          <Sequence sap:VirtualizedContainerService.HintSize="304,256" sap2010:WorkflowViewState.IdRef="Sequence_18">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Set order" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_29">
+              <Assign.To>
+                <OutArgument x:TypeArguments="scg:List(snm:MailMessage)">[mailExtractedEmails]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="scg:List(snm:MailMessage)">[mailExtractedEmails.OrderBy(Function(x) DateTime.Parse(x.Headers("Date").ToString)).ToList]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Assign Transaction Item" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_22">
+              <Assign.To>
+                <OutArgument x:TypeArguments="snm:MailMessage">[out_mailTransactionItem]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="snm:MailMessage">[mailExtractedEmails(0)]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </TryCatch.Try>
+        <TryCatch.Catches>
+          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.666666666667,22" sap2010:WorkflowViewState.IdRef="Catch`1_6">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ActivityAction x:TypeArguments="s:Exception">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </ActivityAction.Argument>
+              <Sequence sap:VirtualizedContainerService.HintSize="376,286" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_23">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="snm:MailMessage">[out_mailTransactionItem]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="snm:MailMessage">[Nothing]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;No more transaction data&quot;]" />
+              </Sequence>
+            </ActivityAction>
+          </Catch>
+        </TryCatch.Catches>
+      </TryCatch>
+      <If Condition="[out_mailTransactionItem isnot Nothing]" DisplayName="If emails are added:" sap:VirtualizedContainerService.HintSize="856,968" sap2010:WorkflowViewState.IdRef="If_8">
+        <If.Then>
+          <If Condition="[inout_intTransactionData MOD intAssetLimit = 0 and inout_intTransactionData&gt;0]" DisplayName="If batch no. has been hit" sap:VirtualizedContainerService.HintSize="710,814" sap2010:WorkflowViewState.IdRef="If_6">
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="564,660" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="strChosenButton" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:MessageBox AutoCloseAfter="00:00:00" Buttons="YesNo" Caption="Batch number reached" ChosenButton="[strChosenButton]" DisplayName="Message Box - Batch hit" sap:VirtualizedContainerService.HintSize="522,85.3333333333333" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;The number of emails in a batch has been reached. Do you wish to continue? Click Yes continue or No to end the session.&quot;]" />
+                <If Condition="[strChosenButton=&quot;No&quot;]" DisplayName="If stop or dismissed" sap:VirtualizedContainerService.HintSize="522,442.666666666667" sap2010:WorkflowViewState.IdRef="If_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence sap:VirtualizedContainerService.HintSize="376,288.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_24">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="snm:MailMessage">[out_mailTransactionItem]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="snm:MailMessage">[Nothing]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;No more transaction data&quot;]" />
+                    </Sequence>
+                  </If.Then>
+                </If>
+              </Sequence>
+            </If.Then>
+          </If>
+        </If.Then>
+      </If>
+      <If sap2010:Annotation.AnnotationText="This optional step can be used to include more information about a transaction item and it is used mainly for logging and visualization purposes.&#xA;For example, if transaction items are invoices, then out_TransactionID can be the invoice number, out_TransactionField1 can be the invoice date and out_TransactionField2 can be the invoice amount." Condition="[out_MailTransactionItem isNot Nothing]" DisplayName="If a new transaction item is retrieved, get additional information about it" sap:VirtualizedContainerService.HintSize="856,744.666666666667" sap2010:WorkflowViewState.IdRef="If_7">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence sap2010:Annotation.AnnotationText="Write data to the added log fields that identify the transaction." DisplayName="Add transaction information to log fields" sap:VirtualizedContainerService.HintSize="346,495.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_23">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence sap:VirtualizedContainerService.HintSize="304,256" sap2010:WorkflowViewState.IdRef="Sequence_22">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="strDateTimeReceived" />
+              </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_11">
+              <Assign DisplayName="Get DateTime Received" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_25">
                 <Assign.To>
-                  <OutArgument x:TypeArguments="snm:MailMessage">[out_mailTransactionItem]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String">[strDateTimeReceived]</OutArgument>
                 </Assign.To>
                 <Assign.Value>
-                  <InArgument x:TypeArguments="snm:MailMessage">[Nothing]</InArgument>
+                  <InArgument x:TypeArguments="x:String">[out_mailTransactionItem.Headers("Date").ToString]</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;No more transaction data&quot;]" />
+              <Assign DisplayName="Format DateTime Received" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_26">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[OUT_strDateTimeReceived]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[Convert.ToDateTime(strDateTimeReceived).ToString("dd/MM/yyyy HH:mm")]</InArgument>
+                </Assign.Value>
+              </Assign>
             </Sequence>
-          </ActivityAction>
-        </Catch>
-      </TryCatch.Catches>
-    </TryCatch>
-    <If sap2010:Annotation.AnnotationText="This optional step can be used to include more information about a transaction item and it is used mainly for logging and visualization purposes.&#xA;For example, if transaction items are invoices, then out_TransactionID can be the invoice number, out_TransactionField1 can be the invoice date and out_TransactionField2 can be the invoice amount." Condition="[out_MailTransactionItem isNot Nothing]" DisplayName="If a new transaction item is retrieved, get additional information about it" sap:VirtualizedContainerService.HintSize="484,550.666666666667" sap2010:WorkflowViewState.IdRef="If_1">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <If.Then>
-        <Sequence sap2010:Annotation.AnnotationText="Write data to the added log fields that identify the transaction." DisplayName="Add transaction information to log fields" sap:VirtualizedContainerService.HintSize="304,301.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_3">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Assign out_TransactionID" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_5">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[out_TransactionID]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[now.ToString]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign DisplayName="Get Sender" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_9">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[OUT_strSender]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[out_mailTransactionItem.sender.Address.ToString]</InArgument>
-            </Assign.Value>
-          </Assign>
-        </Sequence>
-      </If.Then>
-    </If>
-    <Assign DisplayName="Add 1 to Transaction Number" sap:VirtualizedContainerService.HintSize="484,62" sap2010:WorkflowViewState.IdRef="Assign_8">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:Int32">[inout_intTransactionData]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:Int32">[inout_intTransactionData+1]</InArgument>
-      </Assign.Value>
-    </Assign>
+            <Assign DisplayName="Get Sender" sap:VirtualizedContainerService.HintSize="304,62" sap2010:WorkflowViewState.IdRef="Assign_27">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[OUT_strSender]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[out_mailTransactionItem.sender.Address.ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+      </If>
+      <Assign DisplayName="Add 1 to Transaction Number" sap:VirtualizedContainerService.HintSize="856,62" sap2010:WorkflowViewState.IdRef="Assign_28">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Int32">[inout_intTransactionData]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Int32">[inout_intTransactionData+1]</InArgument>
+        </Assign.Value>
+      </Assign>
+    </Sequence>
   </Sequence>
 </Activity>

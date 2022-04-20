@@ -6,7 +6,7 @@
     <x:Property Name="IN_SharepointTitle" Type="InArgument(x:String)" />
     <x:Property Name="IN_Check_In_Comment" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1316.66666666667,1863.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>864,1759.33333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="32">
@@ -54,37 +54,73 @@
       <AssemblyReference>UiPath.Word</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="874,1798.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap:VirtualizedContainerService.HintSize="874,1694.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Check In OR Out" sap:VirtualizedContainerService.HintSize="832,1706.66666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" ScopeGuid="ac10b4ea-03fd-4ee5-86e0-d00a60aa3f3d" Version="V1">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Check In OR Out" sap:VirtualizedContainerService.HintSize="832,1602.66666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" ScopeGuid="ac10b4ea-03fd-4ee5-86e0-d00a60aa3f3d" Version="V1" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="798,1488.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="798,1384.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NClick ClickType="Single" DisplayName="Click File Name" sap:VirtualizedContainerService.HintSize="756,158" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Right" ScopeIdentifier="ac10b4ea-03fd-4ee5-86e0-d00a60aa3f3d" Version="V1">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="https://defra.sharepoint.com/teams/Team430/OCR%20Phase%202%20Registrations/Forms/AllItems.aspx?xsdata=MDN8MDF8fDJkZGE5YmE0OWJlZTQ2ZDg4N2VkOTQyMmI5M2E0MGQ1fDc3MGEyNDUwMDIyNzRjNjI5MGM3NGUzODUzN2YxMTAyfDF8MHw2Mzc4MDYwMTUyNTg1MTIwOTJ8R29vZHxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazkwYUdWeUlpd2lWMVFpT2pFeGZRPT0%3D&amp;sdata=VjQvdDFNdVRWM2VQVU5xL1pjTWpUVGQwdThwbm1Md2FPUTB6U21DME03RT0%3D&amp;ovuser=770a2450%2D0227%2D4c62%2D90c7%2D4e38537f1102%2CKai%2ELumber%40defra%2Egov%2Euk&amp;OR=Teams%2DHL&amp;CT=1645211545818&amp;sourceId=&amp;params=%7B%22AppName%22%3A%22Teams%2DDesktop%22%2C%22AppVersion%22%3A%2227%2F22010300411%22%7D&amp;id=%2Fteams%2FTeam430%2FOCR%20Phase%202%20Registrations%2FWeekly%20Lists&amp;viewid=8c7bfcc7%2De474%2D4f85%2Dada9%2Dcb707f8f0bc5" DesignTimeRectangle="416, 494, 280, 20" ElementType="Button" FriendlyName="'OCR Phase'" FullSelectorArgument="&lt;webctrl aria-role='link' parentid='row57-1' tag='BUTTON' type='button' /&gt;" FuzzySelectorArgument="[String.Format(&quot;&lt;webctrl aria-role='link' parentid='*' tag='BUTTON' type='button' aaname='{0}' check:text='*' /&gt;&quot;, IN_FileName)]" Guid="5b4a8c26-2ccb-411c-a307-0b90f13e5342" ImageBase64="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" InformativeScreenshot="8ca0d953808e65ea9e03f499a89e5a81.png" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='{}' title='*' /&gt;" SearchSteps="FuzzySelector, Image" WaitForReadyArgument="Complete" />
-              </uix:NClick.Target>
-            </uix:NClick>
-            <uix:NClick ClickType="Single" DisplayName="Click 'More'" sap:VirtualizedContainerService.HintSize="756,158" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ac10b4ea-03fd-4ee5-86e0-d00a60aa3f3d" Version="V1">
-              <uix:NClick.Target>
-                <uix:TargetAnchorable BrowserURL="https://defra.sharepoint.com/teams/Team430/OCR%20Phase%202%20Registrations/Forms/AllItems.aspx?xsdata=MDN8MDF8fDJkZGE5YmE0OWJlZTQ2ZDg4N2VkOTQyMmI5M2E0MGQ1fDc3MGEyNDUwMDIyNzRjNjI5MGM3NGUzODUzN2YxMTAyfDF8MHw2Mzc4MDYwMTUyNTg1MTIwOTJ8R29vZHxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazkwYUdWeUlpd2lWMVFpT2pFeGZRPT0%3D&amp;sdata=VjQvdDFNdVRWM2VQVU5xL1pjTWpUVGQwdThwbm1Md2FPUTB6U21DME03RT0%3D&amp;ovuser=770a2450%2D0227%2D4c62%2D90c7%2D4e38537f1102%2CKai%2ELumber%40defra%2Egov%2Euk&amp;OR=Teams%2DHL&amp;CT=1645213319405&amp;sourceId=&amp;params=%7B%22AppName%22%3A%22Teams%2DDesktop%22%2C%22AppVersion%22%3A%2227%2F22010300411%22%7D&amp;id=%2Fteams%2FTeam430%2FOCR%20Phase%202%20Registrations%2FMaster%20Lists&amp;viewid=8c7bfcc7%2De474%2D4f85%2Dada9%2Dcb707f8f0bc5" DesignTimeRectangle="641, 931, 12, 36" FriendlyName="''" FullSelectorArgument="&lt;webctrl parentname='More' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl parentname='More' tag='I' type='' aaname='' check:text='' /&gt;" Guid="6165621c-b10c-43cc-b088-5c30d8559442" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAoCAYAAAD32nqhAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAABpSURBVEhL7dIxDoAgDIVh7z8bPQN6tJ6gU8lL3IS2Bru9fyTpF2jYbDECBBCBCkBV7b6aichz4je8AYbPY08h0ydkEXcHGSRcYoSEAPKQesAbRnVLzAyjIZAdRi/gl6/8JQIEEIFlwKwDgDni5ngKqUwAAAAASUVORK5CYII=" InformativeScreenshot="0c63022e734958afb08c8c5126b517d9.png" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='{}' title='CPHW Pesticides - Master Lists - All Documents' /&gt;" SearchSteps="FuzzySelector, Image" />
-              </uix:NClick.Target>
-            </uix:NClick>
-            <If Condition="[IN_CheckInOrOut.ToLower=&quot;out&quot;]" DisplayName="If input is set to ckeck out:" sap:VirtualizedContainerService.HintSize="756,798" sap2010:WorkflowViewState.IdRef="If_1">
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click File" sap:VirtualizedContainerService.HintSize="756,106" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_RIGHT" SimulateClick="True">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6872c2ce-4d8e-4f65-b458-21dbe96c9e04" InformativeScreenshot="48743e762e2696e558015eabd85e7d20" Selector="[String.Format(&quot;&lt;html app='msedge.exe' htmlwindowname='{{}}' title='{0}' /&gt;&lt;webctrl aria-role='link' parentid='row*' tag='BUTTON' type='button' aaname='{1}' /&gt;&quot;, IN_SharepointTitle, IN_FileName)]">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'More'" sap:VirtualizedContainerService.HintSize="756,106" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="55f8d024-a3cf-49b8-98f8-7753354547b7" InformativeScreenshot="3c789a72f77a6d3bc93ebd949daf8ce6" Selector="[String.Format(&quot;&lt;html app='msedge.exe' htmlwindowname='{{}}' title='{0}' /&gt;&lt;webctrl aria-role='menuitem' name='More' tag='BUTTON' aaname='More*' /&gt;&quot;, IN_SharepointTitle)]">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <If Condition="[IN_CheckInOrOut.ToLower=&quot;out&quot;]" DisplayName="If input is set to ckeck out:" sap:VirtualizedContainerService.HintSize="756,800" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
                 <uix:NClick ClickType="Single" DisplayName="Click 'Check out'" sap:VirtualizedContainerService.HintSize="334,158" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="ac10b4ea-03fd-4ee5-86e0-d00a60aa3f3d" Version="V1">
                   <uix:NClick.Target>
@@ -99,7 +135,7 @@
                 </uix:NClick>
               </If.Then>
               <If.Else>
-                <Sequence sap:VirtualizedContainerService.HintSize="376,644" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence sap:VirtualizedContainerService.HintSize="376,646.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -129,7 +165,7 @@
                     <uix:NClick.Target>
                       <uix:TargetAnchorable BrowserURL="https://defra.sharepoint.com/teams/Team430/OCR%20Phase%202%20Registrations/Forms/AllItems.aspx?xsdata=MDN8MDF8fDJkZGE5YmE0OWJlZTQ2ZDg4N2VkOTQyMmI5M2E0MGQ1fDc3MGEyNDUwMDIyNzRjNjI5MGM3NGUzODUzN2YxMTAyfDF8MHw2Mzc4MDYwMTUyNTg1MTIwOTJ8R29vZHxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazkwYUdWeUlpd2lWMVFpT2pFeGZRPT0%3D&amp;sdata=VjQvdDFNdVRWM2VQVU5xL1pjTWpUVGQwdThwbm1Md2FPUTB6U21DME03RT0%3D&amp;ovuser=770a2450%2D0227%2D4c62%2D90c7%2D4e38537f1102%2CKai%2ELumber%40defra%2Egov%2Euk&amp;OR=Teams%2DHL&amp;CT=1645213319405&amp;sourceId=&amp;params=%7B%22AppName%22%3A%22Teams%2DDesktop%22%2C%22AppVersion%22%3A%2227%2F22010300411%22%7D&amp;id=%2Fteams%2FTeam430%2FOCR%20Phase%202%20Registrations%2FMaster%20Lists&amp;viewid=8c7bfcc7%2De474%2D4f85%2Dada9%2Dcb707f8f0bc5" DesignTimeRectangle="1073, 744, 96, 32" ElementType="Button" FriendlyName="'Check in'" FullSelectorArgument="&lt;webctrl aaname='Check in' tag='BUTTON' type='button' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Check in' tag='BUTTON' type='button' check:text='Check in' /&gt;" Guid="910c3182-344b-4c54-ab3c-f7c2b88bf030" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGQAAAAkCAYAAAB/up84AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAMjSURBVGhD7ZvPSxtBFMf7t/Tc/8GTPUn/gYKHHj15kh4Eb+aUnvYiHgQPLaEF2UMxRYhQRGrFpEWygqvgptJQW6NpUHYx+O283Xm7axx/UFwd8H3hQ7L7Zicz7zs7bwPJE4iskhhimVJD3vuf8OzdCzydfy7cI5Rzyj0rNSQxY/jSBULRDMe5Z6WGmBsL9wVLDLEElhhiCSwxxBJYYoglsMQQS2CJIZbAEkMsgSWGWALrfgz56MD900G3rz9MKYw8zFJsvYGuOu62Z8zX/jeL8OmDjhcNsUFGMf2zgzD04CyY4sXDKt6QmkqMNqLb87C8W4O778E/9VChuBWGTKByFAH9AJUlU7x4WAUbMolqj3rvYfXbmCGusMKQh4dVrCE62eGvOXOcSA1xUT1Wq5R0HsHfmcza1D5gtRc7G6vbW8N0urWMYtxroKUvJbX2Sur8RUOGNvRY1PEr7jdH5ZgaqzuEjo1j6qG5lRvTHcMq1pCdIO7b3zHEGD15IEJr/y3Km2to0RZ37ic1ZmEGq6E67rdRrZcwteUliT38gCEVf7kdgMLhiQd300F520N9z1F95wzhbTNs5Iy8iMkQMsHfncPU4JgKgGWPISpxlGA65/ymVam2uXV1rBJOam6NptfMHtIZSl4Jy6fq7ZlK1KVEsyErcP+qV6oPtcE2GUZDDt10TNNtukP1mPS5u4RVrCHfvXj1Huy/MceJdHvIakh+8sl7kyh519UJHetHyRgC2sYG22SYtyzzmPLX3RWsgov6HOpnqvPzNtzP2Qq/wE2Tj++QCM3tEsZX8kxiZN5JtrMzD+V8nzHZHVKJ68D1NeCRGKL2eM9Pbn+V1IOjBqr6sbcV+reb/JLe/6MAVVUjxlccOIEPP0jav/7Roc4RqkfqK2sI1yHqc8O8MB6NIcTI1xqaJzQhLfUU1T1ZS1b1LSY/9KUGP8w9RkUd1L0J3X4M5SDIvnTGhfjyU1Za2K+oJY/KEOFmWGKIJbDEEEtgiSGWwBJDLIElhlgCSwyxBJYYYgksMcQSWKkh8mPrh+KKH1vL3xEeBsq58e8IIjskhlgl4B9HPkxvbPoq/QAAAABJRU5ErkJggg==" InformativeScreenshot="c79386c0d9b041f05db0ad7c15f0a382.png" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='{}' title='CPHW Pesticides - Master Lists - All Documents' /&gt;" SearchSteps="FuzzySelector, Image">
                         <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                             <uix:Target DesignTimeRectangle="1094, 753, 54, 14" ElementType="Text" FriendlyName="'Check in'" FullSelectorArgument="&lt;webctrl id='id__500' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl id='id__500' tag='SPAN' type='' aaname='Check in' check:text='Check in' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADoAAAASCAYAAAAKRM1zAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAJ5SURBVFhH7VbPaxpBFO7f0n/EW075DwoeeszJU+hByE1P9rSXkIOQQ0EIhD2UCIENFJHaEG0JjuAayFqpNKnG7WLYRfHre7vj/tBJG2IPQfPgw515b95+38x7s756fbiFTcCL0HXDBgv9qEH/NYQ9RWiuJ3DAvvMGbBrb/f3kmpVxApNfNDpR+BaRRu7HEK4roB2r/GokhRr0QinQdgTOrgzoPQHzXqDE/mchdBelOw+YWiidqvxqxIRmUXb4bQ6qX3cSQSGehdCnIRIqRbg/i0tBIUKhOsoj2lW2mQezk41ijCNUHX/HfLOdGnJhiaWREQ105VK27nWe5pNCUxeSC43fzvPGUBpxMJ0oj5WcHDRbMU6ESGjH8mPMTuRcgkwKeOj2PqBwWUOXS31mBj18vI+qS+NpH+V6HnstERAeHCFF/jdtC+x2xwL6pYZCW6B+rVHumNB5+7iN2AYloRLK4syrIvYWOUk8TSgRYuI8p93yLlK5n9OYhLA1W+lwzcGAZ5hUHmf39DghAksC5kIr0H/TL/efsRgTQSl0oIeccn2uKMlJzkVCvwl/t29670PnEsIyiXo0njR4VhmT+lsfSt/UCzhYXM6LMRHUpavmNJ+LXUZF1Cfkn/Whf4pOJIF/JfVP1EOznUemEkcW24daUNYTgUI8p4/oREt+ny33WBwrCqUeEmZQBkT25q6Bsvy8dF3zcUlPZX95FsrUg5mKBs0yYVpB/LvvQ04Olz5dD/bovM8554V6w1cWytj+YqA55kBpdKva41pwCo9ImvpswHRj16o3RF3syvgdFCwr+jPiXyDLt254IT3Qq/9F6LriRei6YUOEbuEPJbXuZIH1G9gAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
                           </scg:List>
                         </uix:TargetAnchorable.Anchors>
@@ -139,7 +175,7 @@
                 </Sequence>
               </If.Else>
             </If>
-            <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" Activate="True" DisplayName="Remove edge pop ups" sap:VirtualizedContainerService.HintSize="756,158" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="esc" KeyModifiers="None" SendWindowMessages="True" SpecialKey="True">
+            <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" Activate="True" ContinueOnError="True" DisplayName="Remove edge pop ups" sap:VirtualizedContainerService.HintSize="756,158" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="esc" KeyModifiers="None" SendWindowMessages="True" SpecialKey="True">
               <ui:SendHotkey.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4cf3e122-8a8e-4da8-be6a-8959e8abf50c" InformativeScreenshot="d6cf99790156931c4d5ed5504c264c8c" Selector="&lt;html app='msedge.exe' htmlwindowname='{}' title='*' /&gt;" WaitForReady="COMPLETE">
                   <ui:Target.TimeoutMS>
