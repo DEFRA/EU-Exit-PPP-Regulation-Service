@@ -14,7 +14,7 @@
     <x:Property Name="OUT_intRejected" Type="OutArgument(x:Int32)" />
     <x:Property Name="IN_strDateTimeReceived" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1447.33333333333,1478</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1409.33333333333,1478</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="23">
@@ -44,7 +44,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="56">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="30">
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>System</AssemblyReference>
       <AssemblyReference>System.Activities</AssemblyReference>
@@ -114,6 +114,9 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Sequence DisplayName="Check if Phase 1 or 2 forms exist:" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_8">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Int32" Name="intAttachmentsCounter" />
+        </Sequence.Variables>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -127,13 +130,21 @@
             <InArgument x:TypeArguments="x:String">No PPP Form</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[IN_datAttachmentTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="560,1036" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+        <Assign DisplayName="Set Counter" sap:VirtualizedContainerService.HintSize="560,62" sap2010:WorkflowViewState.IdRef="Assign_252">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">[intAttachmentsCounter]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">0</InArgument>
+          </Assign.Value>
+        </Assign>
+        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[IN_datAttachmentTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="560,790" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
           <ui:ForEachRow.Body>
             <ActivityAction x:TypeArguments="sd:DataRow">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="526,912" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="526,666" sap2010:WorkflowViewState.IdRef="Sequence_7">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:String" Name="strPhase1or2" />
                 </Sequence.Variables>
@@ -147,10 +158,10 @@
                     <OutArgument x:TypeArguments="x:String">[strPhase1or2]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="x:String">[IN_datAttachmentTable(0)("Phase 1 or 2?").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String">[IN_datAttachmentTable(intAttachmentsCounter)("Phase 1 or 2?").ToString]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <If Condition="[strPhase1or2=&quot;Phase 1&quot;]" DisplayName="If entry is 'Phase 1'" sap:VirtualizedContainerService.HintSize="484,370" sap2010:WorkflowViewState.IdRef="If_2">
+                <If Condition="[strPhase1or2.Trim=&quot;Phase 1&quot;]" DisplayName="If entry is 'Phase 1'" sap:VirtualizedContainerService.HintSize="484,370" sap2010:WorkflowViewState.IdRef="If_2">
                   <If.Then>
                     <Sequence DisplayName="Route Set" sap:VirtualizedContainerService.HintSize="304,216" sap2010:WorkflowViewState.IdRef="Sequence_5">
                       <sap:WorkflowViewStateService.ViewState>
@@ -170,25 +181,14 @@
                     </Sequence>
                   </If.Then>
                 </If>
-                <If Condition="[IN_intPhase2&gt;0 or IN_intODSPhase2&gt;0]" DisplayName="If If entry is 'Phase 2'" sap:VirtualizedContainerService.HintSize="484,308" sap2010:WorkflowViewState.IdRef="If_3">
-                  <If.Then>
-                    <Sequence DisplayName="Route Set" sap:VirtualizedContainerService.HintSize="304,154" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <Assign DisplayName="Set Route to 'Phase 2'" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_11">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[INOUT_strRoute]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">Phase 2</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                    </Sequence>
-                  </If.Then>
-                </If>
+                <Assign DisplayName="Set Counter +1" sap:VirtualizedContainerService.HintSize="484,62" sap2010:WorkflowViewState.IdRef="Assign_253">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[intAttachmentsCounter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[intAttachmentsCounter+1]</InArgument>
+                  </Assign.Value>
+                </Assign>
               </Sequence>
             </ActivityAction>
           </ui:ForEachRow.Body>
@@ -198,6 +198,25 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:ForEachRow>
+        <If Condition="[IN_intPhase2&gt;0 or IN_intODSPhase2&gt;0]" DisplayName="If If entry is 'Phase 2'" sap:VirtualizedContainerService.HintSize="560,308" sap2010:WorkflowViewState.IdRef="If_3">
+          <If.Then>
+            <Sequence DisplayName="Route Set" sap:VirtualizedContainerService.HintSize="304,154" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign DisplayName="Set Route to 'Phase 2'" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_11">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[INOUT_strRoute]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">Phase 2</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </If.Then>
+        </If>
       </Sequence>
       <FlowStep.Next>
         <FlowDecision x:Name="__ReferenceID2" Condition="[INOUT_strRoute=&quot;Phase 2&quot;]" DisplayName="Stage 2 Form?" sap:VirtualizedContainerService.HintSize="82,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
@@ -233,7 +252,7 @@
                     <InArgument x:TypeArguments="x:Int32">0</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:BuildDataTable DataTable="[datInfoTable]" DisplayName="Build Data Table - Info Table" sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="BuildDataTable_4" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Record_x0020_Number&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Building_x0020_and_x0020_street_x0020_or_x0020_farm_x0020_name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Town_x0020_or_x0020_city&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;County&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Country&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Postcode&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Telephone_x0020_Number&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Contact_x0020_Email_x0020_Address&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_store_x0020_them&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_use_x0020_or_x0020_apply_x0020_them&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_are_x0020_a_x0020_business_x0020_or_x0020_organisation_x0020_in_x0020_the_x0020_agriculture_x002C__x0020_horticulture_x002C__x0020_amenity_x0020_or_x0020_forestry_x0020_sector_x0020_and_x0020_have_x0020_professional_x0020_PPP_x0027_s_x0020_applied_x0020_by_x0020_a_x0020_third_x0020_party&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Quantity&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_agriculture_x0020__x002F__x0020_horticulture_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_amenities_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_forestry_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Other&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Sender_x0020_Email&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Registration_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Update_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Site_x0020_Closed_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Date_x0020_timestamp_x0020_processed&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;User_x0020_who_x0020_processed&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Tab_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+                <ui:BuildDataTable DataTable="[datInfoTable]" DisplayName="AMENDED - Build Data Table - Info Table" sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="BuildDataTable_4" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Record_x0020_Number&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Building_x0020_and_x0020_street_x0020_or_x0020_farm_x0020_name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Town_x0020_or_x0020_city&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;County&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Country&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Postcode&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Telephone_x0020_Number&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Contact_x0020_Email_x0020_Address&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_store_x0020_them&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_use_x0020_or_x0020_apply_x0020_them&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_are_x0020_a_x0020_business_x0020_or_x0020_organisation_x0020_in_x0020_the_x0020_agriculture_x002C__x0020_horticulture_x002C__x0020_amenity_x0020_or_x0020_forestry_x0020_sector_x0020_and_x0020_have_x0020_professional_x0020_PPP_x0027_s_x0020_applied_x0020_by_x0020_a_x0020_third_x0020_party&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Quantity&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_agriculture_x0020__x002F__x0020_horticulture_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_amenities_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_forestry_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Other&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Sender_x0020_Email&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Registration_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Update_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Site_x0020_Closed_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Date_x0020_timestamp_x0020_processed&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;User_x0020_who_x0020_processed&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Assurance_x0020_Scheme&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Tab_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
                 <Assign DisplayName="Set Initial Counter" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_109">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Int32">[intCounter]</OutArgument>
@@ -303,12 +322,12 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[intCounter&gt;0]" DisplayName="If counter is over 0" sap:VirtualizedContainerService.HintSize="1424.66666666667,214" sap2010:WorkflowViewState.IdRef="If_79">
+                    <If Condition="[intCounter&gt;0]" DisplayName="If counter is over 0" sap:VirtualizedContainerService.HintSize="1732.66666666667,214" sap2010:WorkflowViewState.IdRef="If_79">
                       <If.Then>
-                        <ui:AddDataColumn x:TypeArguments="x:Int32" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Tab Type" DataTable="[datInfoTable]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_3" />
+                        <ui:AddDataColumn x:TypeArguments="x:Int32" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Tab Type" DataTable="[datInfoTable]" DisplayName="Add Data Column - Tab Type" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_3" />
                       </If.Then>
                     </If>
-                    <Assign DisplayName="Set Data Missing to FALSE" sap:VirtualizedContainerService.HintSize="1424.66666666667,62" sap2010:WorkflowViewState.IdRef="Assign_155">
+                    <Assign DisplayName="Set Data Missing to FALSE" sap:VirtualizedContainerService.HintSize="1732.66666666667,62" sap2010:WorkflowViewState.IdRef="Assign_155">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Boolean">[booMandatoryDataMissing]</OutArgument>
                       </Assign.To>
@@ -316,7 +335,7 @@
                         <InArgument x:TypeArguments="x:Boolean">False</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1424.66666666667,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1732.66666666667,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_4">
                       <ui:CommentOut.Body>
                         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="612,304.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_97">
                           <sap:WorkflowViewStateService.ViewState>
@@ -355,7 +374,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:CommentOut>
-                    <If Condition="[strDataMissing is Nothing]" DisplayName="If strDataMissing is Nothing" sap:VirtualizedContainerService.HintSize="1424.66666666667,216" sap2010:WorkflowViewState.IdRef="If_61">
+                    <If Condition="[strDataMissing is Nothing]" DisplayName="If strDataMissing is Nothing" sap:VirtualizedContainerService.HintSize="1732.66666666667,216" sap2010:WorkflowViewState.IdRef="If_61">
                       <If.Then>
                         <Assign DisplayName="Set initial data missing - " sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_172">
                           <Assign.To>
@@ -377,7 +396,7 @@
                         </Assign>
                       </If.Else>
                     </If>
-                    <Assign DisplayName="Assign - PP3 Data Missing" sap:VirtualizedContainerService.HintSize="1424.66666666667,62" sap2010:WorkflowViewState.IdRef="Assign_179">
+                    <Assign DisplayName="Assign - PP3 Data Missing" sap:VirtualizedContainerService.HintSize="1732.66666666667,62" sap2010:WorkflowViewState.IdRef="Assign_179">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[strPP3DataMissing]</OutArgument>
                       </Assign.To>
@@ -385,86 +404,71 @@
                         <InArgument x:TypeArguments="x:String">[IN_datAttachmentTable(intCounter)(0).ToString+environment.NewLine+environment.NewLine]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" DisplayName="Excel Application Scope - Phase 2 Form" sap:VirtualizedContainerService.HintSize="1424.66666666667,1364" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[IN_strAttachmentsFolder+&quot;\&quot;+IN_datAttachmentTable(intCounter)(0).ToString]">
+                    <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" DisplayName="Excel Application Scope - Phase 2 Form" sap:VirtualizedContainerService.HintSize="1732.66666666667,8373.33333333333" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[IN_strAttachmentsFolder+&quot;\&quot;+IN_datAttachmentTable(intCounter)(0).ToString]">
                       <ui:ExcelApplicationScope.Body>
                         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1390.66666666667,1255.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_61">
+                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1698.66666666667,8264.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_61">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:ExcelGetWorkbookSheets sap2010:Annotation.AnnotationText="Sheet names are not locked." DisplayName="Get Workbook Sheets - List" sap:VirtualizedContainerService.HintSize="1348.66666666667,22" sap2010:WorkflowViewState.IdRef="ExcelGetWorkbookSheets_3" Sheets="[listSheets]">
+                            <ui:ExcelGetWorkbookSheets sap2010:Annotation.AnnotationText="Sheet names are not locked." DisplayName="Get Workbook Sheets - List" sap:VirtualizedContainerService.HintSize="1656.66666666667,22" sap2010:WorkflowViewState.IdRef="ExcelGetWorkbookSheets_3" Sheets="[listSheets]">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </ui:ExcelGetWorkbookSheets>
-                            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Sheet:" sap:VirtualizedContainerService.HintSize="1348.66666666667,1101.33333333333" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[listSheets]">
+                            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Sheet:" sap:VirtualizedContainerService.HintSize="1656.66666666667,8110.66666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[listSheets]">
                               <ui:ForEach.Body>
                                 <ActivityAction x:TypeArguments="x:String">
                                   <ActivityAction.Argument>
                                     <DelegateInArgument x:TypeArguments="x:String" Name="item" />
                                   </ActivityAction.Argument>
-                                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1312,976.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_94">
+                                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1620,7986" sap2010:WorkflowViewState.IdRef="Sequence_94">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <ui:ExcelReadCell Cell="A1" DisplayName="Read Cell- Form Title" sap:VirtualizedContainerService.HintSize="1270,58.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelReadCell_4" SheetName="[item.ToString]">
+                                    <ui:ExcelReadCell Cell="A1" DisplayName="Read Cell- Form Title" sap:VirtualizedContainerService.HintSize="1578,58.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelReadCell_4" SheetName="[item.ToString]">
                                       <ui:ExcelReadCell.Result>
                                         <OutArgument x:TypeArguments="x:String">[strFormTitle]</OutArgument>
                                       </ui:ExcelReadCell.Result>
                                     </ui:ExcelReadCell>
-                                    <If Condition="[strFormTitle.contains(IN_dictConfig(&quot;Phase 2 Reg English&quot;)) Or strFormTitle.contains(IN_dictConfig(&quot;Phase 2 Reg Welsh&quot;))]" DisplayName="If the tite refers to a Phase 2 reg form:" sap:VirtualizedContainerService.HintSize="1270,557.333333333333" sap2010:WorkflowViewState.IdRef="If_65">
+                                    <If Condition="[strFormTitle is Nothing]" DisplayName="If form title is nothing:" sap:VirtualizedContainerService.HintSize="1578,708" sap2010:WorkflowViewState.IdRef="If_84">
                                       <If.Then>
-                                        <Sequence DisplayName="Set Type/Tab Type" sap:VirtualizedContainerService.HintSize="304,256" sap2010:WorkflowViewState.IdRef="Sequence_80">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                          <Assign DisplayName="Set Type to 'Phase 2 Reg'" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_192">
-                                            <Assign.To>
-                                              <OutArgument x:TypeArguments="x:String">[strType]</OutArgument>
-                                            </Assign.To>
-                                            <Assign.Value>
-                                              <InArgument x:TypeArguments="x:String">Phase 2 Reg</InArgument>
-                                            </Assign.Value>
-                                          </Assign>
-                                          <Assign DisplayName="Set Tab Type to 'Form'" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_193">
-                                            <Assign.To>
-                                              <OutArgument x:TypeArguments="x:String">[strTabType]</OutArgument>
-                                            </Assign.To>
-                                            <Assign.Value>
-                                              <InArgument x:TypeArguments="x:String">Form</InArgument>
-                                            </Assign.Value>
-                                          </Assign>
-                                        </Sequence>
+                                        <Assign DisplayName="Set Tab Type to 'Other'" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_254">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:String">[strTabType]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:String">Other</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
                                       </If.Then>
                                       <If.Else>
-                                        <If Condition="[strFormTitle.contains(IN_dictConfig(&quot;Phase 2 Update English&quot;)) Or strFormTitle.contains(IN_dictConfig(&quot;Phase 2 Update Welsh&quot;))]" DisplayName="If the tile refers to a Phase 2 update form:" sap:VirtualizedContainerService.HintSize="920,406.666666666667" sap2010:WorkflowViewState.IdRef="If_64">
+                                        <If Condition="[strFormTitle.contains(IN_dictConfig(&quot;Phase 2 Reg English&quot;)) Or strFormTitle.contains(IN_dictConfig(&quot;Phase 2 Reg Welsh&quot;))]" DisplayName="If the tite refers to a Phase 2 reg form:" sap:VirtualizedContainerService.HintSize="1270,557.333333333333" sap2010:WorkflowViewState.IdRef="If_65">
                                           <If.Then>
-                                            <Sequence DisplayName="Set Type/Tab Type" sap:VirtualizedContainerService.HintSize="304,256" sap2010:WorkflowViewState.IdRef="Sequence_81">
+                                            <Sequence DisplayName="Set Type/Tab Type" sap:VirtualizedContainerService.HintSize="304,256" sap2010:WorkflowViewState.IdRef="Sequence_80">
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                 </scg:Dictionary>
                                               </sap:WorkflowViewStateService.ViewState>
-                                              <Assign DisplayName="Set Type to 'Phase 2 Update'" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_194">
+                                              <Assign DisplayName="Set Type to 'Phase 2 Reg'" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_192">
                                                 <Assign.To>
                                                   <OutArgument x:TypeArguments="x:String">[strType]</OutArgument>
                                                 </Assign.To>
                                                 <Assign.Value>
-                                                  <InArgument x:TypeArguments="x:String">Phase 2 Update</InArgument>
+                                                  <InArgument x:TypeArguments="x:String">Phase 2 Reg</InArgument>
                                                 </Assign.Value>
                                               </Assign>
-                                              <Assign DisplayName="Set Tab Type to 'Form'" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_195">
+                                              <Assign DisplayName="Set Tab Type to 'Form'" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_193">
                                                 <Assign.To>
                                                   <OutArgument x:TypeArguments="x:String">[strTabType]</OutArgument>
                                                 </Assign.To>
@@ -475,40 +479,69 @@
                                             </Sequence>
                                           </If.Then>
                                           <If.Else>
-                                            <If Condition="[strFormTitle.contains(&quot;Extra address&quot;) or strFormTitle.contains(&quot;Cyfeiriad ychwanego&quot;)]" DisplayName="If the title refers to an Extra Address:" sap:VirtualizedContainerService.HintSize="570,212.666666666667" sap2010:WorkflowViewState.IdRef="If_63">
+                                            <If Condition="[strFormTitle.contains(IN_dictConfig(&quot;Phase 2 Update English&quot;)) Or strFormTitle.contains(IN_dictConfig(&quot;Phase 2 Update Welsh&quot;))]" DisplayName="If the tile refers to a Phase 2 update form:" sap:VirtualizedContainerService.HintSize="920,406.666666666667" sap2010:WorkflowViewState.IdRef="If_64">
                                               <If.Then>
-                                                <Assign DisplayName="Set Tab Type to 'Extra Address" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_196">
-                                                  <Assign.To>
-                                                    <OutArgument x:TypeArguments="x:String">[strTabType]</OutArgument>
-                                                  </Assign.To>
-                                                  <Assign.Value>
-                                                    <InArgument x:TypeArguments="x:String">Extra Address</InArgument>
-                                                  </Assign.Value>
-                                                </Assign>
+                                                <Sequence DisplayName="Set Type/Tab Type" sap:VirtualizedContainerService.HintSize="304,256" sap2010:WorkflowViewState.IdRef="Sequence_81">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <Assign DisplayName="Set Type to 'Phase 2 Update'" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_194">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[strType]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String">Phase 2 Update</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign DisplayName="Set Tab Type to 'Form'" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_195">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[strTabType]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String">Form</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
                                               </If.Then>
                                               <If.Else>
-                                                <Assign DisplayName="Set Tab Type to 'Other'" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_197">
-                                                  <Assign.To>
-                                                    <OutArgument x:TypeArguments="x:String">[strTabType]</OutArgument>
-                                                  </Assign.To>
-                                                  <Assign.Value>
-                                                    <InArgument x:TypeArguments="x:String">Other</InArgument>
-                                                  </Assign.Value>
-                                                </Assign>
+                                                <If Condition="[strFormTitle.contains(&quot;Extra address&quot;) or strFormTitle.contains(&quot;Cyfeiriad ychwanego&quot;)]" DisplayName="If the title refers to an Extra Address:" sap:VirtualizedContainerService.HintSize="570,212.666666666667" sap2010:WorkflowViewState.IdRef="If_63">
+                                                  <If.Then>
+                                                    <Assign DisplayName="Set Tab Type to 'Extra Address" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_196">
+                                                      <Assign.To>
+                                                        <OutArgument x:TypeArguments="x:String">[strTabType]</OutArgument>
+                                                      </Assign.To>
+                                                      <Assign.Value>
+                                                        <InArgument x:TypeArguments="x:String">Extra Address</InArgument>
+                                                      </Assign.Value>
+                                                    </Assign>
+                                                  </If.Then>
+                                                  <If.Else>
+                                                    <Assign DisplayName="Set Tab Type to 'Other'" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_197">
+                                                      <Assign.To>
+                                                        <OutArgument x:TypeArguments="x:String">[strTabType]</OutArgument>
+                                                      </Assign.To>
+                                                      <Assign.Value>
+                                                        <InArgument x:TypeArguments="x:String">Other</InArgument>
+                                                      </Assign.Value>
+                                                    </Assign>
+                                                  </If.Else>
+                                                </If>
                                               </If.Else>
                                             </If>
                                           </If.Else>
                                         </If>
                                       </If.Else>
                                     </If>
-                                    <Switch x:TypeArguments="x:String" DisplayName="Switch - Gather info from Tab " Expression="[strTabType]" sap:VirtualizedContainerService.HintSize="1270,188.666666666667" sap2010:WorkflowViewState.IdRef="Switch`1_6">
+                                    <Switch x:TypeArguments="x:String" DisplayName="Switch - Gather info from Tab " Expression="[strTabType]" sap:VirtualizedContainerService.HintSize="1578,7047.33333333333" sap2010:WorkflowViewState.IdRef="Switch`1_6">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <Sequence x:Key="Form" DisplayName="Form" sap:VirtualizedContainerService.HintSize="1004,6199.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_92">
+                                      <Sequence x:Key="Form" DisplayName="Form" sap:VirtualizedContainerService.HintSize="1004,6812.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_92">
                                         <Sequence.Variables>
                                           <Variable x:TypeArguments="x:String" Name="strBuildingOrFarm" />
                                           <Variable x:TypeArguments="x:String" Name="strTown" />
@@ -516,6 +549,8 @@
                                           <Variable x:TypeArguments="x:String" Name="strCountry" />
                                           <Variable x:TypeArguments="x:String" Name="strPostCode" />
                                           <Variable x:TypeArguments="x:String" Name="strTelNo" />
+                                          <Variable x:TypeArguments="x:String" Name="strQuestionText" />
+                                          <Variable x:TypeArguments="x:String" Name="strAssuranceScheme" />
                                         </Sequence.Variables>
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1069,7 +1104,55 @@
                                             </Sequence>
                                           </If.Else>
                                         </If>
-                                        <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Placeholder&quot;,strOrganisation,strBuildingOrFarm,strTown,strCounty,strCountry,strPostcode,strTelNo,strEmail,strStore,strUseOrApply,strThirdParty,strQuantity,strAgriculture,strAmenities,strForestry,strOther,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,datetime.now.ToString(&quot;dd/MM/yyyy HH:mm&quot;),environment.username.tostring,1}]" DataTable="[datInfoTable]" DisplayName="Add Data Row - Extracted Data" sap:VirtualizedContainerService.HintSize="962,22" sap2010:WorkflowViewState.IdRef="AddDataRow_7" />
+                                        <ui:MultipleAssign DisplayName="ADDED - Multiple Assign - Assurance Scheme" sap:VirtualizedContainerService.HintSize="962,130" sap2010:WorkflowViewState.IdRef="MultipleAssign_12">
+                                          <ui:MultipleAssign.AssignOperations>
+                                            <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_67">
+                                                <ui:AssignOperation.To>
+                                                  <OutArgument x:TypeArguments="x:String">[strQuestionText]</OutArgument>
+                                                </ui:AssignOperation.To>
+                                                <ui:AssignOperation.Value>
+                                                  <InArgument x:TypeArguments="x:String">[datSheetData(22)(0).tostring+" "]</InArgument>
+                                                </ui:AssignOperation.Value>
+                                              </ui:AssignOperation>
+                                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_68">
+                                                <ui:AssignOperation.To>
+                                                  <OutArgument x:TypeArguments="x:String">[strAssuranceScheme]</OutArgument>
+                                                </ui:AssignOperation.To>
+                                                <ui:AssignOperation.Value>
+                                                  <InArgument x:TypeArguments="x:String">[datSheetData(22)(1).tostring+" "]</InArgument>
+                                                </ui:AssignOperation.Value>
+                                              </ui:AssignOperation>
+                                            </scg:List>
+                                          </ui:MultipleAssign.AssignOperations>
+                                        </ui:MultipleAssign>
+                                        <If Condition="[strQuestionText.contains(&quot;If you are a member of any assurance schemes that cover the use of PPPs, enter the names of the schemes here.&quot;)]" DisplayName="ADDED - If the form is in the new format" sap:VirtualizedContainerService.HintSize="962,363.333333333333" sap2010:WorkflowViewState.IdRef="If_86">
+                                          <If.Then>
+                                            <If Condition="[strAssuranceScheme=&quot; &quot;]" DisplayName="If the assurance scheme is blank" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_85">
+                                              <If.Then>
+                                                <Assign DisplayName="Set strAssuranceScheme to &quot;N/A&quot;" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_255">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:String">[strAssuranceScheme]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:String">N/A</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                              </If.Then>
+                                            </If>
+                                          </If.Then>
+                                          <If.Else>
+                                            <Assign DisplayName="Set strAssuranceScheme to &quot;Old form - Question missing&quot;" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_256">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:String">[strAssuranceScheme]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:String">Old format, question missing</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                          </If.Else>
+                                        </If>
+                                        <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Placeholder&quot;,strOrganisation,strBuildingOrFarm,strTown,strCounty,strCountry,strPostcode,strTelNo,strEmail,strStore,strUseOrApply,strThirdParty,strQuantity,strAgriculture,strAmenities,strForestry,strOther,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,datetime.now.ToString(&quot;dd/MM/yyyy HH:mm&quot;),environment.username.tostring,strAssuranceScheme,1}]" DataTable="[datInfoTable]" DisplayName="AMENDED - Add Data Row - Extracted Data" sap:VirtualizedContainerService.HintSize="962,22" sap2010:WorkflowViewState.IdRef="AddDataRow_7" />
                                       </Sequence>
                                       <Sequence x:Key="Extra Address" sap:VirtualizedContainerService.HintSize="526,724.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_93">
                                         <Sequence.Variables>
@@ -1150,7 +1233,7 @@
                                         </ui:MultipleAssign>
                                         <If Condition="[strBuildingOrFarm=&quot;&quot; and strTown=&quot;&quot; and strPostcode=&quot;&quot; and strCounty =&quot;&quot; and strTelNo=&quot;&quot; and strEmail=&quot;&quot;]" DisplayName="If info is present:" sap:VirtualizedContainerService.HintSize="484,210.666666666667" sap2010:WorkflowViewState.IdRef="If_78">
                                           <If.Else>
-                                            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Placeholder&quot;,&quot;&quot;,strBuildingOrFarm,strTown,strCounty,strCountry,strPostcode,strTelNo,strEmail,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,datetime.now.ToString(&quot;dd/MM/yyyy HH:mm&quot;),environment.username.tostring,2}]" DataTable="[datInfoTable]" DisplayName="Add Data Row - Extra Address" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddDataRow_8" />
+                                            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Placeholder&quot;,&quot;&quot;,strBuildingOrFarm,strTown,strCounty,strCountry,strPostcode,strTelNo,strEmail,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,datetime.now.ToString(&quot;dd/MM/yyyy HH:mm&quot;),environment.username.tostring,&quot;&quot;,2}]" DataTable="[datInfoTable]" DisplayName="AMENDED - Add Data Row - Extra Address" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddDataRow_8" />
                                           </If.Else>
                                         </If>
                                       </Sequence>
@@ -1170,7 +1253,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:ExcelApplicationScope>
-                    <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - Excel" sap:VirtualizedContainerService.HintSize="1424.66666666667,22" sap2010:WorkflowViewState.IdRef="KillProcess_5" ProcessName="EXCEL" />
+                    <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process - Excel" sap:VirtualizedContainerService.HintSize="1732.66666666667,22" sap2010:WorkflowViewState.IdRef="KillProcess_5" ProcessName="EXCEL" />
                   </Sequence>
                   <FlowStep.Next>
                     <FlowStep x:Name="__ReferenceID4">
@@ -1181,7 +1264,7 @@
                           <av:PointCollection x:Key="ConnectorLocation">420,805 420,855</av:PointCollection>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Sequence DisplayName="Finalise Extracted Data" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                      <Sequence DisplayName="Finalise Extracted Data" sap:VirtualizedContainerService.HintSize="726,2562" sap2010:WorkflowViewState.IdRef="Sequence_64">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:Int32" Name="intTimeColumn" />
                           <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="ie8Letters" />
@@ -1255,19 +1338,19 @@
                             </Sequence>
                           </If.Else>
                         </If>
-                        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[datInfoTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="684,754.666666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+                        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[datInfoTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="684,785.333333333333" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
                           <ui:ForEachRow.Body>
                             <ActivityAction x:TypeArguments="sd:DataRow">
                               <ActivityAction.Argument>
                                 <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
                               </ActivityAction.Argument>
-                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="473.333333333333,630.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="473.333333333333,661.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_63">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:MultipleAssign DisplayName="Multiple Assign - Add core information/ref/sender" sap:VirtualizedContainerService.HintSize="431.333333333333,436.666666666667" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
+                                <ui:MultipleAssign DisplayName="AMENDED - Multiple Assign - Add core information/ref/sender" sap:VirtualizedContainerService.HintSize="431.333333333333,467.333333333333" sap2010:WorkflowViewState.IdRef="MultipleAssign_8">
                                   <ui:MultipleAssign.AssignOperations>
                                     <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
                                       <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_50">
@@ -1364,6 +1447,14 @@
                                         </ui:AssignOperation.To>
                                         <ui:AssignOperation.Value>
                                           <InArgument x:TypeArguments="x:Object">[IN_strDateTimeReceived]</InArgument>
+                                        </ui:AssignOperation.Value>
+                                      </ui:AssignOperation>
+                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_69">
+                                        <ui:AssignOperation.To>
+                                          <OutArgument x:TypeArguments="x:Object">[datInfoTable.rows(intInfoTableRows)(23)]</OutArgument>
+                                        </ui:AssignOperation.To>
+                                        <ui:AssignOperation.Value>
+                                          <InArgument x:TypeArguments="x:Object">[datInfoTable(0)(23).tostring]</InArgument>
                                         </ui:AssignOperation.Value>
                                       </ui:AssignOperation>
                                     </scg:List>
@@ -1506,7 +1597,7 @@
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:BuildDataTable DataTable="[datHeaders]" DisplayName="Build Data Table - Headers" sap:VirtualizedContainerService.HintSize="672,58.6666666666667" sap2010:WorkflowViewState.IdRef="BuildDataTable_5" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Record_x0020_Number&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Building_x0020_and_x0020_street_x0020_or_x0020_farm_x0020_name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Town_x0020_or_x0020_city&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;County&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Country&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Postcode&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Telephone_x0020_Number&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Contact_x0020_Email_x0020_Address&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_store_x0020_them&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_use_x0020_or_x0020_apply_x0020_them&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_are_x0020_a_x0020_business_x0020_or_x0020_organisation_x0020_in_x0020_the_x0020_agriculture_x002C__x0020_horticulture_x002C__x0020_amenity_x0020_or_x0020_forestry_x0020_sector_x0020_and_x0020_have_x0020_professional_x0020_PPP_x0027_s_x0020_applied_x0020_by_x0020_a_x0020_third_x0020_party&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Quantity&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_agriculture_x0020__x002F__x0020_horticulture_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_amenities_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_forestry_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Other&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Sender_x0020_Email&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Registration_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Update_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Business_x0020_Closed_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Date_x0020_timestamp_x0020_processed&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;User_x0020_who_x0020_processed&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;Record_x0020_Number&gt;Record Number&lt;/Record_x0020_Number&gt;&#xA;    &lt;Name&gt;Name&lt;/Name&gt;&#xA;    &lt;Building_x0020_and_x0020_street_x0020_or_x0020_farm_x0020_name&gt;Building and street, or farm name&lt;/Building_x0020_and_x0020_street_x0020_or_x0020_farm_x0020_name&gt;&#xA;    &lt;Town_x0020_or_x0020_city&gt;Town or city&lt;/Town_x0020_or_x0020_city&gt;&#xA;    &lt;County&gt;County&lt;/County&gt;&#xA;    &lt;Country&gt;Country&lt;/Country&gt;&#xA;    &lt;Postcode&gt;Postcode&lt;/Postcode&gt;&#xA;    &lt;Telephone_x0020_Number&gt;Telephone Number&lt;/Telephone_x0020_Number&gt;&#xA;    &lt;Contact_x0020_Email_x0020_Address&gt;Contact Email Address&lt;/Contact_x0020_Email_x0020_Address&gt;&#xA;    &lt;We_x0020_store_x0020_them&gt;We store them&lt;/We_x0020_store_x0020_them&gt;&#xA;    &lt;We_x0020_use_x0020_or_x0020_apply_x0020_them&gt;We use them, or apply them&lt;/We_x0020_use_x0020_or_x0020_apply_x0020_them&gt;&#xA;    &lt;We_x0020_are_x0020_a_x0020_business_x0020_or_x0020_organisation_x0020_in_x0020_the_x0020_agriculture_x002C__x0020_horticulture_x002C__x0020_amenity_x0020_or_x0020_forestry_x0020_sector_x0020_and_x0020_have_x0020_professional_x0020_PPP_x0027_s_x0020_applied_x0020_by_x0020_a_x0020_third_x0020_party&gt;We are a business or organisation in the agriculture, horticulture, amenity or forestry sector and have professional PPPs applied by a third party&lt;/We_x0020_are_x0020_a_x0020_business_x0020_or_x0020_organisation_x0020_in_x0020_the_x0020_agriculture_x002C__x0020_horticulture_x002C__x0020_amenity_x0020_or_x0020_forestry_x0020_sector_x0020_and_x0020_have_x0020_professional_x0020_PPP_x0027_s_x0020_applied_x0020_by_x0020_a_x0020_third_x0020_party&gt;&#xA;    &lt;Quantity&gt;Quantity&lt;/Quantity&gt;&#xA;    &lt;We_x0020_work_x0020_in_x0020_the_x0020_agriculture_x0020__x002F__x0020_horticulture_x0020_sector&gt;We work in the agriculture / horticulture sector&lt;/We_x0020_work_x0020_in_x0020_the_x0020_agriculture_x0020__x002F__x0020_horticulture_x0020_sector&gt;&#xA;    &lt;We_x0020_work_x0020_in_x0020_the_x0020_amenities_x0020_sector&gt;We work in the amenities sector&lt;/We_x0020_work_x0020_in_x0020_the_x0020_amenities_x0020_sector&gt;&#xA;    &lt;We_x0020_work_x0020_in_x0020_the_x0020_forestry_x0020_sector&gt;We work in the forestry sector&lt;/We_x0020_work_x0020_in_x0020_the_x0020_forestry_x0020_sector&gt;&#xA;    &lt;Other&gt;Other&lt;/Other&gt;&#xA;    &lt;Sender_x0020_Email&gt;Sender Email&lt;/Sender_x0020_Email&gt;&#xA;    &lt;Registration_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;Registration Timestamp (date and time received)&lt;/Registration_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;&#xA;    &lt;Update_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;Update Timestamp (date and time received)&lt;/Update_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;&#xA;    &lt;Business_x0020_Closed_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;Site Closed (date and time received)&lt;/Business_x0020_Closed_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;&#xA;    &lt;Date_x0020_timestamp_x0020_processed&gt;Date timestamp processed&lt;/Date_x0020_timestamp_x0020_processed&gt;&#xA;    &lt;User_x0020_who_x0020_processed&gt;User who processed&lt;/User_x0020_who_x0020_processed&gt;&#xA;  &lt;/TableName&gt;&#xA;&lt;/NewDataSet&gt;" />
+                                <ui:BuildDataTable DataTable="[datHeaders]" DisplayName="AMENDED - Build Data Table - Headers" sap:VirtualizedContainerService.HintSize="672,58.6666666666667" sap2010:WorkflowViewState.IdRef="BuildDataTable_5" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Record_x0020_Number&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Building_x0020_and_x0020_street_x0020_or_x0020_farm_x0020_name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Town_x0020_or_x0020_city&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;County&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Country&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Postcode&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Telephone_x0020_Number&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Contact_x0020_Email_x0020_Address&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_store_x0020_them&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_use_x0020_or_x0020_apply_x0020_them&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_are_x0020_a_x0020_business_x0020_or_x0020_organisation_x0020_in_x0020_the_x0020_agriculture_x002C__x0020_horticulture_x002C__x0020_amenity_x0020_or_x0020_forestry_x0020_sector_x0020_and_x0020_have_x0020_professional_x0020_PPP_x0027_s_x0020_applied_x0020_by_x0020_a_x0020_third_x0020_party&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Quantity&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_agriculture_x0020__x002F__x0020_horticulture_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_amenities_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;We_x0020_work_x0020_in_x0020_the_x0020_forestry_x0020_sector&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Other&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Sender_x0020_Email&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Registration_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Update_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Business_x0020_Closed_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Date_x0020_timestamp_x0020_processed&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;User_x0020_who_x0020_processed&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Assurance_x0020_Scheme&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;Record_x0020_Number&gt;Record Number&lt;/Record_x0020_Number&gt;&#xA;    &lt;Name&gt;Name&lt;/Name&gt;&#xA;    &lt;Building_x0020_and_x0020_street_x0020_or_x0020_farm_x0020_name&gt;Building and street, or farm name&lt;/Building_x0020_and_x0020_street_x0020_or_x0020_farm_x0020_name&gt;&#xA;    &lt;Town_x0020_or_x0020_city&gt;Town or city&lt;/Town_x0020_or_x0020_city&gt;&#xA;    &lt;County&gt;County&lt;/County&gt;&#xA;    &lt;Country&gt;Country&lt;/Country&gt;&#xA;    &lt;Postcode&gt;Postcode&lt;/Postcode&gt;&#xA;    &lt;Telephone_x0020_Number&gt;Telephone Number&lt;/Telephone_x0020_Number&gt;&#xA;    &lt;Contact_x0020_Email_x0020_Address&gt;Contact Email Address&lt;/Contact_x0020_Email_x0020_Address&gt;&#xA;    &lt;We_x0020_store_x0020_them&gt;We store them&lt;/We_x0020_store_x0020_them&gt;&#xA;    &lt;We_x0020_use_x0020_or_x0020_apply_x0020_them&gt;We use them, or apply them&lt;/We_x0020_use_x0020_or_x0020_apply_x0020_them&gt;&#xA;    &lt;We_x0020_are_x0020_a_x0020_business_x0020_or_x0020_organisation_x0020_in_x0020_the_x0020_agriculture_x002C__x0020_horticulture_x002C__x0020_amenity_x0020_or_x0020_forestry_x0020_sector_x0020_and_x0020_have_x0020_professional_x0020_PPP_x0027_s_x0020_applied_x0020_by_x0020_a_x0020_third_x0020_party&gt;We are a business or organisation in the agriculture, horticulture, amenity or forestry sector and have professional PPPs applied by a third party&lt;/We_x0020_are_x0020_a_x0020_business_x0020_or_x0020_organisation_x0020_in_x0020_the_x0020_agriculture_x002C__x0020_horticulture_x002C__x0020_amenity_x0020_or_x0020_forestry_x0020_sector_x0020_and_x0020_have_x0020_professional_x0020_PPP_x0027_s_x0020_applied_x0020_by_x0020_a_x0020_third_x0020_party&gt;&#xA;    &lt;Quantity&gt;Quantity&lt;/Quantity&gt;&#xA;    &lt;We_x0020_work_x0020_in_x0020_the_x0020_agriculture_x0020__x002F__x0020_horticulture_x0020_sector&gt;We work in the agriculture / horticulture sector&lt;/We_x0020_work_x0020_in_x0020_the_x0020_agriculture_x0020__x002F__x0020_horticulture_x0020_sector&gt;&#xA;    &lt;We_x0020_work_x0020_in_x0020_the_x0020_amenities_x0020_sector&gt;We work in the amenities sector&lt;/We_x0020_work_x0020_in_x0020_the_x0020_amenities_x0020_sector&gt;&#xA;    &lt;We_x0020_work_x0020_in_x0020_the_x0020_forestry_x0020_sector&gt;We work in the forestry sector&lt;/We_x0020_work_x0020_in_x0020_the_x0020_forestry_x0020_sector&gt;&#xA;    &lt;Other&gt;Other&lt;/Other&gt;&#xA;    &lt;Sender_x0020_Email&gt;Sender Email&lt;/Sender_x0020_Email&gt;&#xA;    &lt;Registration_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;Registration Timestamp (date and time received)&lt;/Registration_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;&#xA;    &lt;Update_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;Update Timestamp (date and time received)&lt;/Update_x0020_Timestamp_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;&#xA;    &lt;Business_x0020_Closed_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;Site Closed (date and time received)&lt;/Business_x0020_Closed_x0020__x0028_date_x0020_and_x0020_time_x0020_received_x0029_&gt;&#xA;    &lt;Date_x0020_timestamp_x0020_processed&gt;Date timestamp processed&lt;/Date_x0020_timestamp_x0020_processed&gt;&#xA;    &lt;User_x0020_who_x0020_processed&gt;User who processed&lt;/User_x0020_who_x0020_processed&gt;&#xA;    &lt;Assurance_x0020_Scheme&gt;Assurance Scheme&lt;/Assurance_x0020_Scheme&gt;&#xA;  &lt;/TableName&gt;&#xA;&lt;/NewDataSet&gt;" />
                                 <ui:KillProcess ContinueOnError="{x:Null}" Process="{x:Null}" AppliesTo="OnlyCurrentUser" DisplayName="Kill Process - Excel" sap:VirtualizedContainerService.HintSize="672,22" sap2010:WorkflowViewState.IdRef="KillProcess_3" ProcessName="EXCEL" />
                                 <ui:FileExistsX DisplayName="File Exists - Consolidated List" Exists="[booExists]" sap:VirtualizedContainerService.HintSize="672,135.333333333333" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[IN_strWorkingFolder+&quot;\Local Consolidated List&quot;+&quot;.xlsx&quot;]" />
                                 <If Condition="[booMandatoryDataMissing=False]" DisplayName="If no mandatory data is missing:" sap:VirtualizedContainerService.HintSize="672,873.333333333333" sap2010:WorkflowViewState.IdRef="If_56">
@@ -1671,7 +1762,7 @@
                                                 <InArgument x:TypeArguments="x:String">[String.Format(IN_dictConfig("Email Template Folder"),Environment.UserName,"")]</InArgument>
                                               </Assign.Value>
                                             </Assign>
-                                            <Switch x:TypeArguments="x:String" DisplayName="Switch - Build email body" Expression="[INOUT_strRoute]" sap:VirtualizedContainerService.HintSize="496.666666666667,731.333333333333" sap2010:WorkflowViewState.IdRef="Switch`1_5">
+                                            <Switch x:TypeArguments="x:String" DisplayName="Switch - Build email body" Expression="[INOUT_strRoute]" sap:VirtualizedContainerService.HintSize="496.666666666667,308.666666666667" sap2010:WorkflowViewState.IdRef="Switch`1_5">
                                               <x:Null x:Key="Phase 1" />
                                               <Sequence x:Key="Incorrect Type" sap:VirtualizedContainerService.HintSize="426,272" sap2010:WorkflowViewState.IdRef="Sequence_73">
                                                 <sap:WorkflowViewStateService.ViewState>
@@ -1737,7 +1828,7 @@
                                                   </Assign.Value>
                                                 </Assign>
                                               </Sequence>
-                                              <Sequence x:Key="Partial Success" sap:VirtualizedContainerService.HintSize="426,376.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_69">
+                                              <Sequence x:Key="Partial Success" sap:VirtualizedContainerService.HintSize="426,371.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_69">
                                                 <sap:WorkflowViewStateService.ViewState>
                                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
